@@ -1,0 +1,5 @@
+armeabi
+armv7
+Dfile
+jvmargs
+lateinit

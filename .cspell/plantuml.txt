@@ -1,0 +1,7 @@
+endmindmap
+endswitch
+enduml
+endwhile
+skinparam
+startmindmap
+startuml

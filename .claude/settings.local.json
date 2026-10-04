@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -n '200,220p' src/pages/session/GameplayPage.tsx)",
+      "Bash(sed -n '130,145p' src/services/agents/validation/projectValidationContext.ts)",
+      "Bash(sed -n '55,70p' src/services/agents/executor/projectExecutorContext.ts)",
+      "Bash(npx tsc *)",
+      "Bash(sed -n '14,30p' /workspaces/phoenix-prototype/data/campaigns/shadows-over-grayhaven/universe.json)",
+      "Bash(sed -n '28,45p' src/services/sessions/sessionFactory.ts)",
+      "Bash(npx vitest *)",
+      "Bash(echo \"=== EXIT $? ===\")",
+      "Bash(echo \"=== TSC EXIT $? ===\")"
+    ]
+  }
+}

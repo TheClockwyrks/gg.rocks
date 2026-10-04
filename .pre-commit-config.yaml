@@ -1,0 +1,29 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-illegal-windows-names
+      - id: check-json
+        # Many VSCode .json files contain comments, which cause them to be
+        #   flagged as invalid JSON files
+        exclude: "(.*\\/.vscode/.*\\.json|.*\\/?tsconfig.*\\.json)"
+      - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
+        # Opt Rust files out of this check entirely since annotations such as
+        # `#![forbid(unsafe_code)]` are placed at the top of the file and trip
+        # this check
+        exclude: ".*\\.rs"
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-vcs-permalinks
+      - id: check-xml
+      - id: check-yaml
+        # Parsec model/provider YAML files use custom tags (e.g. !OpenRouter)
+        exclude: "(^|/)\\.parsec/data/(models|providers)/.*\\.ya?ml$"
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.11.0.1-1
+    hooks:
+      - id: shellcheck

@@ -1,0 +1,53 @@
+x-devcontainer-build-args: &devcontainer-build-args
+  USERNAME: ${USER}
+  USER_UID: 1000
+  USER_GID: 1000
+  DOCKER_GID: ${DOCKER_GID:-999}
+  LAZYDOCKER_VERSION: 0.25.0
+  LAZYGIT_VERSION: 0.60.0
+  NODE_VERSION: 24.14.1
+  RUST_VERSION: 1.94.1
+  DOTNET_SDK_VERSION: "10.0"
+  NEXTEST_VERSION: 0.9.132
+  SCCACHE_VERSION: 0.14.0
+  TARPAULIN_VERSION: 0.35.2
+  TZ: ${TZ:-UTC}
+
+services:
+  # Devcontainer used by VSCode
+  dev:
+    build:
+      args:
+        <<: *devcontainer-build-args
+        PYTHON_VERSION: 3.12
+      context: .
+      dockerfile: ./ubuntu-24.04.dockerfile
+    # Overrides default command so things don't shut down after the process ends.
+    # This is suggested by the example template provided in the VSCode
+    #   devcontainers GitHub repository here:
+    # https://github.com/devcontainers/templates/blob/b87588a3e3dfb5fff0dfe8527a21482a77fba0ad/src/docker-existing-docker-compose/.devcontainer/docker-compose.yml
+    command: sleep infinity
+    environment:
+      # Timezone for consistent local time in the container
+      - TZ=${TZ}
+    extra_hosts:
+      # Allow host ports to be accessed from within the container
+      - "host.docker.internal:host-gateway"
+    networks:
+      dev-net:
+        aliases:
+          - devcontainer.dev.net
+    stdin_open: true
+    tty: true
+    volumes:
+      - ..:/workspaces/gg-rocks:rw
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+      - type: bind
+        source: /usr/bin/docker
+        target: /usr/bin/docker
+
+networks:
+  # Used to enable URL-based lookups of other containers
+  dev-net:

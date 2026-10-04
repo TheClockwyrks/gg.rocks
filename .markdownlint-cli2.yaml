@@ -1,0 +1,21 @@
+config:
+  # Fenced code blocks used for plain text shouldn't need a language tag
+  fenced-code-language: false
+  # Ideally, this should be followed. But most LLMs don't wrap their lines at
+  #   all, so it's a major pain to get all Markdown files to adhere to sane line
+  #   lengths.
+  line-length: false
+  # Personal preference; use dashes for lists
+  ul-style:
+    style: dash
+
+# Ignore files ignored by the `.gitignore`
+gitignore: true
+
+globs:
+  - docs/**/*.md
+
+ignores:
+  - .cursor/**
+  - docs/**/.nav.yml
+  - node_modules/**
