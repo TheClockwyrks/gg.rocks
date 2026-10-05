@@ -1,0 +1,95 @@
+@use "@/styles" as *;
+
+// Stats share the row evenly but never get narrower or wider than this.
+$stat-min-width: 140px;
+$stat-max-width: 260px;
+
+.verdict {
+	display: flex;
+	flex-direction: column;
+	gap: $s-6;
+	padding: $s-5;
+	border: $border-outline;
+	border-radius: $radius-lg;
+	background: $color-raised;
+	scroll-margin-top: $layout-header-height + $tap-target + $s-6;
+
+	@include up($bp-sm) {
+		padding: $s-8;
+	}
+
+	&.shipped {
+		border-color: $color-accent-outline;
+	}
+}
+
+.eyebrow {
+	margin: 0;
+	font-weight: $weight-regular;
+
+	@include text-label($color: $color-ink-muted);
+
+	.shipped & {
+		color: $color-accent;
+	}
+}
+
+.summary {
+	max-width: $layout-prose;
+	margin: 0;
+	font-size: $text-18;
+	line-height: $leading-normal;
+
+	@include up($bp-sm) {
+		font-size: $text-22;
+	}
+}
+
+// The frame clips the divider that would otherwise sit to the left of the
+// first stat on each line when the stats wrap.
+.statsFrame {
+	overflow: hidden;
+	border-top: $border;
+}
+
+.stats {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 0 0 (-($s-4 + $border-width));
+}
+
+.stat {
+	flex: 1 1 $stat-min-width;
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: flex-end;
+	gap: $s-1;
+	max-width: $stat-max-width;
+	padding: $s-5 $s-4 0;
+	border-left: $border;
+}
+
+.value {
+	margin: 0;
+
+	@include text-mono($text-22, $color-ink);
+
+	@include up($bp-sm) {
+		font-size: $text-30;
+	}
+
+	.shipped & {
+		color: $color-accent;
+	}
+}
+
+.label {
+	font-size: $text-14;
+	color: $color-ink-muted;
+}
+
+.basis {
+	margin: 0;
+
+	@include text-mono;
+}

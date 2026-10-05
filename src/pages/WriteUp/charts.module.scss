@@ -1,0 +1,73 @@
+@use "@/styles" as *;
+
+.chart {
+	width: 100%;
+	height: auto;
+}
+
+.gridLine {
+	stroke: $color-grid;
+}
+
+.axis {
+	stroke: $color-outline;
+}
+
+.axisLabel {
+	fill: $color-ink-subtle;
+	font-family: $font-mono;
+	font-size: $text-12;
+}
+
+.pointLabel {
+	fill: $color-ink-muted;
+	font-family: $font-mono;
+	font-size: $text-13;
+
+	&.emphasis {
+		fill: $color-ink;
+	}
+}
+
+.trail {
+	fill: none;
+	stroke: $color-ink-subtle;
+	stroke-width: $stroke-thin;
+	stroke-dasharray: $s-1 $s-1;
+}
+
+.point {
+	stroke: $color-surface;
+	stroke-width: $stroke-route;
+
+	&.previous {
+		fill: $color-ink-subtle;
+	}
+
+	&.current {
+		fill: $color-accent;
+	}
+
+	&.other {
+		fill: $color-info;
+	}
+}
+
+.series {
+	fill: none;
+	stroke-width: $stroke-route;
+
+	&.previous {
+		stroke: $color-ink-subtle;
+	}
+
+	&.current {
+		stroke: $color-accent;
+	}
+}
+
+.callout {
+	stroke: $color-ink-muted;
+	stroke-width: $stroke-hair;
+	stroke-dasharray: $s-1 $s-1;
+}

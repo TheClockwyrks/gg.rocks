@@ -1,0 +1,67 @@
+@use "@/styles" as *;
+
+.toc {
+	position: sticky;
+	top: $layout-header-height;
+	z-index: $z-header - 1;
+	border-bottom: $border;
+	background: $color-scrim;
+	backdrop-filter: blur($s-2);
+	font-size: $text-15;
+
+	@include up($bp-lg) {
+		top: $layout-header-height + $s-12;
+		flex: none;
+		align-self: flex-start;
+		width: $layout-toc-width;
+		margin-top: $s-12;
+		border: 0;
+		background: none;
+		backdrop-filter: none;
+	}
+}
+
+.track {
+	position: relative;
+	display: flex;
+	gap: $s-6;
+	overflow-x: auto;
+
+	@include gutter;
+
+	@include up($bp-lg) {
+		flex-direction: column;
+		gap: 0;
+		overflow: visible;
+		padding-inline: $s-10 0;
+	}
+}
+
+.strand {
+	display: none;
+
+	@include up($bp-lg) {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+}
+
+.link {
+	flex: none;
+	display: flex;
+	align-items: center;
+	height: $tap-target;
+	color: $color-ink-subtle;
+	white-space: nowrap;
+
+	&:hover {
+		color: $color-ink;
+	}
+
+	&.current {
+		color: $color-ink;
+		font-weight: $weight-semibold;
+	}
+}

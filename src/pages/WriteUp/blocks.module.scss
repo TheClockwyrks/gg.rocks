@@ -1,0 +1,342 @@
+@use "@/styles" as *;
+
+// Sizes that only these blocks need.
+$bar-label-column: 220px;
+$bar-value-column: 140px;
+
+// --- Sections ---------------------------------------------------------------
+
+.section {
+	display: flex;
+	flex-direction: column;
+	gap: $s-4;
+	min-width: 0;
+	// Clear the top bar, plus the pinned contents row on smaller screens.
+	scroll-margin-top: $layout-header-height + $tap-target + $s-6;
+
+	@include up($bp-lg) {
+		scroll-margin-top: $layout-header-height + $s-8;
+	}
+
+	&.spacious {
+		gap: $s-10;
+	}
+}
+
+.sectionHeader {
+	display: flex;
+	flex-direction: column;
+	gap: $s-2;
+}
+
+.sectionTitle {
+	@include text-title-section;
+}
+
+.prose {
+	max-width: $layout-prose;
+
+	@include text-body;
+}
+
+.method {
+	margin: 0;
+
+	@include text-mono($text-13);
+}
+
+// --- Compared against -------------------------------------------------------
+
+.compared {
+	display: flex;
+	flex-direction: column;
+	gap: $s-3;
+}
+
+.comparedLabel {
+	margin: 0;
+	font-weight: $weight-regular;
+
+	@include text-label;
+}
+
+.chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $s-2-5;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.chip {
+	padding: $s-2 $s-3;
+	border: $border-outline;
+	border-radius: $radius-md;
+
+	@include text-mono($text-13, $color-ink-muted);
+}
+
+.comparedNote {
+	margin: 0;
+	font-size: $text-14;
+	color: $color-ink-subtle;
+}
+
+// --- Token bars -------------------------------------------------------------
+
+.bars {
+	display: flex;
+	flex-direction: column;
+	gap: $s-4;
+}
+
+.barRow {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	grid-template-areas:
+		"label value"
+		"bar bar";
+	gap: $s-2 $s-4;
+	align-items: center;
+
+	@include text-mono($text-13, $color-ink-muted);
+
+	@include up($bp-md) {
+		grid-template-columns: $bar-label-column minmax(0, 1fr) $bar-value-column;
+		grid-template-areas: "label bar value";
+	}
+
+	&.highlight {
+		color: $color-ink;
+	}
+}
+
+.barLabel {
+	grid-area: label;
+}
+
+.barValue {
+	grid-area: value;
+}
+
+.bar {
+	grid-area: bar;
+	display: flex;
+	gap: $s-0-5;
+	height: $s-5;
+}
+
+.cached,
+.uncached {
+	flex: var(--share) 1 0;
+}
+
+.cached {
+	border-radius: $radius-sm 0 0 $radius-sm;
+	background: $color-strand;
+}
+
+.uncached {
+	border-radius: 0 $radius-sm $radius-sm 0;
+	background: $color-accent;
+}
+
+// --- Before / after ---------------------------------------------------------
+
+.beforeAfter {
+	display: grid;
+	gap: $s-5;
+	margin: 0;
+
+	@include up($bp-md) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.variant {
+	display: flex;
+	flex-direction: column;
+	gap: $s-2-5;
+
+	@include card;
+}
+
+.variantLabel {
+	letter-spacing: $tracking-wide;
+	text-transform: uppercase;
+
+	@include text-mono;
+
+	&.current {
+		color: $color-accent;
+	}
+}
+
+.steps {
+	display: flex;
+	flex-direction: column;
+	gap: $s-2-5;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.step {
+	padding: $s-3 $s-4;
+	border: $border-outline;
+	border-radius: $radius-md;
+
+	@include text-mono($text-14, $color-ink);
+
+	&.changed {
+		border: $border-width-strong solid $color-accent;
+		background: $color-accent-wash;
+	}
+
+	&.added {
+		border: $border-width-strong dashed $color-accent;
+	}
+}
+
+.arrow {
+	padding-left: $s-5;
+	color: $color-strand;
+}
+
+.stepChange {
+	color: $color-accent;
+}
+
+// --- Lineage ----------------------------------------------------------------
+
+.lineage {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	@include up($bp-md) {
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+		row-gap: $s-4;
+	}
+}
+
+.lineageStep {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	@include up($bp-md) {
+		flex-direction: row;
+		align-items: center;
+	}
+}
+
+.lineageCard {
+	display: flex;
+	flex-direction: column;
+	gap: $s-1;
+	padding: $s-3 $s-5;
+	border: $border-outline;
+	border-radius: $radius-lg;
+	color: $color-ink;
+
+	&:hover {
+		color: $color-ink;
+	}
+
+	&.accent {
+		border-color: $color-accent;
+	}
+
+	&.dashed {
+		border-style: dashed;
+	}
+
+	&.self {
+		background: $color-raised;
+	}
+}
+
+a.lineageCard {
+	transition: background-color $duration-fast ease;
+
+	&:hover {
+		background: $color-row-hover;
+	}
+}
+
+.relation {
+	letter-spacing: $tracking-wide;
+	text-transform: uppercase;
+
+	@include text-mono($text-11);
+
+	.accent > & {
+		color: $color-accent;
+	}
+
+	.dashed > & {
+		color: $color-ink-muted;
+	}
+}
+
+.lineageName {
+	font-weight: $weight-semibold;
+}
+
+.connector {
+	margin-left: $s-8;
+	fill: none;
+	stroke: $color-ink-subtle;
+	stroke-width: $stroke-thin;
+	opacity: 0.6;
+
+	@include up($bp-md) {
+		margin-left: 0;
+	}
+
+	&.lit {
+		stroke: $color-accent;
+		stroke-width: $stroke-route;
+		opacity: 1;
+	}
+}
+
+.across {
+	display: none;
+
+	@include up($bp-md) {
+		display: block;
+	}
+}
+
+.down {
+	@include up($bp-md) {
+		display: none;
+	}
+}
+
+// --- Data links -------------------------------------------------------------
+
+.dataLinks {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: $text-17;
+
+	li:not(:last-child) {
+		border-bottom: $border-soft;
+	}
+}
+
+.dataLink {
+	display: flex;
+	align-items: center;
+	min-height: $tap-target;
+}
