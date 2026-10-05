@@ -2,29 +2,15 @@
 	"name": "gg-rocks",
 	"private": true,
 	"version": "0.0.0",
-	"type": "module",
+	"workspaces": [
+		"apps/*"
+	],
 	"scripts": {
-		"dev": "vite",
-		"build": "tsc --noEmit && vite build",
-		"preview": "vite preview",
-		"typecheck": "tsc --noEmit",
-		"lint": "oxlint src",
-		"format": "prettier --write ."
-	},
-	"dependencies": {
-		"react": "^19.3.0",
-		"react-dom": "^19.3.0",
-		"react-router": "^8.4.0"
-	},
-	"devDependencies": {
-		"@types/node": "^24.13.6",
-		"@types/react": "^19.3.0",
-		"@types/react-dom": "^19.3.0",
-		"@vitejs/plugin-react": "^6.1.1",
-		"oxlint": "^1.85.0",
-		"prettier": "^3.6.2",
-		"sass": "^1.105.0",
-		"typescript": "^6.0.3",
-		"vite": "^8.3.0"
+		"dev": "npm run dev --workspace @gg-rocks/web",
+		"build": "npm run build --workspace @gg-rocks/web",
+		"preview": "npm run preview --workspace @gg-rocks/web",
+		"typecheck": "npm run typecheck --workspace @gg-rocks/web",
+		"lint": "npm run lint --workspace @gg-rocks/web",
+		"format": "npm run format --workspace @gg-rocks/web"
 	}
 }
