@@ -1,0 +1,70 @@
+import { useState } from "react";
+import { PageBody } from "@/components/PageBody/PageBody";
+import { PageIntro } from "@/components/PageIntro/PageIntro";
+import { experiments, type ExperimentStatus } from "@/data/experiments";
+import { cx } from "@/utils/cx";
+import { ExperimentHeadings, ExperimentRow } from "./ExperimentRow";
+import styles from "./Experiments.module.scss";
+
+type Filter = "all" | ExperimentStatus;
+
+const filters: { id: Filter; label: string }[] = [
+	{ id: "all", label: "All" },
+	{ id: "active", label: "Active" },
+	{ id: "shipped", label: "Shipped" },
+	{ id: "retired", label: "Removed" },
+];
+
+export function Experiments() {
+	const [filter, setFilter] = useState<Filter>("all");
+	const visible = experiments.filter(
+		(experiment) => filter === "all" || experiment.status === filter,
+	);
+
+	return (
+		<PageBody rail="experiments">
+			<PageIntro
+				eyebrow="Experiments"
+				title="What we're testing"
+			>
+				Every change to gg starts here. Each one is measured on TTC runs against
+				the current build, then either ships to Vantacode or is retired with a
+				write-up.
+			</PageIntro>
+
+			<div
+				role="group"
+				aria-label="Filter experiments by status"
+				className={styles.filters}
+			>
+				{filters.map(({ id, label }) => (
+					<button
+						key={id}
+						type="button"
+						aria-pressed={filter === id}
+						className={cx(styles.filter, filter === id && styles.pressed)}
+						onClick={() => setFilter(id)}
+					>
+						{label}
+					</button>
+				))}
+			</div>
+
+			<div>
+				<ExperimentHeadings />
+				{visible.length > 0 ? (
+					<ul className={styles.list}>
+						{visible.map((experiment) => (
+							<ExperimentRow
+								key={experiment.id}
+								experiment={experiment}
+							/>
+						))}
+					</ul>
+				) : (
+					<p className={styles.empty}>No experiments with this status yet.</p>
+				)}
+			</div>
+		</PageBody>
+	);
+}

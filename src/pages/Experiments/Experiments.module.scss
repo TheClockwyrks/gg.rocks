@@ -1,0 +1,46 @@
+@use "@/styles" as *;
+
+.filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $s-2-5;
+}
+
+.filter {
+	min-height: $control-height;
+	padding: $s-2 $s-4;
+	border: $border-outline;
+	border-radius: $radius-full;
+	background: transparent;
+	color: $color-ink-muted;
+	font-size: $text-14;
+	transition:
+		border-color $duration-fast ease,
+		color $duration-fast ease;
+
+	&:hover {
+		border-color: $color-accent;
+		color: $color-ink;
+	}
+
+	&.pressed {
+		border-color: $color-accent;
+		background: $color-accent;
+		color: $color-surface;
+		font-weight: $weight-semibold;
+	}
+}
+
+.list {
+	margin: 0;
+	padding: 0;
+	border-top: $border;
+	list-style: none;
+}
+
+.empty {
+	padding: $s-6 $s-3;
+	border-top: $border;
+
+	@include text-lead;
+}
