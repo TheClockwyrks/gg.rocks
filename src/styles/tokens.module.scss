@@ -1,0 +1,11 @@
+@use "sass:math";
+@use "tokens" as *;
+
+// Token values that layout code in TypeScript also needs, so the numbers are
+// only ever written down once.
+:export {
+	bpNetMedium: math.div($bp-net-medium, 1px);
+	bpLg: math.div($bp-lg, 1px);
+	tapTarget: math.div($tap-target, 1px);
+	railWidth: math.div($layout-rail-width, 1px);
+}

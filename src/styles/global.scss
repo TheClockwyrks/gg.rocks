@@ -1,3 +1,62 @@
+@use "tokens" as *;
+@use "mixins" as *;
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	background: $color-surface;
+	color-scheme: dark;
+	-webkit-text-size-adjust: 100%;
+
+	@include motion-safe {
+		scroll-behavior: smooth;
+	}
+}
+
 body {
 	margin: 0;
+	min-width: 320px;
+	background: $color-surface;
+	color: $color-ink;
+	font-family: $font-display;
+	font-weight: $weight-regular;
+	line-height: $leading-normal;
+	-webkit-font-smoothing: antialiased;
+}
+
+a {
+	color: $color-accent;
+	text-decoration: none;
+	transition: color $duration-fast ease;
+
+	&:hover {
+		color: $color-accent-hover;
+	}
+}
+
+button {
+	font: inherit;
+	cursor: pointer;
+}
+
+svg {
+	display: block;
+}
+
+:focus-visible {
+	@include focus-ring;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0s !important;
+		animation-delay: 0s !important;
+		transition-duration: 0s !important;
+	}
 }
