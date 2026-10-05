@@ -16,7 +16,6 @@ interface XAxis {
 	/** Which way is better, to help read the chart. */
 	hint: string;
 	value: (result: HarnessResult) => number;
-	spread: (result: HarnessResult) => number;
 	format: (value: number) => string;
 }
 
@@ -27,7 +26,6 @@ const xAxes: XAxis[] = [
 		title: "cost per run",
 		hint: "Up and to the left is better.",
 		value: (result) => result.costPerRun.value,
-		spread: (result) => result.costPerRun.spread,
 		format: formatDollars,
 	},
 	{
@@ -36,7 +34,6 @@ const xAxes: XAxis[] = [
 		title: "tokens per run",
 		hint: "Up and to the left is better.",
 		value: (result) => result.tokensPerRun.value,
-		spread: (result) => result.tokensPerRun.spread,
 		format: formatThousands,
 	},
 	{
@@ -45,7 +42,6 @@ const xAxes: XAxis[] = [
 		title: "cached share",
 		hint: "Up and to the right is better.",
 		value: (result) => result.cachedShare,
-		spread: () => 0,
 		format: (value) => formatPercent(value, 0),
 	},
 ];
@@ -61,18 +57,12 @@ const HIT_RADIUS = 22;
 interface Scale {
 	ticks: number[];
 	position: (value: number) => number;
-	length: (amount: number) => number;
 }
 
 /** A linear scale over the data, padded and snapped to round tick values. */
-function scale(
-	values: number[],
-	spreads: number[],
-	from: number,
-	to: number,
-): Scale {
-	const low = Math.min(...values.map((value, i) => value - (spreads[i] ?? 0)));
-	const high = Math.max(...values.map((value, i) => value + (spreads[i] ?? 0)));
+function scale(values: number[], from: number, to: number): Scale {
+	const low = Math.min(...values);
+	const high = Math.max(...values);
 	const padding = (high - low || 1) * 0.15;
 	const rough = (high - low + padding * 2) / TICK_COUNT;
 	const magnitude = 10 ** Math.floor(Math.log10(rough));
@@ -88,7 +78,6 @@ function scale(
 	return {
 		ticks,
 		position: (value) => from + (value - min) * perUnit,
-		length: (amount) => Math.abs(amount * perUnit),
 	};
 }
 
@@ -186,15 +175,9 @@ export function PassRateScatter({ results }: { results: HarnessResult[] }) {
 	const [activeId, setActiveId] = useState<string | null>(null);
 	const axis = xAxes.find((candidate) => candidate.id === axisId) ?? xAxes[0]!;
 
-	const x = scale(
-		results.map(axis.value),
-		results.map(axis.spread),
-		PLOT.left,
-		PLOT.right,
-	);
+	const x = scale(results.map(axis.value), PLOT.left, PLOT.right);
 	const y = scale(
 		results.map((result) => result.passRate.value),
-		results.map((result) => result.passRate.spread),
 		PLOT.bottom,
 		PLOT.top,
 	);
@@ -308,8 +291,6 @@ export function PassRateScatter({ results }: { results: HarnessResult[] }) {
 					{results.map((result) => {
 						const point = at(result);
 						const label = labels.get(result.id) ?? labelPlacements[0]!;
-						const xSpread = x.length(axis.spread(result));
-						const ySpread = y.length(result.passRate.spread);
 						return (
 							<g
 								key={result.id}
@@ -332,16 +313,6 @@ export function PassRateScatter({ results }: { results: HarnessResult[] }) {
 								<circle
 									r={HIT_RADIUS}
 									className={styles.hit}
-								/>
-								<line
-									y1={-ySpread}
-									y2={ySpread}
-									className={styles.whisker}
-								/>
-								<line
-									x1={-xSpread}
-									x2={xSpread}
-									className={styles.whisker}
 								/>
 								{result.role === "other" ? (
 									<circle

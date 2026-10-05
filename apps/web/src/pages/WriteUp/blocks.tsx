@@ -125,44 +125,50 @@ export function TokenBars({ bars }: { bars: TokenBar[] }) {
 	);
 }
 
-/** Segments narrower than this share of the bar have no room for a label. */
+/** Segments smaller than this share of the whole have no room for a label. */
 const MIN_LABELLED_SHARE = 8;
 
-export interface RatingBar {
+export interface RatingColumn {
 	label: string;
 	counts: Record<Rating, number>;
 	highlight?: boolean;
 }
 
-/** The make-up of functionality ratings across each harness's test runs. */
-export function RatingBars({ bars }: { bars: RatingBar[] }) {
+/**
+ * The make-up of functionality ratings across each harness's test runs: one
+ * column per harness, stacked from Broken at the bottom to Flawless on top.
+ */
+export function RatingColumns({ columns }: { columns: RatingColumn[] }) {
 	return (
-		<div className={styles.bars}>
-			{bars.map((bar) => {
-				const total = ratings.reduce((sum, { id }) => sum + bar.counts[id], 0);
-				const percent = (id: Rating) => (bar.counts[id] / total) * 100;
-				const strong = Math.round(percent("great") + percent("flawless"));
+		<div className={styles.columns}>
+			{columns.map((column) => {
+				const total = ratings.reduce(
+					(sum, { id }) => sum + column.counts[id],
+					0,
+				);
 				return (
-					<BarRow
-						key={bar.label}
-						label={bar.label}
-						value={`${strong}% great or better`}
-						highlight={bar.highlight}
+					<div
+						key={column.label}
+						className={cx(styles.column, column.highlight && styles.highlight)}
 					>
-						{ratings.map(({ id, label }) => {
-							const rounded = Math.round(percent(id));
-							return (
-								<span
-									key={id}
-									className={cx(styles.segment, styles[id])}
-									style={share(bar.counts[id])}
-									title={`${label}: ${bar.counts[id]} of ${total} runs (${rounded}%)`}
-								>
-									{rounded >= MIN_LABELLED_SHARE && `${rounded}%`}
-								</span>
-							);
-						})}
-					</BarRow>
+						<div className={styles.stack}>
+							{ratings.map(({ id, label }) => {
+								const count = column.counts[id];
+								const percent = Math.round((count / total) * 100);
+								return (
+									<span
+										key={id}
+										className={cx(styles.segment, styles[id])}
+										style={share(count)}
+										title={`${label}: ${count} of ${total} runs (${percent}%)`}
+									>
+										{percent >= MIN_LABELLED_SHARE && `${percent}%`}
+									</span>
+								);
+							})}
+						</div>
+						<span className={styles.columnLabel}>{column.label}</span>
+					</div>
 				);
 			})}
 		</div>

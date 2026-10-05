@@ -73,6 +73,10 @@ export interface WriteUpData {
 	spread: string;
 	whatChanged: string[];
 	results: HarnessResult[];
+	/**
+	 * Must justify the decision: why the change was adopted, or was meaningful
+	 * enough to act on. Anything beyond that is up to the author.
+	 */
 	discussion: string[];
 	lineage: LineageStep[];
 	dataLinks: string[];

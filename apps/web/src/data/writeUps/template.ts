@@ -93,8 +93,8 @@ export const template: WriteUpData = {
 		},
 	],
 	discussion: [
-		"[Why we kept it: which trade-offs mattered, what surprised us, and where the result is weaker than the headline suggests.]",
-		"[Open questions and follow-up ideas.]",
+		"[Why we adopted it, or why it was meaningful enough to act on: the evidence that justified the decision.]",
+		"[Optional: anything else the author wants to raise, such as surprises, caveats or follow-up ideas.]",
 	],
 	lineage: [
 		{

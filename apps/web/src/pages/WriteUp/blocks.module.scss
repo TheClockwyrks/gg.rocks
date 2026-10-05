@@ -2,7 +2,9 @@
 
 // Sizes that only these blocks need.
 $bar-label-column: 220px;
-$bar-value-column: 180px;
+$bar-value-column: 140px;
+$column-height: 280px;
+$column-max-width: 120px;
 
 // --- Sections ---------------------------------------------------------------
 
@@ -133,16 +135,72 @@ $bar-value-column: 180px;
 	align-items: center;
 	justify-content: center;
 	min-width: 0;
+	min-height: 0;
 	overflow: hidden;
 	font-size: $text-11;
 	color: $color-ink;
+}
 
+.bar .segment {
 	&:first-child {
 		border-radius: $radius-sm 0 0 $radius-sm;
 	}
 
 	&:last-child {
 		border-radius: 0 $radius-sm $radius-sm 0;
+	}
+}
+
+// --- Columns ----------------------------------------------------------------
+
+.columns {
+	display: flex;
+	justify-content: space-between;
+	gap: $s-2;
+
+	@include up($bp-sm) {
+		justify-content: flex-start;
+		gap: $s-8;
+	}
+}
+
+.column {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: $s-3;
+	max-width: $column-max-width;
+	min-width: 0;
+
+	@include text-mono($text-13, $color-ink-muted);
+
+	&.highlight {
+		color: $color-ink;
+	}
+}
+
+// Reversed so that the first rating (the worst) sits at the bottom.
+.stack {
+	display: flex;
+	flex-direction: column-reverse;
+	gap: $s-0-5;
+	height: $column-height;
+
+	.segment:first-child {
+		border-radius: 0 0 $radius-sm $radius-sm;
+	}
+
+	.segment:last-child {
+		border-radius: $radius-sm $radius-sm 0 0;
+	}
+}
+
+.columnLabel {
+	font-size: $text-11;
+	text-align: center;
+
+	@include up($bp-sm) {
+		font-size: $text-13;
 	}
 }
 

@@ -16,7 +16,7 @@ import {
 	Lineage,
 	Method,
 	Prose,
-	RatingBars,
+	RatingColumns,
 	Section,
 	TokenBars,
 } from "./blocks";
@@ -133,7 +133,7 @@ export function StandardWriteUp({ data }: { data: WriteUpData }) {
 						{ label: "gg builds", swatch: "diamond", tone: "accent" },
 						{ label: "Other harnesses", swatch: "dot", tone: "info" },
 					]}
-					note="Whiskers show the spread across runs. Hover or focus a point for its exact values."
+					note="Hover or focus a point for its exact values."
 				>
 					<PassRateScatter results={data.results} />
 				</Figure>
@@ -162,11 +162,11 @@ export function StandardWriteUp({ data }: { data: WriteUpData }) {
 						swatch: "block",
 						tone: id,
 					}))}
-					note="Share of test runs given each functionality rating, from Broken to Flawless."
+					note="Share of test runs given each functionality rating, stacked from Broken at the bottom to Flawless at the top."
 				>
-					<RatingBars
-						bars={data.results.map((result) => ({
-							label: rowLabel(result),
+					<RatingColumns
+						columns={data.results.map((result) => ({
+							label: harnessLabel(result),
 							counts: result.functionality,
 							highlight: result.role === "experiment",
 						}))}

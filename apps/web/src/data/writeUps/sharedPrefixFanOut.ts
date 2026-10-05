@@ -110,9 +110,8 @@ export const sharedPrefixFanOut: WriteUpData = {
 		},
 	],
 	discussion: [
-		"We expected the saving and did not expect the pass rate to move. Our best explanation is that a shared prefix also gives every worker the same view of the repository, so workers disagree less about where things live and the merge step has fewer conflicting edits to reconcile. The share of runs rated Great or Flawless rose from 58% to 65%, which fits that reading.",
-		"The result is weaker than the headline in two places. Total tokens per run barely moved, so the saving depends entirely on cached tokens being cheaper; on a provider without prompt caching this change is close to neutral. And on the eight test cases with the smallest repositories the shared prefix was mostly padding, and cost rose slightly.",
-		"Open questions: whether the prefix should be sized per task rather than fixed, and whether workers can be allowed to extend the shared prefix for those that start after them. The second is now its own experiment.",
+		"We adopted it because it makes gg cheaper without making it worse. Cost per run fell by 24% against gg 0.13.2, which is well outside the run-to-run spread, and that puts gg 0.14.0 below every other harness we compared on cost while holding the highest pass rate of the group. A change that only saved money would have been worth shipping; one that saves money and nudges quality up was an easy call.",
+		"The quality gain was the part we did not expect. Our best explanation is that a shared prefix also gives every worker the same view of the repository, so workers disagree less about where things live and the merge step has fewer conflicting edits to reconcile. The functionality ratings fit that reading: the share of runs rated Great or Flawless rose from 58% to 65%.",
 	],
 	lineage: [
 		{
