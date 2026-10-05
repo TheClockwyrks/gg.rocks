@@ -1,0 +1,286 @@
+@use "@/styles" as *;
+
+// Sizes that only the landing page needs. Each arrangement of the network is
+// drawn for a minimum height so the hero copy never collides with the nodes.
+$min-height-wide: 820px;
+$min-height-medium: 720px;
+$min-height-narrow: 800px;
+$hero-width: 440px;
+
+// A marker sits this far in from the left edge of its node link.
+$marker-inset: $s-4 - $s-0-5;
+
+$glide: $duration-slow $ease-glide;
+
+.landing {
+	position: relative;
+	overflow: hidden;
+	min-height: max(100vh, $min-height-narrow);
+	min-height: max(100svh, $min-height-narrow);
+
+	@include dot-grid;
+
+	&.medium {
+		min-height: max(100vh, $min-height-medium);
+		min-height: max(100svh, $min-height-medium);
+	}
+
+	&.wide {
+		min-height: max(100vh, $min-height-wide);
+		min-height: max(100svh, $min-height-wide);
+	}
+}
+
+// --- Brand ----------------------------------------------------------------
+
+.brand {
+	position: absolute;
+	top: $s-3;
+	left: $s-4;
+	display: flex;
+	align-items: flex-start;
+	gap: $s-4;
+
+	.wide & {
+		top: $s-8;
+		left: $s-16;
+	}
+}
+
+.wordmark {
+	font-size: $text-40;
+
+	.wide & {
+		font-size: $text-64;
+	}
+}
+
+.badge {
+	margin-top: $s-3;
+	padding: $s-0-5 $s-1-5;
+	border: $border-outline;
+	border-radius: $radius-sm;
+
+	@include text-label($text-11);
+
+	.medium & {
+		margin-top: $s-1;
+	}
+}
+
+// --- Hero -----------------------------------------------------------------
+
+.hero {
+	position: absolute;
+	top: $s-16 + $s-4;
+	left: $s-14;
+	width: calc(100% - #{$s-14 + $s-6});
+	display: flex;
+	flex-direction: column;
+	gap: $s-3;
+	transition:
+		top $glide,
+		left $glide,
+		width $glide;
+
+	.medium & {
+		top: $s-24;
+		left: $s-6;
+		width: min($hero-width, 40%);
+	}
+
+	.wide & {
+		top: 33%;
+		left: $s-16;
+		width: min($hero-width, 30%);
+		gap: $s-4;
+	}
+}
+
+.eyebrow {
+	@include text-label($text-11, $color-accent);
+
+	.wide & {
+		font-size: $text-12;
+	}
+}
+
+.title {
+	margin: 0;
+	font-size: $text-28;
+	font-weight: $weight-bold;
+	line-height: $leading-tight;
+	letter-spacing: $tracking-tight;
+	transition: font-size $glide;
+
+	.medium & {
+		font-size: $text-30;
+	}
+
+	.wide & {
+		font-size: $text-52;
+	}
+}
+
+.lead {
+	margin: 0;
+	font-size: $text-15;
+	line-height: $leading-normal;
+	color: $color-ink-muted;
+
+	.wide & {
+		font-size: $text-18;
+	}
+}
+
+.latest {
+	margin: 0;
+
+	@include text-mono($text-13);
+}
+
+.figure {
+	color: $color-accent;
+}
+
+// --- Nodes ----------------------------------------------------------------
+
+// Nodes and the tag are placed with --fx/--fy: how far the point lies between
+// the network's origin (--ox/--oy) and the far edge of the page. This is the
+// same mapping the network uses to plot its paths.
+%plotted {
+	position: absolute;
+	left: calc(var(--ox) + var(--fx) * (100% - var(--ox)));
+	top: calc(var(--oy) + var(--fy) * (100% - var(--oy)));
+}
+
+.node {
+	@extend %plotted;
+	// Pull the link back so its marker is inside it and the first line of the
+	// label is centred on the marker.
+	margin-top: calc(var(--leading) / -2);
+	margin-left: -$marker-inset;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: $s-1;
+	min-height: $tap-target;
+	padding-left: $s-7;
+	color: $color-ink;
+	transition:
+		top $glide,
+		left $glide,
+		opacity $duration-fast ease;
+
+	&:hover {
+		color: $color-ink;
+	}
+
+	&:hover .label {
+		color: $color-accent;
+	}
+
+	&:focus-visible {
+		border-radius: $radius-md;
+	}
+
+	&.primary {
+		--leading: #{$s-8};
+	}
+
+	&.secondary {
+		--leading: #{$s-6};
+	}
+
+	&.faded {
+		opacity: 0.55;
+	}
+}
+
+.label {
+	padding: 0 $s-2;
+	border-radius: $radius-sm;
+	background: $color-scrim;
+	font-weight: $weight-semibold;
+	line-height: var(--leading);
+	transition:
+		color $duration-fast ease,
+		font-size $glide;
+
+	.primary & {
+		font-size: $text-22;
+	}
+
+	.secondary & {
+		font-size: $text-17;
+	}
+
+	.wide .primary & {
+		font-size: $text-30;
+	}
+
+	.wide .secondary & {
+		font-size: $text-20;
+	}
+}
+
+.meta {
+	padding: $s-0-5 $s-2;
+	border-radius: $radius-sm;
+	background: $color-scrim;
+
+	@include text-mono($text-11);
+
+	.wide & {
+		font-size: $text-12;
+	}
+}
+
+.tag {
+	@extend %plotted;
+	transition: opacity $duration-fast ease;
+
+	&.dimmed {
+		opacity: 0.12;
+	}
+}
+
+.tagText {
+	display: block;
+	padding: $s-0-5 $s-1-5;
+	border-radius: $radius-sm;
+	background: $color-scrim;
+	letter-spacing: $tracking-wide;
+	opacity: 0;
+	animation: fade-in $duration-base ease-out var(--delay) forwards;
+
+	@include text-mono($text-11, $color-hot);
+}
+
+@keyframes fade-in {
+	to {
+		opacity: 1;
+	}
+}
+
+// --- Footnote -------------------------------------------------------------
+
+.footnote {
+	position: absolute;
+	right: $s-6;
+	bottom: $s-7;
+	left: $s-14;
+	margin: 0;
+
+	@include text-mono($text-11);
+
+	.medium & {
+		left: $s-6;
+	}
+
+	.wide & {
+		bottom: $s-8;
+		left: $s-16;
+		font-size: $text-12;
+	}
+}

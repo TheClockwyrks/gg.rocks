@@ -1,0 +1,175 @@
+@use "@/styles" as *;
+
+// The travelling spark is a short dash on an otherwise empty line.
+$pulse-length: 0.06;
+$pulse-dash: $pulse-length 2;
+
+.network {
+	position: absolute;
+	inset: 0;
+}
+
+%stroke {
+	fill: none;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+// Paths have pathLength 1, so a dash of 1 offset by 1 hides the whole line and
+// easing the offset to 0 draws it in from its start (or, in the "back" layout,
+// offset by -1 so that it draws from the far end towards the wordmark).
+%grow {
+	stroke-dasharray: 1;
+	stroke-dashoffset: 1;
+	animation: grow var(--duration) $ease-out var(--delay) forwards;
+}
+
+.back :is(.route, .underlay) {
+	stroke-dashoffset: -1;
+}
+
+.dimmed {
+	opacity: 0.12;
+}
+
+.hazes {
+	filter: blur($blur-haze);
+}
+
+.haze {
+	@extend %stroke;
+	stroke: $color-haze;
+	stroke-width: $stroke-haze;
+	stroke-dasharray: 1;
+	stroke-dashoffset: 1;
+	animation:
+		grow var(--duration) linear var(--delay) forwards,
+		fade-out $duration-slow ease-in var(--settled) forwards;
+}
+
+.filaments {
+	opacity: 0.6;
+	transition: opacity $duration-fast ease;
+
+	&.dimmed {
+		opacity: 0.12;
+	}
+}
+
+.filament {
+	@extend %stroke;
+	@extend %grow;
+	stroke: $color-strand;
+	stroke-width: $stroke-hair;
+}
+
+.glow {
+	filter: $glow;
+}
+
+.underlay {
+	@extend %stroke;
+	@extend %grow;
+	stroke: $color-hot-wash;
+	stroke-width: $stroke-underlay;
+	transition: opacity $duration-fast ease;
+}
+
+.route {
+	@extend %stroke;
+	@extend %grow;
+	transition: opacity $duration-fast ease;
+
+	&.accent {
+		stroke: $color-accent;
+	}
+
+	&.hot {
+		stroke: $color-hot;
+	}
+
+	&.trunk {
+		stroke-width: $stroke-trunk;
+	}
+
+	&.branch {
+		stroke-width: $stroke-route;
+	}
+}
+
+.pulse {
+	@extend %stroke;
+	stroke: $color-spark;
+	stroke-width: $stroke-pulse;
+	stroke-dasharray: $pulse-dash;
+	stroke-dashoffset: $pulse-length;
+	opacity: 0;
+	animation: pulse-out var(--duration) linear var(--delay) forwards;
+
+	.back & {
+		animation-name: pulse-back;
+	}
+}
+
+.marker {
+	fill: transparent;
+	stroke: currentColor;
+	stroke-width: $stroke-route;
+	color: $color-accent;
+	transition: opacity $duration-fast ease;
+	animation: light-up $duration-fast ease-out var(--delay) forwards;
+
+	&.hot {
+		color: $color-hot;
+	}
+}
+
+@keyframes grow {
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+@keyframes fade-out {
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes pulse-out {
+	0% {
+		stroke-dashoffset: $pulse-length;
+		opacity: 1;
+	}
+
+	85% {
+		opacity: 1;
+	}
+
+	100% {
+		stroke-dashoffset: $pulse-length - 1;
+		opacity: 0;
+	}
+}
+
+@keyframes pulse-back {
+	0% {
+		stroke-dashoffset: $pulse-length - 1;
+		opacity: 1;
+	}
+
+	85% {
+		opacity: 1;
+	}
+
+	100% {
+		stroke-dashoffset: $pulse-length;
+		opacity: 0;
+	}
+}
+
+@keyframes light-up {
+	to {
+		fill: currentColor;
+	}
+}
