@@ -1,3 +1,13 @@
+import { formatChange, formatPoints } from "@/utils/format";
+import { writeUps } from "./writeUps";
+import {
+	baselineResult,
+	experimentResult,
+	type WriteUpData,
+} from "./writeUps/types";
+
+export { writeUpPath } from "./writeUps/types";
+
 export type ExperimentStatus = "active" | "shipped" | "retired";
 
 export interface ExperimentDeltas {
@@ -18,6 +28,8 @@ export interface Experiment {
 	deltas: ExperimentDeltas;
 	/** Slug of the write-up, once the experiment has concluded. */
 	writeUp?: string;
+	/** The blank-slate entry; it is not a real experiment. */
+	template?: boolean;
 }
 
 export const metricLabels: Record<keyof ExperimentDeltas, string> = {
@@ -34,6 +46,43 @@ const placeholderDeltas: ExperimentDeltas = {
 	cacheHit: "[±x%]",
 };
 
+/** Change from the baseline gg build to the build under test. */
+export function writeUpDeltas(data: WriteUpData): ExperimentDeltas {
+	const from = baselineResult(data);
+	const to = experimentResult(data);
+	return {
+		tokens: formatChange(from.tokensPerRun.value, to.tokensPerRun.value),
+		cost: formatChange(from.costPerRun.value, to.costPerRun.value),
+		passRate: formatPoints(from.passRate.value, to.passRate.value),
+		cacheHit: formatPoints(from.cachedShare, to.cachedShare, 0),
+	};
+}
+
+/** The index row for an experiment that has a standard write-up. */
+function fromWriteUp(data: WriteUpData): Experiment {
+	if (data.template) {
+		return {
+			id: data.slug,
+			name: "Template",
+			timeline: "a blank write-up, with dummy data in the charts",
+			status: data.status,
+			outcome: "Template",
+			deltas: placeholderDeltas,
+			writeUp: data.slug,
+			template: true,
+		};
+	}
+	return {
+		id: data.slug,
+		name: data.name,
+		timeline: `${data.period} · gg ${experimentResult(data).version}`,
+		status: data.status,
+		outcome: data.outcome.replace(/(Vantacode).*/, "$1"),
+		deltas: writeUpDeltas(data),
+		writeUp: data.slug,
+	};
+}
+
 const active = (id: string): Experiment => ({
 	id,
 	name: "[Experiment name]",
@@ -43,22 +92,12 @@ const active = (id: string): Experiment => ({
 	deltas: placeholderDeltas,
 });
 
-const shipped = (id: string): Experiment => ({
-	id,
-	name: "[Experiment name]",
-	timeline: "[start] – [end] · gg [build]",
-	status: "shipped",
-	outcome: "Shipped → Vantacode",
-	deltas: placeholderDeltas,
-	writeUp: "harness-comparison",
-});
-
-// Placeholder content until real experiment data is wired in.
+// Apart from the standard write-ups, these are placeholders until real
+// experiment data is wired in.
 export const experiments: Experiment[] = [
 	active("active-1"),
 	active("active-2"),
-	shipped("shipped-1"),
-	shipped("shipped-2"),
+	...writeUps.map(fromWriteUp),
 	{
 		id: "retired-1",
 		name: "[Experiment name]",
@@ -69,5 +108,3 @@ export const experiments: Experiment[] = [
 		writeUp: "design-change",
 	},
 ];
-
-export const writeUpPath = (slug: string): string => `/experiments/${slug}`;
