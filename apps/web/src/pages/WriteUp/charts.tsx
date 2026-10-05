@@ -1,5 +1,4 @@
 import { FigureScroll } from "@/components/Figure/Figure";
-import { Diamond } from "@/components/Strand/Diamond";
 import { cx } from "@/utils/cx";
 import styles from "./charts.module.scss";
 
@@ -61,92 +60,6 @@ function AxisLabels({
 				↑ {y}
 			</text>
 		</>
-	);
-}
-
-/** Cost per run against pass rate, for gg builds and other harnesses. */
-export function CostVsPassRate() {
-	const height = 380;
-	const baseline = 320;
-	return (
-		<FigureScroll wide>
-			<svg
-				viewBox={`0 0 ${WIDTH} ${height}`}
-				role="img"
-				aria-label="Illustrative scatter: cost per run against pass rate for this experiment, the previous gg build and two other harnesses"
-				className={styles.chart}
-			>
-				<Grid baseline={baseline} />
-				<line
-					x1={PLOT_LEFT}
-					y1={30}
-					x2={PLOT_LEFT}
-					y2={baseline}
-					className={styles.axis}
-				/>
-				<AxisLabels
-					baseline={baseline}
-					x="cost per run"
-					y="pass"
-				/>
-				<path
-					d="M440 222 C 400 200 370 160 352 132"
-					className={styles.trail}
-				/>
-				<Diamond
-					cx={440}
-					cy={230}
-					size={14}
-					className={cx(styles.point, styles.previous)}
-				/>
-				<text
-					x={460}
-					y={235}
-					className={styles.pointLabel}
-				>
-					gg [previous build]
-				</text>
-				<Diamond
-					cx={341}
-					cy={121}
-					size={16}
-					className={cx(styles.point, styles.current)}
-				/>
-				<text
-					x={364}
-					y={114}
-					className={cx(styles.pointLabel, styles.emphasis)}
-				>
-					this experiment
-				</text>
-				<circle
-					cx={720}
-					cy={160}
-					r={7}
-					className={cx(styles.point, styles.other)}
-				/>
-				<text
-					x={736}
-					y={165}
-					className={styles.pointLabel}
-				>
-					[Harness A]
-				</text>
-				<circle
-					cx={600}
-					cy={270}
-					r={7}
-					className={cx(styles.point, styles.other)}
-				/>
-				<text
-					x={616}
-					y={275}
-					className={styles.pointLabel}
-				>
-					[Harness B]
-				</text>
-			</svg>
-		</FigureScroll>
 	);
 }
 

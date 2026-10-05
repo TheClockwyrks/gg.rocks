@@ -1,6 +1,7 @@
 import { Fragment, type CSSProperties, type ReactNode } from "react";
 import { Link } from "react-router";
 import { PlaceholderLink } from "@/components/PlaceholderLink/PlaceholderLink";
+import { ratings, type LineageStep, type Rating } from "@/data/writeUps/types";
 import { cx } from "@/utils/cx";
 import styles from "./blocks.module.scss";
 
@@ -66,41 +67,104 @@ export function ComparedAgainst({ baselines, note }: ComparedAgainstProps) {
 	);
 }
 
-// --- Token bars -------------------------------------------------------------
+// --- Bars ------------------------------------------------------------------
+
+interface BarRowProps {
+	label: string;
+	/** Summary of the bar, shown at its end. */
+	value: string;
+	highlight?: boolean;
+	children: ReactNode;
+}
+
+/** One labelled bar, split into segments, in a set of comparable bars. */
+function BarRow({ label, value, highlight, children }: BarRowProps) {
+	return (
+		<div className={cx(styles.barRow, highlight && styles.highlight)}>
+			<span className={styles.barLabel}>{label}</span>
+			<div className={styles.bar}>{children}</div>
+			<span className={styles.barValue}>{value}</span>
+		</div>
+	);
+}
+
+const share = (value: number): CSSProperties =>
+	({ "--share": value }) as CSSProperties;
 
 export interface TokenBar {
 	label: string;
 	/** Percentage of tokens served from cache, 0-100. */
 	cached: number;
-	value: string;
 	highlight?: boolean;
 }
 
+/** How each harness's tokens split between cached and uncached. */
 export function TokenBars({ bars }: { bars: TokenBar[] }) {
 	return (
 		<div className={styles.bars}>
 			{bars.map((bar) => (
-				<div
+				<BarRow
 					key={bar.label}
-					className={cx(styles.barRow, bar.highlight && styles.highlight)}
+					label={bar.label}
+					value={`${bar.cached}% cached`}
+					highlight={bar.highlight}
 				>
-					<span className={styles.barLabel}>{bar.label}</span>
-					<div
-						className={styles.bar}
-						aria-hidden="true"
-					>
-						<span
-							className={styles.cached}
-							style={{ "--share": bar.cached } as CSSProperties}
-						/>
-						<span
-							className={styles.uncached}
-							style={{ "--share": 100 - bar.cached } as CSSProperties}
-						/>
-					</div>
-					<span className={styles.barValue}>{bar.value}</span>
-				</div>
+					<span
+						className={cx(styles.segment, styles.cached)}
+						style={share(bar.cached)}
+						title={`Cached: ${bar.cached}%`}
+					/>
+					<span
+						className={cx(styles.segment, styles.uncached)}
+						style={share(100 - bar.cached)}
+						title={`Uncached: ${100 - bar.cached}%`}
+					/>
+				</BarRow>
 			))}
+		</div>
+	);
+}
+
+/** Segments narrower than this share of the bar have no room for a label. */
+const MIN_LABELLED_SHARE = 8;
+
+export interface RatingBar {
+	label: string;
+	counts: Record<Rating, number>;
+	highlight?: boolean;
+}
+
+/** The make-up of functionality ratings across each harness's test runs. */
+export function RatingBars({ bars }: { bars: RatingBar[] }) {
+	return (
+		<div className={styles.bars}>
+			{bars.map((bar) => {
+				const total = ratings.reduce((sum, { id }) => sum + bar.counts[id], 0);
+				const percent = (id: Rating) => (bar.counts[id] / total) * 100;
+				const strong = Math.round(percent("great") + percent("flawless"));
+				return (
+					<BarRow
+						key={bar.label}
+						label={bar.label}
+						value={`${strong}% great or better`}
+						highlight={bar.highlight}
+					>
+						{ratings.map(({ id, label }) => {
+							const rounded = Math.round(percent(id));
+							return (
+								<span
+									key={id}
+									className={cx(styles.segment, styles[id])}
+									style={share(bar.counts[id])}
+									title={`${label}: ${bar.counts[id]} of ${total} runs (${rounded}%)`}
+								>
+									{rounded >= MIN_LABELLED_SHARE && `${rounded}%`}
+								</span>
+							);
+						})}
+					</BarRow>
+				);
+			})}
 		</div>
 	);
 }
@@ -167,18 +231,6 @@ export function BeforeAfter({ variants }: { variants: DesignVariant[] }) {
 }
 
 // --- Lineage ----------------------------------------------------------------
-
-export interface LineageStep {
-	/** How this experiment relates to the one being read. */
-	relation: string;
-	name: string;
-	/** "self" is the experiment being read. */
-	kind: "self" | "link" | "pending";
-	tone: "neutral" | "accent" | "dashed";
-	to?: string;
-	/** Whether the strand leading to the next step is lit. */
-	lit?: boolean;
-}
 
 function LineageCard({ step }: { step: LineageStep }) {
 	const className = cx(

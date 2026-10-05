@@ -2,7 +2,7 @@
 
 // Sizes that only these blocks need.
 $bar-label-column: 220px;
-$bar-value-column: 140px;
+$bar-value-column: 180px;
 
 // --- Sections ---------------------------------------------------------------
 
@@ -124,22 +124,58 @@ $bar-value-column: 140px;
 	grid-area: bar;
 	display: flex;
 	gap: $s-0-5;
-	height: $s-5;
+	height: $s-6;
 }
 
-.cached,
-.uncached {
+.segment {
 	flex: var(--share) 1 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 0;
+	overflow: hidden;
+	font-size: $text-11;
+	color: $color-ink;
+
+	&:first-child {
+		border-radius: $radius-sm 0 0 $radius-sm;
+	}
+
+	&:last-child {
+		border-radius: 0 $radius-sm $radius-sm 0;
+	}
 }
 
 .cached {
-	border-radius: $radius-sm 0 0 $radius-sm;
 	background: $color-strand;
 }
 
 .uncached {
-	border-radius: 0 $radius-sm $radius-sm 0;
 	background: $color-accent;
+}
+
+// Functionality ratings. The lighter fills take dark text.
+.broken {
+	background: $color-rating-broken;
+	color: $color-surface;
+}
+
+.scuffed {
+	background: $color-rating-scuffed;
+}
+
+.passable {
+	background: $color-rating-passable;
+	color: $color-surface;
+}
+
+.great {
+	background: $color-rating-great;
+}
+
+.flawless {
+	background: $color-rating-flawless;
+	color: $color-surface;
 }
 
 // --- Before / after ---------------------------------------------------------

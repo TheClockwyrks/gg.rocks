@@ -34,6 +34,72 @@
 	stroke: $color-ink-subtle;
 	stroke-width: $stroke-thin;
 	stroke-dasharray: $s-1 $s-1;
+	animation: appear $duration-slow ease-out;
+}
+
+@keyframes appear {
+	from {
+		opacity: 0;
+	}
+}
+
+// --- Scatter ----------------------------------------------------------------
+
+.toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: $s-2 $s-4;
+}
+
+.hint {
+	font-size: $text-14;
+	color: $color-ink-subtle;
+}
+
+// Each point is a group moved into place, so it glides when the axis changes.
+.pointGroup {
+	transition: transform $duration-slow $ease-glide;
+	cursor: default;
+
+	&:focus-visible {
+		outline: none;
+	}
+
+	&:focus-visible .hit {
+		stroke: $color-accent;
+		stroke-width: $stroke-route;
+	}
+
+	&.active .pointLabel {
+		fill: $color-ink;
+	}
+}
+
+.hit {
+	fill: transparent;
+}
+
+.whisker {
+	stroke: $color-outline;
+	stroke-width: $stroke-hair;
+}
+
+.readout {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $s-1 $s-3;
+	margin: 0;
+	padding: $s-3 $s-4;
+	border: $border-soft;
+	border-radius: $radius-md;
+
+	@include text-mono($text-13, $color-ink-muted);
+}
+
+.readoutName {
+	color: $color-ink;
+	font-weight: $weight-medium;
 }
 
 .point {

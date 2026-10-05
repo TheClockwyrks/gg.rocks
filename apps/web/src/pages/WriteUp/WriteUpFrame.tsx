@@ -12,6 +12,8 @@ interface WriteUpFrameProps {
 	/** Outcome as shown in the status pill. */
 	outcome: string;
 	timeline: string;
+	/** A note about the page itself, shown above the title. */
+	notice?: string;
 	toc: TocItem[];
 	children: ReactNode;
 }
@@ -25,6 +27,7 @@ export function WriteUpFrame({
 	status,
 	outcome,
 	timeline,
+	notice,
 	toc,
 	children,
 }: WriteUpFrameProps) {
@@ -33,6 +36,7 @@ export function WriteUpFrame({
 			<Toc items={toc} />
 			<main className={styles.article}>
 				<header className={styles.header}>
+					{notice && <p className={styles.notice}>{notice}</p>}
 					<span className={styles.breadcrumb}>
 						<Link to={sections.experiments.path}>
 							{sections.experiments.label}
