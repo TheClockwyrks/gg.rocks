@@ -3,7 +3,11 @@ import type { ExperimentStatus } from "@/data/experiments";
 import styles from "./Sparkline.module.scss";
 
 /** A fragment of strand that shows, at a glance, how an experiment ended. */
-export function Sparkline({ status }: { status: ExperimentStatus }) {
+export function Sparkline({
+	status,
+}: {
+	status: ExperimentStatus | "template";
+}) {
 	return (
 		<svg
 			width="96"
@@ -34,6 +38,12 @@ export function Sparkline({ status }: { status: ExperimentStatus }) {
 				<path
 					d="M0 24 C 30 24 50 12 96 20"
 					className={styles.shipped}
+				/>
+			)}
+			{status === "template" && (
+				<path
+					d="M0 24 C 30 24 50 12 96 20"
+					className={styles.template}
 				/>
 			)}
 			{status === "retired" && (

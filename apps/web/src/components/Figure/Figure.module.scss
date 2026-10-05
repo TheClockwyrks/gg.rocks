@@ -82,6 +82,26 @@
 	&.subtle {
 		color: $color-ink-subtle;
 	}
+
+	&.broken {
+		color: $color-rating-broken;
+	}
+
+	&.scuffed {
+		color: $color-rating-scuffed;
+	}
+
+	&.passable {
+		color: $color-rating-passable;
+	}
+
+	&.great {
+		color: $color-rating-great;
+	}
+
+	&.flawless {
+		color: $color-rating-flawless;
+	}
 }
 
 .note {

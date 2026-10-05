@@ -31,10 +31,11 @@ export function ExperimentHeadings() {
 }
 
 export function ExperimentRow({ experiment }: { experiment: Experiment }) {
+	const look = experiment.template ? "template" : experiment.status;
 	const content: ReactNode = (
 		<>
 			<span className={styles.spark}>
-				<Sparkline status={experiment.status} />
+				<Sparkline status={look} />
 			</span>
 			<span className={styles.identity}>
 				<span className={styles.name}>{experiment.name}</span>
@@ -52,7 +53,7 @@ export function ExperimentRow({ experiment }: { experiment: Experiment }) {
 				))}
 			</span>
 			<span className={styles.outcome}>
-				<StatusPill status={experiment.status}>{experiment.outcome}</StatusPill>
+				<StatusPill status={look}>{experiment.outcome}</StatusPill>
 			</span>
 		</>
 	);

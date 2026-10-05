@@ -4,7 +4,7 @@ import { cx } from "@/utils/cx";
 import styles from "./StatusPill.module.scss";
 
 interface StatusPillProps {
-	status: ExperimentStatus;
+	status: ExperimentStatus | "template";
 	children: ReactNode;
 }
 

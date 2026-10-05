@@ -16,6 +16,11 @@
 	font-weight: $weight-medium;
 }
 
+.template {
+	border: $border-width dashed $color-accent-outline;
+	color: $color-ink-muted;
+}
+
 .retired {
 	border: $border-width dashed $color-outline;
 	color: $color-ink-subtle;

@@ -28,6 +28,12 @@
 	filter: $glow;
 }
 
+.template {
+	stroke: $color-accent-outline;
+	stroke-width: $stroke-thin;
+	stroke-dasharray: $s-1 $s-1;
+}
+
 .retired {
 	stroke: $color-ink-subtle;
 	stroke-width: $stroke-thin;

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { PageBody } from "@/components/PageBody/PageBody";
 import { PageIntro } from "@/components/PageIntro/PageIntro";
+import { SegmentedControl } from "@/components/SegmentedControl/SegmentedControl";
 import { experiments, type ExperimentStatus } from "@/data/experiments";
-import { cx } from "@/utils/cx";
 import { ExperimentHeadings, ExperimentRow } from "./ExperimentRow";
 import styles from "./Experiments.module.scss";
 
@@ -18,7 +18,10 @@ const filters: { id: Filter; label: string }[] = [
 export function Experiments() {
 	const [filter, setFilter] = useState<Filter>("all");
 	const visible = experiments.filter(
-		(experiment) => filter === "all" || experiment.status === filter,
+		// The template is not a real experiment, so it only shows under "All".
+		(experiment) =>
+			filter === "all" ||
+			(experiment.status === filter && !experiment.template),
 	);
 
 	return (
@@ -32,23 +35,12 @@ export function Experiments() {
 				write-up.
 			</PageIntro>
 
-			<div
-				role="group"
-				aria-label="Filter experiments by status"
-				className={styles.filters}
-			>
-				{filters.map(({ id, label }) => (
-					<button
-						key={id}
-						type="button"
-						aria-pressed={filter === id}
-						className={cx(styles.filter, filter === id && styles.pressed)}
-						onClick={() => setFilter(id)}
-					>
-						{label}
-					</button>
-				))}
-			</div>
+			<SegmentedControl
+				label="Filter experiments by status"
+				options={filters}
+				value={filter}
+				onChange={setFilter}
+			/>
 
 			<div>
 				<ExperimentHeadings />

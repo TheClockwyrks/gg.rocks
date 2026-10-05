@@ -1,0 +1,42 @@
+@use "@/styles" as *;
+
+.group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $s-2-5;
+
+	&.small {
+		gap: $s-2;
+	}
+}
+
+.option {
+	min-height: $control-height;
+	padding: $s-2 $s-4;
+	border: $border-outline;
+	border-radius: $radius-full;
+	background: transparent;
+	color: $color-ink-muted;
+	font-size: $text-14;
+	transition:
+		border-color $duration-fast ease,
+		color $duration-fast ease;
+
+	.small & {
+		min-height: $s-8;
+		padding: $s-1 $s-3;
+		font-size: $text-13;
+	}
+
+	&:hover {
+		border-color: $color-accent;
+		color: $color-ink;
+	}
+
+	&.pressed {
+		border-color: $color-accent;
+		background: $color-accent;
+		color: $color-surface;
+		font-weight: $weight-semibold;
+	}
+}
