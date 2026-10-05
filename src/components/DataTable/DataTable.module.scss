@@ -1,0 +1,46 @@
+@use "@/styles" as *;
+
+// The row-heading column is wider than the value columns.
+$heading-column-share: 30%;
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+	text-align: left;
+
+	@include text-mono($text-14, $color-ink);
+}
+
+.heading {
+	padding: $s-2-5 $s-4 $s-2-5 0;
+	border-bottom: $border;
+	font-weight: $weight-regular;
+
+	@include text-label($text-11);
+
+	&:first-child {
+		width: $heading-column-share;
+	}
+}
+
+.cell {
+	padding: $s-3 $s-4 $s-3 0;
+	border-bottom: $border-soft;
+	font-weight: $weight-regular;
+}
+
+.row {
+	&:last-child .cell {
+		border-bottom: 0;
+	}
+
+	&.muted .cell {
+		color: $color-ink-muted;
+	}
+
+	&.highlight th {
+		color: $color-accent;
+		font-weight: $weight-medium;
+	}
+}

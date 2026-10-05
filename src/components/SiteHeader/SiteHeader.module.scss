@@ -1,0 +1,89 @@
+@use "@/styles" as *;
+
+.header {
+	position: sticky;
+	top: 0;
+	z-index: $z-header;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: $s-8;
+	height: $layout-header-height;
+	border-bottom: $border;
+	background: $color-scrim;
+	backdrop-filter: blur($s-2);
+
+	@include gutter;
+}
+
+.toggle {
+	min-height: $control-height;
+	padding: 0 $s-4;
+	border: $border-outline;
+	border-radius: $radius-md;
+	background: transparent;
+	color: $color-ink-muted;
+	font-size: $text-15;
+	font-weight: $weight-medium;
+
+	@include up($bp-md) {
+		display: none;
+	}
+}
+
+.nav {
+	display: none;
+	font-size: $text-15;
+	font-weight: $weight-medium;
+
+	@include down($bp-md) {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		z-index: $z-menu;
+		flex-direction: column;
+		gap: $s-1;
+		padding-block: $s-3 $s-5;
+		border-bottom: $border;
+		background: $color-raised;
+
+		@include gutter;
+
+		&.open {
+			display: flex;
+		}
+	}
+
+	@include up($bp-md) {
+		display: flex;
+		align-items: center;
+		gap: $s-7;
+	}
+}
+
+.link {
+	display: flex;
+	align-items: center;
+	min-height: $tap-target;
+	color: $color-ink-muted;
+
+	&:hover,
+	&.current {
+		color: $color-accent;
+	}
+}
+
+.download {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: $control-height;
+	padding: 0 $s-4;
+	border: $border-width solid $color-accent;
+	border-radius: $radius-md;
+
+	@include down($bp-md) {
+		margin-top: $s-2;
+	}
+}

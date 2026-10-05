@@ -1,0 +1,46 @@
+@use "@/styles" as *;
+
+.base {
+	fill: none;
+	stroke: $color-strand;
+	stroke-width: $stroke-thin;
+	opacity: 0.7;
+}
+
+.lit {
+	fill: none;
+	stroke-width: $stroke-trunk;
+
+	&.accent {
+		stroke: $color-accent;
+	}
+
+	&.muted {
+		stroke: $color-ink-subtle;
+	}
+}
+
+.reveal {
+	transition: height $duration-base $ease-out;
+}
+
+.glow {
+	filter: $glow;
+}
+
+.node {
+	fill: $color-surface;
+	stroke: $color-ink-subtle;
+	stroke-width: $stroke-thin;
+	transition: fill $duration-fast ease;
+
+	&.passed {
+		fill: $color-ink-subtle;
+	}
+
+	&.current {
+		fill: $color-accent;
+		stroke: $color-accent;
+		filter: $glow;
+	}
+}

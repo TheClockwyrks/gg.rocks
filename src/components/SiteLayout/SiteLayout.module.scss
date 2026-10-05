@@ -1,0 +1,8 @@
+@use "@/styles" as *;
+
+.shell {
+	min-height: 100vh;
+	min-height: 100svh;
+
+	@include dot-grid;
+}

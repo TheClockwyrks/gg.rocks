@@ -1,0 +1,103 @@
+@use "@/styles" as *;
+
+.figure {
+	display: flex;
+	flex-direction: column;
+	gap: $s-3;
+	min-width: 0;
+	margin: 0;
+}
+
+.caption {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: $s-1 $s-4;
+}
+
+.title {
+	@include text-title-figure;
+}
+
+.hint {
+	font-size: $text-14;
+	color: $color-ink-subtle;
+}
+
+.legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $s-2 $s-5;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	@include text-mono($color: $color-ink-muted);
+}
+
+.legendItem {
+	display: inline-flex;
+	align-items: center;
+	gap: $s-1-5;
+}
+
+.swatch {
+	flex: none;
+	width: $s-3;
+	height: $s-3;
+	background: currentColor;
+
+	&.diamond {
+		width: $s-2;
+		height: $s-2;
+		margin-inline: $s-0-5;
+		transform: rotate(45deg);
+	}
+
+	&.dot {
+		border-radius: $radius-full;
+	}
+
+	&.block {
+		border-radius: $radius-sm;
+	}
+
+	&.line {
+		width: $s-4;
+		height: $s-0-5;
+	}
+
+	&.accent {
+		color: $color-accent;
+	}
+
+	&.info {
+		color: $color-info;
+	}
+
+	&.strand {
+		color: $color-strand;
+	}
+
+	&.subtle {
+		color: $color-ink-subtle;
+	}
+}
+
+.note {
+	margin: 0;
+
+	@include text-mono;
+}
+
+.scroll {
+	overflow-x: auto;
+}
+
+.scrollInner {
+	min-width: $layout-scroll-min;
+
+	&.wide {
+		min-width: $layout-prose;
+	}
+}
