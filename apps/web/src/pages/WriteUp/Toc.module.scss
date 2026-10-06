@@ -1,12 +1,15 @@
 @use "@/styles" as *;
 
+$unfold: $duration-fast ease;
+
+// Below the desktop layout this is a one-row bar pinned under the top bar. The
+// list of sections lies over it, folded down to the current section, and
+// unfolds in place (over the page, without moving it) when opened.
 .toc {
 	position: sticky;
 	top: $layout-header-height;
 	z-index: $z-header - 1;
-	border-bottom: $border;
-	background: $color-scrim;
-	backdrop-filter: blur($s-2);
+	height: $tap-target;
 	font-size: $text-15;
 
 	@include up($bp-lg) {
@@ -14,28 +17,65 @@
 		flex: none;
 		align-self: flex-start;
 		width: $layout-toc-width;
+		height: auto;
 		margin-top: $s-12;
-		border: 0;
-		background: none;
-		backdrop-filter: none;
 	}
 }
 
 .track {
 	position: relative;
 	display: flex;
-	gap: $s-6;
-	overflow-x: auto;
+	flex-direction: column;
+	// Links are only as wide as their text, not the whole row.
+	align-items: flex-start;
+
+	@include down($bp-lg) {
+		border-bottom: $border;
+		background: $color-surface;
+
+		@include gutter;
+	}
+
+	@include up($bp-lg) {
+		padding-left: $s-10;
+	}
+}
+
+// Folded, the whole row opens the list; unfolded, only the chevron closes it,
+// leaving the links free to be pressed.
+.toggle {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	width: 100%;
+	height: $tap-target;
+	border: 0;
+	background: none;
 
 	@include gutter;
 
+	.open & {
+		width: auto;
+	}
+
 	@include up($bp-lg) {
-		flex-direction: column;
-		// Links are only as wide as their text, not the whole column.
-		align-items: flex-start;
-		gap: 0;
-		overflow: visible;
-		padding-inline: $s-10 0;
+		display: none;
+	}
+}
+
+.chevron {
+	fill: none;
+	stroke: $color-ink-subtle;
+	stroke-width: $stroke-thin;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	transition: transform $unfold;
+
+	.open & {
+		transform: rotate(180deg);
 	}
 }
 
@@ -65,5 +105,29 @@
 	&.current {
 		color: $color-ink;
 		font-weight: $weight-semibold;
+	}
+
+	// Folded away unless it is the current section or the list is open.
+	// Hidden links also leave the tab order, once they have finished folding.
+	@include down($bp-lg) {
+		overflow: hidden;
+		transition:
+			height $unfold,
+			opacity $unfold,
+			visibility 0s;
+
+		&:not(.current) {
+			height: 0;
+			opacity: 0;
+			visibility: hidden;
+			transition-delay: 0s, 0s, $duration-fast;
+		}
+
+		.open &:not(.current) {
+			height: $tap-target;
+			opacity: 1;
+			visibility: visible;
+			transition-delay: 0s;
+		}
 	}
 }
