@@ -57,6 +57,15 @@
 	color: $color-ink-subtle;
 }
 
+// The scatter is drawn to the measured width of this box.
+.plot {
+	min-height: $s-24;
+
+	&.compact .pointLabel {
+		font-size: $text-11;
+	}
+}
+
 // Each point is a group moved into place, so it glides when the axis changes.
 .pointGroup {
 	transition: transform $duration-slow $ease-glide;

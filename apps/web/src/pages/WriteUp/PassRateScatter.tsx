@@ -1,9 +1,9 @@
 import { useState, type CSSProperties } from "react";
-import { FigureScroll } from "@/components/Figure/Figure";
 import { SegmentedControl } from "@/components/SegmentedControl/SegmentedControl";
 import { Diamond } from "@/components/Strand/Diamond";
 import { harnessLabel, type HarnessResult } from "@/data/writeUps/types";
 import { cx } from "@/utils/cx";
+import { useElementSize } from "@/utils/useElementSize";
 import { formatDollars, formatPercent, formatThousands } from "@/utils/format";
 import styles from "./charts.module.scss";
 
@@ -48,11 +48,36 @@ const xAxes: XAxis[] = [
 
 // --- Geometry ---------------------------------------------------------------
 
-const WIDTH = 1040;
-const HEIGHT = 400;
-const PLOT = { left: 96, right: 1000, top: 40, bottom: 320 };
+/** Below this width the chart tightens its margins and labels to fit. */
+const COMPACT_BELOW = 560;
 const TICK_COUNT = 4;
 const HIT_RADIUS = 22;
+
+interface Frame {
+	width: number;
+	height: number;
+	compact: boolean;
+	/** Edges of the plotting area. */
+	left: number;
+	right: number;
+	top: number;
+	bottom: number;
+}
+
+/** The chart is drawn at its real size, so text never shrinks with it. */
+function frameFor(width: number): Frame {
+	const compact = width < COMPACT_BELOW;
+	const height = compact ? 340 : 400;
+	return {
+		width,
+		height,
+		compact,
+		left: compact ? 40 : 64,
+		right: width - (compact ? 24 : 32),
+		top: 40,
+		bottom: height - (compact ? 64 : 80),
+	};
+}
 
 interface Scale {
 	ticks: number[];
@@ -85,21 +110,26 @@ function scale(values: number[], from: number, to: number): Scale {
 
 /** Approximate advance of one character of the monospace label, and its height. */
 const LABEL_CHAR_WIDTH = 8;
+const COMPACT_LABEL_CHAR_WIDTH = 6.8;
 const LABEL_HEIGHT = 16;
 const POINT_CLEARANCE = 12;
 
 interface LabelPlacement {
 	dx: number;
 	dy: number;
-	anchor: "start" | "end";
+	anchor: "start" | "middle" | "end";
 }
 
 /** Where a label may sit around its point, in order of preference. */
 const labelPlacements: LabelPlacement[] = [
-	{ dx: 18, dy: -10, anchor: "start" },
-	{ dx: -18, dy: -10, anchor: "end" },
-	{ dx: 18, dy: 22, anchor: "start" },
-	{ dx: -18, dy: 22, anchor: "end" },
+	{ dx: 16, dy: -10, anchor: "start" },
+	{ dx: -16, dy: -10, anchor: "end" },
+	{ dx: 16, dy: 22, anchor: "start" },
+	{ dx: -16, dy: 22, anchor: "end" },
+	{ dx: 0, dy: -18, anchor: "middle" },
+	{ dx: 0, dy: 30, anchor: "middle" },
+	{ dx: 0, dy: -34, anchor: "middle" },
+	{ dx: 0, dy: 46, anchor: "middle" },
 ];
 
 interface Box {
@@ -124,7 +154,11 @@ interface LabelledPoint {
  * and clear of other points and of labels already placed. Points earlier in
  * the list get first pick.
  */
-function placeLabels(points: LabelledPoint[]): Map<string, LabelPlacement> {
+function placeLabels(
+	points: LabelledPoint[],
+	frame: Frame,
+): Map<string, LabelPlacement> {
+	const charWidth = frame.compact ? COMPACT_LABEL_CHAR_WIDTH : LABEL_CHAR_WIDTH;
 	const taken: Box[] = points.map((point) => ({
 		left: point.x - POINT_CLEARANCE,
 		right: point.x + POINT_CLEARANCE,
@@ -134,14 +168,23 @@ function placeLabels(points: LabelledPoint[]): Map<string, LabelPlacement> {
 	const placed = new Map<string, LabelPlacement>();
 
 	for (const point of points) {
-		const width = point.text.length * LABEL_CHAR_WIDTH;
+		const width = point.text.length * charWidth;
 		const boxFor = (placement: LabelPlacement): Box => {
 			const start = point.x + placement.dx;
-			const left = placement.anchor === "start" ? start : start - width;
+			const left =
+				placement.anchor === "start"
+					? start
+					: placement.anchor === "end"
+						? start - width
+						: start - width / 2;
 			const bottom = point.y + placement.dy + 4;
 			return { left, right: left + width, top: bottom - LABEL_HEIGHT, bottom };
 		};
-		const inPlot = (box: Box) => box.left >= PLOT.left && box.right <= WIDTH;
+		const inPlot = (box: Box) =>
+			box.left >= frame.left &&
+			box.right <= frame.width &&
+			box.top >= 0 &&
+			box.bottom <= frame.bottom;
 		const choice =
 			labelPlacements.find((placement) => {
 				const box = boxFor(placement);
@@ -153,6 +196,16 @@ function placeLabels(points: LabelledPoint[]): Map<string, LabelPlacement> {
 		placed.set(point.id, choice);
 	}
 	return placed;
+}
+
+/**
+ * The label beside a point. Where space is tight other harnesses go by name
+ * alone; their versions are in the table and the readout.
+ */
+function pointLabel(result: HarnessResult, frame: Frame): string {
+	return frame.compact && result.role === "other"
+		? result.name
+		: harnessLabel(result);
 }
 
 function describe(result: HarnessResult): string {
@@ -173,13 +226,15 @@ function describe(result: HarnessResult): string {
 export function PassRateScatter({ results }: { results: HarnessResult[] }) {
 	const [axisId, setAxisId] = useState<XAxis["id"]>("cost");
 	const [activeId, setActiveId] = useState<string | null>(null);
+	const [ref, size] = useElementSize<HTMLDivElement>();
 	const axis = xAxes.find((candidate) => candidate.id === axisId) ?? xAxes[0]!;
+	const frame = frameFor(size?.width ?? 0);
 
-	const x = scale(results.map(axis.value), PLOT.left, PLOT.right);
+	const x = scale(results.map(axis.value), frame.left, frame.right);
 	const y = scale(
 		results.map((result) => result.passRate.value),
-		PLOT.bottom,
-		PLOT.top,
+		frame.bottom,
+		frame.top,
 	);
 	const at = (result: HarnessResult) => ({
 		x: x.position(axis.value(result)),
@@ -195,8 +250,9 @@ export function PassRateScatter({ results }: { results: HarnessResult[] }) {
 			.map((result) => ({
 				id: result.id,
 				...at(result),
-				text: harnessLabel(result),
+				text: pointLabel(result, frame),
 			})),
+		frame,
 	);
 	const active =
 		results.find((result) => result.id === activeId) ??
@@ -215,139 +271,143 @@ export function PassRateScatter({ results }: { results: HarnessResult[] }) {
 				/>
 				<span className={styles.hint}>{axis.hint}</span>
 			</div>
-			<FigureScroll wide>
-				<svg
-					viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
-					role="group"
-					aria-label={`Scatter chart: pass rate against ${axis.title} for each harness`}
-					className={styles.chart}
-				>
-					{y.ticks.map((tick) => (
-						<g key={tick}>
-							<line
-								x1={PLOT.left}
-								y1={y.position(tick)}
-								x2={PLOT.right}
-								y2={y.position(tick)}
-								className={styles.gridLine}
-							/>
-							<text
-								x={PLOT.left - 12}
-								y={y.position(tick) + 4}
-								textAnchor="end"
-								className={styles.axisLabel}
-							>
-								{formatPercent(tick, 0)}
-							</text>
-						</g>
-					))}
-					{x.ticks.map((tick) => (
-						<text
-							key={tick}
-							x={x.position(tick)}
-							y={PLOT.bottom + 24}
-							textAnchor="middle"
-							className={styles.axisLabel}
-						>
-							{axis.format(tick)}
-						</text>
-					))}
-					<line
-						x1={PLOT.left}
-						y1={PLOT.bottom}
-						x2={PLOT.right}
-						y2={PLOT.bottom}
-						className={styles.axis}
-					/>
-					<text
-						x={PLOT.right}
-						y={HEIGHT - 16}
-						textAnchor="end"
-						className={styles.axisLabel}
+			<div
+				ref={ref}
+				className={cx(styles.plot, frame.compact && styles.compact)}
+			>
+				{size && (
+					<svg
+						width={frame.width}
+						height={frame.height}
+						role="group"
+						aria-label={`Scatter chart: pass rate against ${axis.title} for each harness`}
 					>
-						{axis.title} →
-					</text>
-					<text
-						x={PLOT.left - 12}
-						y={16}
-						textAnchor="end"
-						className={styles.axisLabel}
-					>
-						↑ pass rate
-					</text>
-
-					{experiment && baseline && (
-						<line
-							// Redrawn (and so faded in again) whenever the axis changes.
-							key={axisId}
-							x1={at(baseline).x}
-							y1={at(baseline).y}
-							x2={at(experiment).x}
-							y2={at(experiment).y}
-							className={styles.trail}
-						/>
-					)}
-
-					{results.map((result) => {
-						const point = at(result);
-						const label = labels.get(result.id) ?? labelPlacements[0]!;
-						return (
-							<g
-								key={result.id}
-								tabIndex={0}
-								aria-label={`${harnessLabel(result)}: ${describe(result)}`}
-								className={cx(
-									styles.pointGroup,
-									active?.id === result.id && styles.active,
-								)}
-								style={
-									{
-										transform: `translate(${point.x}px, ${point.y}px)`,
-									} as CSSProperties
-								}
-								onMouseEnter={() => setActiveId(result.id)}
-								onMouseLeave={() => setActiveId(null)}
-								onFocus={() => setActiveId(result.id)}
-								onBlur={() => setActiveId(null)}
-							>
-								<circle
-									r={HIT_RADIUS}
-									className={styles.hit}
+						{y.ticks.map((tick) => (
+							<g key={tick}>
+								<line
+									x1={frame.left}
+									y1={y.position(tick)}
+									x2={frame.right}
+									y2={y.position(tick)}
+									className={styles.gridLine}
 								/>
-								{result.role === "other" ? (
-									<circle
-										r={7}
-										className={cx(styles.point, styles.other)}
-									/>
-								) : (
-									<Diamond
-										cx={0}
-										cy={0}
-										size={result.role === "experiment" ? 16 : 14}
-										className={cx(
-											styles.point,
-											result.role === "experiment"
-												? styles.current
-												: styles.previous,
-										)}
-									/>
-								)}
 								<text
-									x={label.dx}
-									y={label.dy}
-									textAnchor={label.anchor}
-									className={cx(
-										styles.pointLabel,
-										result.role === "experiment" && styles.emphasis,
-									)}
+									x={frame.left - 8}
+									y={y.position(tick) + 4}
+									textAnchor="end"
+									className={styles.axisLabel}
 								>
-									{harnessLabel(result)}
+									{formatPercent(tick, 0)}
 								</text>
 							</g>
-						);
-					})}
-				</svg>
-			</FigureScroll>
+						))}
+						{x.ticks.map((tick) => (
+							<text
+								key={tick}
+								x={x.position(tick)}
+								y={frame.bottom + 24}
+								textAnchor="middle"
+								className={styles.axisLabel}
+							>
+								{axis.format(tick)}
+							</text>
+						))}
+						<line
+							x1={frame.left}
+							y1={frame.bottom}
+							x2={frame.right}
+							y2={frame.bottom}
+							className={styles.axis}
+						/>
+						<text
+							x={frame.right}
+							y={frame.height - 12}
+							textAnchor="end"
+							className={styles.axisLabel}
+						>
+							{axis.title} →
+						</text>
+						<text
+							x={0}
+							y={16}
+							className={styles.axisLabel}
+						>
+							↑ pass rate
+						</text>
+
+						{experiment && baseline && (
+							<line
+								// Redrawn (and so faded in again) whenever the axis changes.
+								key={axisId}
+								x1={at(baseline).x}
+								y1={at(baseline).y}
+								x2={at(experiment).x}
+								y2={at(experiment).y}
+								className={styles.trail}
+							/>
+						)}
+
+						{results.map((result) => {
+							const point = at(result);
+							const label = labels.get(result.id) ?? labelPlacements[0]!;
+							return (
+								<g
+									key={result.id}
+									tabIndex={0}
+									aria-label={`${harnessLabel(result)}: ${describe(result)}`}
+									className={cx(
+										styles.pointGroup,
+										active?.id === result.id && styles.active,
+									)}
+									style={
+										{
+											transform: `translate(${point.x}px, ${point.y}px)`,
+										} as CSSProperties
+									}
+									onMouseEnter={() => setActiveId(result.id)}
+									onMouseLeave={() => setActiveId(null)}
+									onFocus={() => setActiveId(result.id)}
+									onBlur={() => setActiveId(null)}
+								>
+									<circle
+										r={HIT_RADIUS}
+										className={styles.hit}
+									/>
+									{result.role === "other" ? (
+										<circle
+											r={7}
+											className={cx(styles.point, styles.other)}
+										/>
+									) : (
+										<Diamond
+											cx={0}
+											cy={0}
+											size={result.role === "experiment" ? 16 : 14}
+											className={cx(
+												styles.point,
+												result.role === "experiment"
+													? styles.current
+													: styles.previous,
+											)}
+										/>
+									)}
+									<text
+										x={label.dx}
+										y={label.dy}
+										textAnchor={label.anchor}
+										className={cx(
+											styles.pointLabel,
+											result.role === "experiment" && styles.emphasis,
+										)}
+									>
+										{pointLabel(result, frame)}
+									</text>
+								</g>
+							);
+						})}
+					</svg>
+				)}
+			</div>
 			{active && (
 				<p
 					className={styles.readout}
