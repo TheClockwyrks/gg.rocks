@@ -19,40 +19,42 @@ export function SiteHeader() {
 
 	return (
 		<header className={styles.header}>
-			<Wordmark />
-			<button
-				type="button"
-				className={styles.toggle}
-				aria-expanded={open}
-				aria-controls="site-nav"
-				onClick={() => setOpen((value) => !value)}
-			>
-				{open ? "Close" : "Menu"}
-			</button>
-			<nav
-				id="site-nav"
-				aria-label="Primary"
-				className={cx(styles.nav, open && styles.open)}
-				onClick={() => setOpen(false)}
-			>
-				{headerNav.map((id) => (
-					<NavLink
-						key={id}
-						to={sections[id].path}
-						className={({ isActive }) =>
-							cx(styles.link, isActive && styles.current)
-						}
-					>
-						{sections[id].label}
-					</NavLink>
-				))}
-				<NavLink
-					to={sections.download.path}
-					className={styles.download}
+			<div className={styles.inner}>
+				<Wordmark />
+				<button
+					type="button"
+					className={styles.toggle}
+					aria-expanded={open}
+					aria-controls="site-nav"
+					onClick={() => setOpen((value) => !value)}
 				>
-					{sections.download.label}
-				</NavLink>
-			</nav>
+					{open ? "Close" : "Menu"}
+				</button>
+				<nav
+					id="site-nav"
+					aria-label="Primary"
+					className={cx(styles.nav, open && styles.open)}
+					onClick={() => setOpen(false)}
+				>
+					{headerNav.map((id) => (
+						<NavLink
+							key={id}
+							to={sections[id].path}
+							className={({ isActive }) =>
+								cx(styles.link, isActive && styles.current)
+							}
+						>
+							{sections[id].label}
+						</NavLink>
+					))}
+					<NavLink
+						to={sections.download.path}
+						className={styles.download}
+					>
+						{sections.download.label}
+					</NavLink>
+				</nav>
+			</div>
 		</header>
 	);
 }

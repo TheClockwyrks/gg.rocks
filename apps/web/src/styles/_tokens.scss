@@ -138,9 +138,11 @@ $bp-lg: 1100px;
 // Below this the landing network keeps its single-column phone arrangement.
 $bp-net-medium: 680px;
 
+// Widest the top bar and page content grow; beyond it they sit centred.
+$layout-page: 1280px;
 $layout-header-height: 72px;
 $layout-rail-width: 72px;
-$layout-toc-width: 220px;
+$layout-toc-width: 160px;
 $layout-content-wide: 1200px;
 $layout-content: 1040px;
 $layout-prose: 760px;

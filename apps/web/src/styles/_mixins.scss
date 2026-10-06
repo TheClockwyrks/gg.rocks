@@ -49,6 +49,13 @@
 	border: 0;
 }
 
+// Caps content at the page width and centres it on wider screens.
+@mixin page-pane {
+	width: 100%;
+	max-width: $layout-page;
+	margin-inline: auto;
+}
+
 // Horizontal page gutter that tightens on small screens.
 @mixin gutter {
 	padding-inline: $s-4;

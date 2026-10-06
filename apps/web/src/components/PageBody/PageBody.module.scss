@@ -2,6 +2,8 @@
 
 .body {
 	position: relative;
+
+	@include page-pane;
 }
 
 .main {
@@ -26,6 +28,5 @@
 
 	&.narrow {
 		gap: $s-10;
-		max-width: $layout-content;
 	}
 }

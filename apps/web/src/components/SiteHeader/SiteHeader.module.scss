@@ -4,15 +4,20 @@
 	position: sticky;
 	top: 0;
 	z-index: $z-header;
+	border-bottom: $border;
+	background: $color-scrim;
+	backdrop-filter: blur($s-2);
+}
+
+// The bar spans the window; its contents line up with the page content.
+.inner {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	gap: $s-8;
 	height: $layout-header-height;
-	border-bottom: $border;
-	background: $color-scrim;
-	backdrop-filter: blur($s-2);
 
+	@include page-pane;
 	@include gutter;
 }
 
