@@ -31,6 +31,8 @@
 
 	@include up($bp-lg) {
 		flex-direction: column;
+		// Links are only as wide as their text, not the whole column.
+		align-items: flex-start;
 		gap: 0;
 		overflow: visible;
 		padding-inline: $s-10 0;

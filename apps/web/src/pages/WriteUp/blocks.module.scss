@@ -4,7 +4,6 @@
 $bar-label-column: 220px;
 $bar-value-column: 140px;
 $column-height: 280px;
-$column-max-width: 120px;
 
 // --- Sections ---------------------------------------------------------------
 
@@ -36,8 +35,6 @@ $column-max-width: 120px;
 }
 
 .prose {
-	max-width: $layout-prose;
-
 	@include text-body;
 }
 
@@ -159,7 +156,6 @@ $column-max-width: 120px;
 	gap: $s-2;
 
 	@include up($bp-sm) {
-		justify-content: flex-start;
 		gap: $s-8;
 	}
 }
@@ -169,7 +165,6 @@ $column-max-width: 120px;
 	display: flex;
 	flex-direction: column;
 	gap: $s-3;
-	max-width: $column-max-width;
 	min-width: 0;
 
 	@include text-mono($text-13, $color-ink-muted);

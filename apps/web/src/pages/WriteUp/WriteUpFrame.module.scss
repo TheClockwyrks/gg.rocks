@@ -1,9 +1,11 @@
 @use "@/styles" as *;
 
 .frame {
+	@include page-pane;
+
 	@include up($bp-lg) {
 		display: flex;
-		gap: $s-14;
+		gap: $s-10;
 		padding: 0 $s-16 0 $s-10;
 	}
 }

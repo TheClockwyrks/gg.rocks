@@ -35,7 +35,6 @@ $stat-max-width: 260px;
 }
 
 .summary {
-	max-width: $layout-prose;
 	margin: 0;
 	font-size: $text-18;
 	line-height: $leading-normal;
@@ -71,6 +70,7 @@ $stat-max-width: 260px;
 
 .value {
 	margin: 0;
+	white-space: nowrap;
 
 	@include text-mono($text-22, $color-ink);
 
