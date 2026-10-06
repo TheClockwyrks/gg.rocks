@@ -1,11 +1,15 @@
 @use "@/styles" as *;
 
-// The row-heading column is wider than the value columns.
+// The row-heading column is wider than the value columns, except on small
+// screens, where it is pinned and has to leave room for the values.
 $heading-column-share: 30%;
+$heading-column-pinned: 150px;
 
 .table {
 	width: 100%;
-	border-collapse: collapse;
+	// Separate borders, so that they travel with the pinned first column.
+	border-collapse: separate;
+	border-spacing: 0;
 	table-layout: fixed;
 	text-align: left;
 
@@ -20,7 +24,11 @@ $heading-column-share: 30%;
 	@include text-label($text-11);
 
 	&:first-child {
-		width: $heading-column-share;
+		width: $heading-column-pinned;
+
+		@include up($bp-md) {
+			width: $heading-column-share;
+		}
 	}
 }
 
@@ -28,6 +36,30 @@ $heading-column-share: 30%;
 	padding: $s-3 $s-4 $s-3 0;
 	border-bottom: $border-soft;
 	font-weight: $weight-regular;
+}
+
+// The row-heading column stays put while the value columns scroll under it,
+// so every row keeps its name beside whichever values are in view.
+.heading:first-child,
+th.cell {
+	position: sticky;
+	left: 0;
+	z-index: 1;
+	border-right: $border-soft;
+	background: $color-surface;
+}
+
+// Lines between the value columns. The line after the pinned column belongs
+// to that column, so it stays visible while the others scroll.
+.heading:not(:first-child),
+td.cell {
+	padding-left: $s-4;
+	white-space: nowrap;
+}
+
+.heading:nth-child(n + 3),
+td.cell:nth-child(n + 3) {
+	border-left: $border-soft;
 }
 
 .row {

@@ -17,7 +17,7 @@ interface DataTableProps {
 
 export function DataTable({ columns, rows }: DataTableProps) {
 	return (
-		<FigureScroll>
+		<FigureScroll wide>
 			<table className={styles.table}>
 				<thead>
 					<tr>
