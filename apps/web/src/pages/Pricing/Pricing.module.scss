@@ -1,0 +1,129 @@
+@use "@/styles" as *;
+
+.plans {
+	display: grid;
+	gap: $s-5;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	@include up($bp-md) {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+.plan {
+	display: flex;
+	flex-direction: column;
+	gap: $s-4;
+	background: $color-raised;
+
+	@include card;
+
+	&.featured {
+		border-color: $color-accent-outline;
+	}
+}
+
+.heading {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: $s-2;
+}
+
+.name {
+	margin: 0;
+
+	@include text-title-figure;
+}
+
+.flag {
+	@include text-label($text-11, $color-accent);
+}
+
+.cost {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: $s-2;
+	margin: 0;
+	font-family: $font-mono;
+}
+
+.price {
+	font-size: $text-28;
+}
+
+.unit {
+	font-size: $text-13;
+	color: $color-ink-subtle;
+}
+
+.summary {
+	@include text-lead;
+}
+
+.features {
+	display: flex;
+	flex-direction: column;
+	gap: $s-2;
+	margin: 0;
+	padding: $s-4 0 0;
+	border-top: $border-soft;
+	list-style: none;
+}
+
+.feature {
+	font-size: $text-15;
+	color: $color-ink-muted;
+}
+
+// Pushed to the bottom so the buttons line up across plans.
+.action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: $control-height;
+	margin-top: auto;
+	padding: 0 $s-4;
+	border: $border-width solid $color-accent;
+	border-radius: $radius-md;
+	font-size: $text-15;
+	font-weight: $weight-medium;
+}
+
+.questions {
+	display: flex;
+	flex-direction: column;
+	gap: $s-4;
+	max-width: $layout-prose;
+}
+
+.questionsTitle {
+	@include text-title-section;
+}
+
+.list {
+	margin: 0;
+}
+
+.item {
+	display: flex;
+	flex-direction: column;
+	gap: $s-1-5;
+	padding-block: $s-5;
+	border-top: $border;
+}
+
+.question {
+	font-size: $text-17;
+	font-weight: $weight-semibold;
+}
+
+.answer {
+	margin: 0;
+
+	@include text-body;
+}

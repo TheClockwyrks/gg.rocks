@@ -37,6 +37,7 @@ const nodeCopy: Record<SectionId, NodeCopy> = {
 			short: "gg [version] · pre-release",
 		},
 	},
+	pricing: { primary: false },
 	changelog: { primary: false },
 	docs: { primary: false },
 };
@@ -135,25 +136,6 @@ export function Landing() {
 					);
 				})}
 			</nav>
-
-			{layout.tag && (
-				<span
-					className={cx(
-						styles.tag,
-						active !== null &&
-							!layout.tag.serves.includes(active) &&
-							styles.dimmed,
-					)}
-					style={
-						{
-							...position(layout, layout.tag.at),
-							"--delay": `${layout.settled}ms`,
-						} as CSSProperties
-					}
-				>
-					<span className={styles.tagText}>{layout.tag.text}</span>
-				</span>
-			)}
 
 			<p className={styles.footnote}>
 				Results come from The Test Cabinet runs. Its methodology is open source.

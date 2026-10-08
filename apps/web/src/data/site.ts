@@ -1,5 +1,10 @@
 export type SectionId =
-	"experiments" | "benchmarks" | "docs" | "changelog" | "download";
+	| "experiments"
+	| "benchmarks"
+	| "docs"
+	| "pricing"
+	| "changelog"
+	| "download";
 
 export interface Section {
 	id: SectionId;
@@ -15,6 +20,7 @@ export const sections: Record<SectionId, Section> = {
 	},
 	benchmarks: { id: "benchmarks", label: "Benchmarks", path: "/benchmarks" },
 	docs: { id: "docs", label: "Docs", path: "/docs" },
+	pricing: { id: "pricing", label: "Pricing", path: "/pricing" },
 	changelog: { id: "changelog", label: "Changelog", path: "/changelog" },
 	download: { id: "download", label: "Download", path: "/download" },
 };
@@ -24,6 +30,7 @@ export const headerNav: SectionId[] = [
 	"experiments",
 	"benchmarks",
 	"docs",
+	"pricing",
 	"changelog",
 ];
 
@@ -33,5 +40,6 @@ export const railNav: SectionId[] = [
 	"experiments",
 	"changelog",
 	"download",
+	"pricing",
 	"docs",
 ];

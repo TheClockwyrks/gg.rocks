@@ -145,17 +145,13 @@ $glide: $duration-slow $ease-glide;
 
 // --- Nodes ----------------------------------------------------------------
 
-// Nodes and the tag are placed with --fx/--fy: how far the point lies between
-// the network's origin (--ox/--oy) and the far edge of the page. This is the
-// same mapping the network uses to plot its paths.
-%plotted {
+// Nodes are placed with --fx/--fy: how far the point lies between the
+// network's origin (--ox/--oy) and the far edge of the page. This is the same
+// mapping the network uses to plot its paths.
+.node {
 	position: absolute;
 	left: calc(var(--ox) + var(--fx) * (100% - var(--ox)));
 	top: calc(var(--oy) + var(--fy) * (100% - var(--oy)));
-}
-
-.node {
-	@extend %plotted;
 	// Pull the link back so its marker is inside it and the first line of the
 	// label is centred on the marker.
 	margin-top: calc(var(--leading) / -2);
@@ -233,33 +229,6 @@ $glide: $duration-slow $ease-glide;
 
 	.wide & {
 		font-size: $text-12;
-	}
-}
-
-.tag {
-	@extend %plotted;
-	transition: opacity $duration-fast ease;
-
-	&.dimmed {
-		opacity: 0.12;
-	}
-}
-
-.tagText {
-	display: block;
-	padding: $s-0-5 $s-1-5;
-	border-radius: $radius-sm;
-	background: $color-scrim;
-	letter-spacing: $tracking-wide;
-	opacity: 0;
-	animation: fade-in $duration-base ease-out var(--delay) forwards;
-
-	@include text-mono($text-11, $color-hot);
-}
-
-@keyframes fade-in {
-	to {
-		opacity: 1;
 	}
 }
 
