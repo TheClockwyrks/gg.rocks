@@ -5,10 +5,6 @@ $group-column: 200px;
 // Width of the price column, so plan names line up down the page.
 $price-column: 140px;
 
-.ledger {
-	max-width: $layout-content;
-}
-
 // A group is a band of the ledger: its name in the margin, its plans as rows.
 .group {
 	display: grid;

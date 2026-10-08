@@ -15,7 +15,7 @@ export function Pricing() {
 				gg and other products, on a plan sized for casual or professional use.
 			</PageIntro>
 
-			<div className={styles.ledger}>
+			<div>
 				{planGroups.map((group) => (
 					<section
 						key={group.id}
