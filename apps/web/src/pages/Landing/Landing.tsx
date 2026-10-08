@@ -1,5 +1,6 @@
 import { useState, type CSSProperties } from "react";
 import { Link } from "react-router";
+import { AccountLink } from "@/components/AccountLink/AccountLink";
 import { Wordmark } from "@/components/Wordmark";
 import { sections, type SectionId } from "@/data/site";
 import { cx } from "@/utils/cx";
@@ -80,6 +81,8 @@ export function Landing() {
 				<Wordmark className={styles.wordmark} />
 				<span className={styles.badge}>pre-release</span>
 			</div>
+
+			<AccountLink className={styles.account} />
 
 			<div className={styles.hero}>
 				<span className={styles.eyebrow}>Experimental coding harness</span>

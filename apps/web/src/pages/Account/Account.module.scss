@@ -1,0 +1,189 @@
+@use "@/styles" as *;
+
+// Width of the column that names each section, beside its content.
+$section-column: 200px;
+$form-width: 400px;
+// Width of the term column in a list of details.
+$term-column: 140px;
+
+// --- Tab bar --------------------------------------------------------------
+
+.tabs {
+	display: flex;
+	justify-content: space-between;
+	gap: $s-3;
+	border-bottom: $border;
+	// Sized so that the three tabs fit on one line on the narrowest phones.
+	font-size: $text-14;
+	font-weight: $weight-medium;
+
+	@include up($bp-sm) {
+		justify-content: flex-start;
+		gap: $s-6;
+		font-size: $text-15;
+	}
+}
+
+.tab {
+	display: flex;
+	align-items: center;
+	flex: none;
+	min-height: $tap-target;
+	// Sits on the bar's own line.
+	margin-bottom: -$border-width;
+	border-bottom: $s-0-5 solid transparent;
+	color: $color-ink-muted;
+
+	&:hover {
+		color: $color-accent;
+	}
+
+	&.current {
+		border-bottom-color: $color-accent;
+		color: $color-accent;
+	}
+}
+
+// --- Sections -------------------------------------------------------------
+
+.section {
+	display: grid;
+	gap: $s-4;
+	padding-block: $s-7;
+
+	& + & {
+		border-top: $border;
+	}
+
+	@include up($bp-md) {
+		grid-template-columns: $section-column minmax(0, 1fr);
+		gap: $s-8;
+	}
+}
+
+.sectionHeading {
+	display: flex;
+	flex-direction: column;
+	gap: $s-1-5;
+}
+
+.sectionTitle {
+	margin: 0;
+
+	@include text-title-figure;
+}
+
+.sectionSummary {
+	margin: 0;
+	font-size: $text-15;
+	line-height: $leading-normal;
+	color: $color-ink-subtle;
+}
+
+.sectionBody {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: $s-4;
+	min-width: 0;
+}
+
+// A tab whose content runs the full width, without a name in the margin.
+.full {
+	padding-block: $s-7;
+}
+
+.status {
+	margin: 0;
+	padding-block: $s-7;
+	font-size: $text-15;
+	color: $color-ink-muted;
+}
+
+// --- Content --------------------------------------------------------------
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: $s-4;
+	width: 100%;
+	max-width: $form-width;
+}
+
+.text {
+	margin: 0;
+	font-size: $text-15;
+	color: $color-ink-muted;
+}
+
+.actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $s-3;
+}
+
+.details {
+	display: grid;
+	gap: $s-1 $s-6;
+	margin: 0;
+	font-size: $text-15;
+
+	@include up($bp-sm) {
+		grid-template-columns: $term-column minmax(0, 1fr);
+		gap: $s-2-5 $s-6;
+	}
+
+	dt {
+		color: $color-ink-subtle;
+	}
+
+	dd {
+		margin: 0 0 $s-2;
+
+		@include up($bp-sm) {
+			margin: 0;
+		}
+	}
+}
+
+.plan {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: $s-2 $s-4;
+}
+
+.planName {
+	font-size: $text-17;
+	font-weight: $weight-semibold;
+}
+
+.price {
+	font-family: $font-mono;
+	font-size: $text-28;
+	color: $color-accent;
+}
+
+.unit {
+	@include text-mono($text-13);
+}
+
+.pill {
+	@include pill;
+
+	&.active {
+		border-color: $color-accent;
+		background: $color-accent;
+		color: $color-surface;
+		font-weight: $weight-medium;
+	}
+
+	&.cancelling {
+		border: $border-width dashed $color-outline;
+		color: $color-ink-subtle;
+	}
+}
+
+.srOnly {
+	@include visually-hidden;
+}

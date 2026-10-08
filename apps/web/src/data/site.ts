@@ -25,7 +25,19 @@ export const sections: Record<SectionId, Section> = {
 	download: { id: "download", label: "Download", path: "/download" },
 };
 
-/** Order of the text links in the top bar; Download is rendered as a button. */
+/** Pages for the visitor's own account, which sit outside the sections. */
+export const accountPaths = {
+	login: "/login",
+	signup: "/signup",
+	account: "/account",
+	subscription: "/account/subscription",
+	billing: "/account/billing",
+} as const;
+
+/**
+ * Order of the text links in the top bar; Download and the account link are
+ * rendered as buttons.
+ */
 export const headerNav: SectionId[] = [
 	"experiments",
 	"benchmarks",

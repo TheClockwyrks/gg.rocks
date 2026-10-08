@@ -1,0 +1,51 @@
+@use "@/styles" as *;
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: $control-height;
+	padding: 0 $s-4;
+	border: $border-outline;
+	border-radius: $radius-md;
+	background: transparent;
+	color: $color-ink-muted;
+	font-size: $text-15;
+	font-weight: $weight-medium;
+	white-space: nowrap;
+	transition:
+		border-color $duration-fast ease,
+		background-color $duration-fast ease,
+		color $duration-fast ease;
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: default;
+	}
+}
+
+.outline:hover:not(:disabled) {
+	border-color: $color-accent;
+	color: $color-ink;
+}
+
+.primary {
+	border-color: $color-accent;
+	background: $color-accent;
+	color: $color-surface;
+	font-weight: $weight-semibold;
+
+	&:hover:not(:disabled) {
+		border-color: $color-accent-hover;
+		background: $color-accent-hover;
+	}
+}
+
+.danger {
+	border-color: $color-hot;
+	color: $color-hot;
+
+	&:hover:not(:disabled) {
+		background: $color-hot-wash;
+	}
+}

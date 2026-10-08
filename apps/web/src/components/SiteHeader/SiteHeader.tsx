@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router";
+import { AccountLink } from "@/components/AccountLink/AccountLink";
 import { Wordmark } from "@/components/Wordmark";
 import { headerNav, sections } from "@/data/site";
 import { cx } from "@/utils/cx";
@@ -53,6 +54,7 @@ export function SiteHeader() {
 					>
 						{sections.download.label}
 					</NavLink>
+					<AccountLink className={styles.account} />
 				</nav>
 			</div>
 		</header>

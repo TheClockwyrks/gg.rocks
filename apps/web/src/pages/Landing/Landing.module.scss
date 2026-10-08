@@ -68,6 +68,20 @@ $glide: $duration-slow $ease-glide;
 	}
 }
 
+// --- Account --------------------------------------------------------------
+
+.account {
+	position: absolute;
+	top: $s-4;
+	right: $s-4;
+	z-index: 1;
+
+	.wide & {
+		top: $s-10;
+		right: $s-16;
+	}
+}
+
 // --- Hero -----------------------------------------------------------------
 
 .hero {

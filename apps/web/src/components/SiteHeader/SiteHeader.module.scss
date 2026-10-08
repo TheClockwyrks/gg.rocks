@@ -92,3 +92,10 @@
 		margin-top: $s-2;
 	}
 }
+
+// Sits tight against Download: the two buttons read as a pair.
+.account {
+	@include up($bp-md) {
+		margin-left: -$s-4;
+	}
+}
