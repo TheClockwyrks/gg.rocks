@@ -28,6 +28,15 @@
 	&:focus {
 		border-color: $color-accent;
 	}
+
+	// In place of the global focus ring, which stands off from the element:
+	// the outline sits flush against the border, so the border itself appears
+	// to thicken.
+	&:focus-visible {
+		outline: $s-0-5 solid $color-accent;
+		outline-offset: 0;
+		border-radius: $radius-md;
+	}
 }
 
 .hint {
