@@ -58,65 +58,71 @@ function Auth({ mode }: { mode: keyof typeof copy }) {
 
 	return (
 		<PageBody width="narrow">
-			<PageIntro
-				eyebrow="Account"
-				title={text.title}
-			>
-				{text.lead}
-			</PageIntro>
-
-			<form
-				className={styles.form}
-				onSubmit={onSubmit}
-			>
-				<Field
-					label="Email"
-					type="email"
-					autoComplete="email"
-					required
-					value={email}
-					onChange={(event) => setEmail(event.target.value)}
-				/>
-				<Field
-					label="Password"
-					type="password"
-					autoComplete={signingUp ? "new-password" : "current-password"}
-					required
-					minLength={signingUp ? PASSWORD_MIN_LENGTH : undefined}
-					hint={
-						signingUp ? `At least ${PASSWORD_MIN_LENGTH} characters` : undefined
-					}
-					value={password}
-					onChange={(event) => setPassword(event.target.value)}
-				/>
-				{signingUp && (
-					<Field
-						label="Confirm password"
-						type="password"
-						autoComplete="new-password"
-						required
-						value={confirmation}
-						onChange={(event) => setConfirmation(event.target.value)}
-					/>
-				)}
-				{error && <Notice tone="error">{error}</Notice>}
-				<Button
-					type="submit"
-					variant="primary"
-					disabled={pending}
+			<div className={styles.column}>
+				<PageIntro
+					eyebrow="Account"
+					title={text.title}
 				>
-					{text.submit}
-				</Button>
-				<p className={styles.switch}>
-					{text.prompt}{" "}
-					<Link to={withRedirect(text.otherPath, redirect)}>{text.other}</Link>
-				</p>
-				{!signingUp && demoCredentials && (
-					<p className={styles.demo}>
-						Demo account: {demoCredentials.email} / {demoCredentials.password}
+					{text.lead}
+				</PageIntro>
+
+				<form
+					className={styles.form}
+					onSubmit={onSubmit}
+				>
+					<Field
+						label="Email"
+						type="email"
+						autoComplete="email"
+						required
+						value={email}
+						onChange={(event) => setEmail(event.target.value)}
+					/>
+					<Field
+						label="Password"
+						type="password"
+						autoComplete={signingUp ? "new-password" : "current-password"}
+						required
+						minLength={signingUp ? PASSWORD_MIN_LENGTH : undefined}
+						hint={
+							signingUp
+								? `At least ${PASSWORD_MIN_LENGTH} characters`
+								: undefined
+						}
+						value={password}
+						onChange={(event) => setPassword(event.target.value)}
+					/>
+					{signingUp && (
+						<Field
+							label="Confirm password"
+							type="password"
+							autoComplete="new-password"
+							required
+							value={confirmation}
+							onChange={(event) => setConfirmation(event.target.value)}
+						/>
+					)}
+					{error && <Notice tone="error">{error}</Notice>}
+					<Button
+						type="submit"
+						variant="primary"
+						disabled={pending}
+					>
+						{text.submit}
+					</Button>
+					<p className={styles.switch}>
+						{text.prompt}{" "}
+						<Link to={withRedirect(text.otherPath, redirect)}>
+							{text.other}
+						</Link>
 					</p>
-				)}
-			</form>
+					{!signingUp && demoCredentials && (
+						<p className={styles.demo}>
+							Demo account: {demoCredentials.email} / {demoCredentials.password}
+						</p>
+					)}
+				</form>
+			</div>
 		</PageBody>
 	);
 }

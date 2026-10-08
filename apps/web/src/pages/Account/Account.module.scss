@@ -10,11 +10,18 @@ $term-column: 140px;
 
 .tabs {
 	display: flex;
-	gap: $s-6;
-	overflow-x: auto;
+	justify-content: space-between;
+	gap: $s-3;
 	border-bottom: $border;
-	font-size: $text-15;
+	// Sized so that the three tabs fit on one line on the narrowest phones.
+	font-size: $text-14;
 	font-weight: $weight-medium;
+
+	@include up($bp-sm) {
+		justify-content: flex-start;
+		gap: $s-6;
+		font-size: $text-15;
+	}
 }
 
 .tab {
