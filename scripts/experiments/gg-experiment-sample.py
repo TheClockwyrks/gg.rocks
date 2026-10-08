@@ -2,8 +2,8 @@
 """A made-up runs.json, so the experiment page can be looked at before gg has
 enough real runs to fill it.
 
-    scripts/gg-experiment-sample.py run-data/sample/runs.json
-    scripts/gg-experiment-data.py --from-runs run-data/sample/runs.json --out run-data/sample
+    scripts/experiments/gg-experiment-sample.py /tmp/sample-runs.json
+    scripts/experiments/gg-experiment-data.py --from-runs /tmp/sample-runs.json --out run-data/sample
 
 Every run in it is invented: four gg versions and four other harnesses over
 three models and twelve test cases, with a few repeats of each. It is marked

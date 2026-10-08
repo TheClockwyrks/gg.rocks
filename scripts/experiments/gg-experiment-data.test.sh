@@ -97,7 +97,23 @@ check "a model scope holds only that model" 'vs["codex"]["scopes"]["opus"]["pair
 check "no shared case is a reason, not a failure" 'vs["claude"]["reason"]' "no shared test cases on the shared models"
 check "the previous build is compared on shared pairs" 'vs["gg-previous"]["scopes"]["all"]["metrics"]["passRate"]["delta"]' "0.4"
 check "the trend uses the pairs every version ran" 'd["trend"]["basis"], [v["pairs"] for v in d["trend"]["versions"]]' "('shared', [1, 1])"
+check "a case carries only the metrics the grid shows" 'sorted(vs["codex"]["scopes"]["all"]["cases"][0]["metrics"])' "['completionRate', 'costUsd', 'durationSeconds', 'goodShare', 'passRate', 'totalTokens']"
 check "only runs on gg's pairs are kept for the spread" 'sorted({r["series"] for r in d["runs"]})' "['codex', 'gg', 'gg-previous']"
+
+# gg 2.0.0 and 1.0.0 share only gpt/a: 0.9 against 0.5.
+summary() { # label expression expected
+	local got
+	got="$(python3 -c 'import json,sys
+d = json.load(open(sys.argv[1]))
+print(eval(sys.argv[2]))' "$WORK/summary.json" "$2" 2>&1)"
+	if [ "$got" = "$3" ]; then
+		pass=$((pass + 1)); printf '  ok   %s\n' "$1"
+	else
+		fail=$((fail + 1)); printf 'FAIL  %s\n        expected %s\n        got %s\n' "$1" "$3" "$got"
+	fi
+}
+summary "the summary compares gg's builds like for like" 'd["experiment"]["passRate"], d["baseline"]["passRate"]' "(0.9, 0.5)"
+summary "the summary counts what gg ran" 'd["models"], d["cases"], d["pairs"], d["runs"]' "(2, 2, 3, 5)"
 
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 [ "$fail" -eq 0 ]

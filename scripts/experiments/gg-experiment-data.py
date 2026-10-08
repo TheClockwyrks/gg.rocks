@@ -3,8 +3,13 @@
 
 Reads every run summary from a backend and writes, for gg's current version:
 
-    experiment.json  the figures the page draws (described below)
-    runs.json        the rows they were computed from, to recompute offline
+    experiment.json  the figures the page draws (described below), loaded when
+                     the page is opened
+    summary.json     the few figures the experiments index and the verdict
+                     quote, small enough to ship with every page
+
+The runs themselves are not kept: --save-runs also writes them, as runs.json,
+which --from-runs reads back in place of a backend.
 
 Only GET requests are issued, and only two reads: the summary projection of the
 run listing, and the model catalog, which names the same model across harnesses
@@ -12,9 +17,9 @@ that spell its id differently. Every harness the backend has runs for is
 compared, so a new one shows up without being named here.
 
 Usage:
-    scripts/gg-experiment-data.py --env staging --run-state published,unpublished
-    scripts/gg-experiment-data.py --backend https://api.example
-    scripts/gg-experiment-data.py --from-runs run-data/0.9.1/2026-10-07/runs.json
+    scripts/experiments/gg-experiment-data.py --env staging --run-state published,unpublished
+    scripts/experiments/gg-experiment-data.py --backend https://api.example
+    scripts/experiments/gg-experiment-data.py --from-runs /tmp/runs.json --out run-data/sample
 
 The files land in run-data/<gg version>/<date>/ at the repository root (the
 current version among the runs read, and the UTC date of the pull); --out
@@ -53,7 +58,8 @@ A scope is "all" (every shared pair) or one model's id (that model's pairs).
 
 A gg run that failed before reporting its version is counted with the gg
 version whose runs started nearest in time, so that failures are not dropped.
-A null figure means "no data", never zero.
+A null figure means "no data", never zero. experiment.json is written compact,
+with figures rounded to four significant digits, to keep it small.
 """
 
 import argparse
@@ -73,7 +79,8 @@ BACKENDS = {
     "staging": "https://api.staging.tcab.testcabinet.ai",
 }
 
-RUN_DATA = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "run-data")
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+RUN_DATA = os.path.join(ROOT, "run-data")
 
 SUBJECT = "gg"
 
@@ -110,6 +117,19 @@ METRICS = [
     "outputTokens",
     "durationSeconds",
 ]
+
+# The metrics the case by case grid can show; the rest are only ever charted
+# for a whole scope.
+CASE_METRICS = [
+    "passRate",
+    "goodShare",
+    "completionRate",
+    "costUsd",
+    "totalTokens",
+    "durationSeconds",
+]
+# What the experiments index and the verdict quote.
+SUMMARY_METRICS = ["passRate", "costUsd", "totalTokens", "cachedInputTokens"]
 
 SUBJECT_FIELDS = [
     "testCaseSlug",
@@ -390,10 +410,10 @@ def interval(diffs):
     return means[int(0.025 * BOOTSTRAP_DRAWS)], means[int(0.975 * BOOTSTRAP_DRAWS) - 1]
 
 
-def paired(a_units, b_units, with_interval=True):
+def paired(a_units, b_units, metrics=METRICS, with_interval=True):
     """Each metric on the pairs where both sides report it."""
     out = {}
-    for m in METRICS:
+    for m in metrics:
         both = [(a[m], b[m]) for a, b in zip(a_units, b_units) if a[m] is not None and b[m] is not None]
         diffs = [a - b for a, b in both]
         entry = {
@@ -424,7 +444,9 @@ def comparison_scope(a, b, keys):
             {
                 "case": case,
                 "pairs": len(ks),
-                "metrics": paired([a[k] for k in ks], [b[k] for k in ks], with_interval=False),
+                "metrics": paired(
+                    [a[k] for k in ks], [b[k] for k in ks], CASE_METRICS, with_interval=False
+                ),
             }
             for case, ks in sorted(by_case.items())
         ],
@@ -439,7 +461,11 @@ def subject_scope(a, keys):
     return {
         **figure([a[k] for k in keys]),
         "cases": [
-            {"case": case, "pairs": len(ks), "metrics": figure([a[k] for k in ks])["metrics"]}
+            {
+                "case": case,
+                "pairs": len(ks),
+                "metrics": {m: mean(a[k][m] for k in ks) for m in CASE_METRICS},
+            }
             for case, ks in sorted(by_case.items())
         ],
     }
@@ -460,7 +486,8 @@ def parse_args():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--env", choices=sorted(BACKENDS), help="a deployed backend, over the VPN")
     ap.add_argument("--backend", help="a backend base URL (or set TCAB_BACKEND)")
-    ap.add_argument("--from-runs", help="recompute from a saved runs.json, reading nothing")
+    ap.add_argument("--from-runs", help="compute from a saved runs.json, reading nothing")
+    ap.add_argument("--save-runs", action="store_true", help="also write the runs read, as runs.json")
     ap.add_argument("--out", help="output directory (default run-data/<gg version>/<date>)")
     ap.add_argument(
         "--run-state",
@@ -486,9 +513,23 @@ def run_dir(version, pulled_at):
     return os.path.join(RUN_DATA, name, date)
 
 
-def write(out, name, data):
+def rounded(value):
+    """Every figure to four significant digits: all a chart can show."""
+    if isinstance(value, float):
+        return float(f"{value:.4g}")
+    if isinstance(value, dict):
+        return {k: rounded(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [rounded(v) for v in value]
+    return value
+
+
+def write(out, name, data, compact=False):
     with open(os.path.join(out, name), "w") as f:
-        json.dump(data, f, indent=1)
+        if compact:
+            json.dump(rounded(data), f, separators=(",", ":"))
+        else:
+            json.dump(data, f, indent=1)
         f.write("\n")
 
 
@@ -579,7 +620,8 @@ def main():
 
     out = args.out or run_dir(current, data.get("pulledAt"))
     os.makedirs(out, exist_ok=True)
-    write(out, "runs.json", data)
+    if args.save_runs:
+        write(out, "runs.json", data)
 
     comparisons, shown_runs = [], list(subject_rows)
     for s in series[1:]:
@@ -666,15 +708,47 @@ def main():
                 {
                     "series": series_of[id(r)],
                     "model": r["model"],
-                    "case": r["case"],
                     "category": r["category"],
                     "passRate": r["passRate"],
-                    "costUsd": r["costUsd"],
                 }
                 for r in shown_runs
             ],
             "trend": {"basis": "shared" if common else "own", "versions": trend},
         },
+        compact=True,
+    )
+
+    # gg and its previous build on the pairs both ran, so that the change the
+    # index quotes is like for like; gg alone when there is no previous build.
+    own = figure(list(a.values()))
+    against_previous = comparisons[0]["scopes"]["all"]
+    like_for_like = against_previous["pairs"] > 0
+    write(
+        out,
+        "summary.json",
+        rounded(
+            {
+                "pulledAt": data.get("pulledAt"),
+                "synthetic": bool(data.get("synthetic")),
+                "models": len(models),
+                "cases": len(labels),
+                "pairs": own["pairs"],
+                "runs": own["runs"],
+                "experiment": {
+                    "version": current,
+                    **{
+                        m: against_previous["metrics"][m]["subject"] if like_for_like else own["metrics"][m]
+                        for m in SUMMARY_METRICS
+                    },
+                },
+                "baseline": {
+                    "version": previous,
+                    **{m: against_previous["metrics"][m]["other"] for m in SUMMARY_METRICS},
+                }
+                if like_for_like
+                else None,
+            }
+        ),
     )
 
     def pct(v):
