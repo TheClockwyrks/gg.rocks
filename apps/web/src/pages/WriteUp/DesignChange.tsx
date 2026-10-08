@@ -118,7 +118,7 @@ export function DesignChange() {
 							name: "[Follow-up experiment]",
 							kind: "link",
 							tone: "accent",
-							to: writeUpPath("shared-prefix-fan-out"),
+							to: writeUpPath("sample-comparison"),
 						},
 					]}
 				/>

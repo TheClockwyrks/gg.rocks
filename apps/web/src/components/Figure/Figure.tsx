@@ -1,12 +1,12 @@
 import type { ReactNode } from "react";
-import type { Rating } from "@/data/writeUps/types";
+import type { Outcome } from "@/data/writeUps/types";
 import { cx } from "@/utils/cx";
 import styles from "./Figure.module.scss";
 
 export interface LegendItem {
 	label: string;
 	swatch: "diamond" | "dot" | "block" | "line";
-	tone: "accent" | "info" | "strand" | "subtle" | Rating;
+	tone: "accent" | "info" | "strand" | "subtle" | Outcome;
 }
 
 interface FigureProps {

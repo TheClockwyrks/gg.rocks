@@ -28,8 +28,6 @@ export interface Experiment {
 	deltas: ExperimentDeltas;
 	/** Slug of the write-up, once the experiment has concluded. */
 	writeUp?: string;
-	/** The blank-slate entry; it is not a real experiment. */
-	template?: boolean;
 }
 
 export const metricLabels: Record<keyof ExperimentDeltas, string> = {
@@ -46,32 +44,23 @@ const placeholderDeltas: ExperimentDeltas = {
 	cacheHit: "[±x%]",
 };
 
-/** Change from the baseline gg build to the build under test. */
+/**
+ * Change from the baseline gg build to the build under test; every delta is
+ * blank while there is no baseline to measure against.
+ */
 export function writeUpDeltas(data: WriteUpData): ExperimentDeltas {
 	const from = baselineResult(data);
 	const to = experimentResult(data);
 	return {
-		tokens: formatChange(from.tokensPerRun.value, to.tokensPerRun.value),
-		cost: formatChange(from.costPerRun.value, to.costPerRun.value),
-		passRate: formatPoints(from.passRate.value, to.passRate.value),
-		cacheHit: formatPoints(from.cachedShare, to.cachedShare, 0),
+		tokens: formatChange(from?.tokensPerRun?.value, to.tokensPerRun?.value),
+		cost: formatChange(from?.costPerRun?.value, to.costPerRun?.value),
+		passRate: formatPoints(from?.passRate?.value, to.passRate?.value),
+		cacheHit: formatPoints(from?.cachedShare, to.cachedShare, 0),
 	};
 }
 
-/** The index row for an experiment that has a standard write-up. */
+/** The index row for an experiment that has a write-up. */
 function fromWriteUp(data: WriteUpData): Experiment {
-	if (data.template) {
-		return {
-			id: data.slug,
-			name: "Template",
-			timeline: "a blank write-up, with dummy data in the charts",
-			status: data.status,
-			outcome: "Template",
-			deltas: placeholderDeltas,
-			writeUp: data.slug,
-			template: true,
-		};
-	}
 	return {
 		id: data.slug,
 		name: data.name,

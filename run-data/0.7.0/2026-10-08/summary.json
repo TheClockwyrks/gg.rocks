@@ -1,0 +1,16 @@
+{
+ "pulledAt": "2026-10-08T00:37:28+00:00",
+ "synthetic": false,
+ "models": 2,
+ "cases": 2,
+ "pairs": 2,
+ "runs": 2,
+ "experiment": {
+  "version": "0.7.0",
+  "passRate": 0.4968,
+  "costUsd": 6.65,
+  "totalTokens": 7274000.0,
+  "cachedInputTokens": 6956000.0
+ },
+ "baseline": null
+}

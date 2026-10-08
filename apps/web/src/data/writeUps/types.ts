@@ -1,3 +1,5 @@
+import type { ExperimentFile } from "./experimentData";
+
 /** Functionality ratings given to each test run, worst to best. */
 export const ratings = [
 	{ id: "broken", label: "Broken" },
@@ -9,34 +11,51 @@ export const ratings = [
 
 export type Rating = (typeof ratings)[number]["id"];
 
-/** An average over the runs, with its spread. */
+/** How a run without a functionality rating ended. */
+export const unratedOutcomes = [
+	{ id: "unrated", label: "Not yet rated" },
+	{ id: "didNotFinish", label: "Did not finish" },
+] as const;
+
+export type Outcome = Rating | (typeof unratedOutcomes)[number]["id"];
+
+/** Every way a run is counted, in stacking order from the bottom up. */
+export const outcomes: readonly { id: Outcome; label: string }[] = [
+	...unratedOutcomes,
+	...ratings,
+];
+
+/** An average over the runs, with its spread where one was measured. */
 export interface Measure {
 	value: number;
-	spread: number;
+	spread?: number;
 }
 
 /** One harness's results from The Test Cabinet for an experiment. */
 export interface HarnessResult {
 	id: string;
 	name: string;
-	version: string;
+	/** Null when the runs span several versions. */
+	version: string | null;
 	/**
 	 * "experiment" is the gg build under test and "baseline" the gg build it
-	 * is measured against; every write-up has exactly one of each.
+	 * is measured against. Every write-up has one experiment; the baseline is
+	 * missing until the previous build has runs of its own.
 	 */
 	role: "experiment" | "baseline" | "other";
-	/** When another harness's runs were taken, e.g. "runs from Sep 2026". */
-	snapshot?: string;
-	/** Percentage of test runs that passed. */
-	passRate: Measure;
+	/** How many runs the figures cover, and how many of those have a score. */
+	runs?: { total: number; scored: number };
+	/** Percentage of test runs that passed. Null figures have no data. */
+	passRate: Measure | null;
 	/** US dollars. */
-	costPerRun: Measure;
+	costPerRun: Measure | null;
 	/** Thousands of tokens. */
-	tokensPerRun: Measure;
+	tokensPerRun: Measure | null;
 	/** Percentage of tokens served from cache. */
-	cachedShare: number;
+	cachedShare: number | null;
 	/** How many test runs received each functionality rating. */
-	functionality: Record<Rating, number>;
+	functionality: Record<Rating, number> &
+		Partial<Record<Exclude<Outcome, Rating>, number>>;
 }
 
 export interface LineageStep {
@@ -52,13 +71,11 @@ export interface LineageStep {
 }
 
 /**
- * Everything a standard experiment write-up needs. The numbers come from The
+ * Everything an experiment write-up needs. The numbers come from The
  * Test Cabinet; the prose is written once the experiment has concluded.
  */
 export interface WriteUpData {
 	slug: string;
-	/** Marks the blank-slate entry that shows how a write-up is filled in. */
-	template?: boolean;
 	name: string;
 	status: "shipped" | "retired";
 	/** Outcome as shown in the status pill. */
@@ -80,23 +97,33 @@ export interface WriteUpData {
 	discussion: string[];
 	lineage: LineageStep[];
 	dataLinks: string[];
+	/** Every run behind the page was invented, to show the layout. */
+	synthetic: boolean;
+	/**
+	 * Fetches the full pull the charts are drawn from. It is kept out of the
+	 * site's own bundle, so that a new experiment costs nothing until opened.
+	 */
+	load: () => Promise<ExperimentFile>;
 }
 
 export const writeUpPath = (slug: string): string => `/experiments/${slug}`;
 
 /** Full display name of a harness build, e.g. "Claude Code 2.1.40". */
 export const harnessLabel = (result: HarnessResult): string =>
-	`${result.name} ${result.version}`;
+	result.version ? `${result.name} ${result.version}` : result.name;
 
-function byRole(data: WriteUpData, role: HarnessResult["role"]): HarnessResult {
-	const result = data.results.find((entry) => entry.role === role);
+const byRole = (
+	data: WriteUpData,
+	role: HarnessResult["role"],
+): HarnessResult | undefined =>
+	data.results.find((entry) => entry.role === role);
+
+export function experimentResult(data: WriteUpData): HarnessResult {
+	const result = byRole(data, "experiment");
 	if (!result)
-		throw new Error(`Write-up "${data.slug}" has no ${role} result`);
+		throw new Error(`Write-up "${data.slug}" has no experiment result`);
 	return result;
 }
 
-export const experimentResult = (data: WriteUpData): HarnessResult =>
-	byRole(data, "experiment");
-
-export const baselineResult = (data: WriteUpData): HarnessResult =>
+export const baselineResult = (data: WriteUpData): HarnessResult | undefined =>
 	byRole(data, "baseline");

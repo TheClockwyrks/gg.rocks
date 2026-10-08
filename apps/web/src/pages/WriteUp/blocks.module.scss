@@ -1,8 +1,6 @@
 @use "@/styles" as *;
 
 // Sizes that only these blocks need.
-$bar-label-column: 220px;
-$bar-value-column: 140px;
 $column-height: 280px;
 
 // --- Sections ---------------------------------------------------------------
@@ -82,49 +80,7 @@ $column-height: 280px;
 	color: $color-ink-subtle;
 }
 
-// --- Token bars -------------------------------------------------------------
-
-.bars {
-	display: flex;
-	flex-direction: column;
-	gap: $s-4;
-}
-
-.barRow {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr) auto;
-	grid-template-areas:
-		"label value"
-		"bar bar";
-	gap: $s-2 $s-4;
-	align-items: center;
-
-	@include text-mono($text-13, $color-ink-muted);
-
-	@include up($bp-md) {
-		grid-template-columns: $bar-label-column minmax(0, 1fr) $bar-value-column;
-		grid-template-areas: "label bar value";
-	}
-
-	&.highlight {
-		color: $color-ink;
-	}
-}
-
-.barLabel {
-	grid-area: label;
-}
-
-.barValue {
-	grid-area: value;
-}
-
-.bar {
-	grid-area: bar;
-	display: flex;
-	gap: $s-0-5;
-	height: $s-6;
-}
+// --- Columns ----------------------------------------------------------------
 
 .segment {
 	flex: var(--share) 1 0;
@@ -137,18 +93,6 @@ $column-height: 280px;
 	font-size: $text-11;
 	color: $color-ink;
 }
-
-.bar .segment {
-	&:first-child {
-		border-radius: $radius-sm 0 0 $radius-sm;
-	}
-
-	&:last-child {
-		border-radius: 0 $radius-sm $radius-sm 0;
-	}
-}
-
-// --- Columns ----------------------------------------------------------------
 
 .columns {
 	display: flex;
@@ -199,14 +143,6 @@ $column-height: 280px;
 	}
 }
 
-.cached {
-	background: $color-strand;
-}
-
-.uncached {
-	background: $color-accent;
-}
-
 // Functionality ratings. The lighter fills take dark text.
 .broken {
 	background: $color-rating-broken;
@@ -229,6 +165,14 @@ $column-height: 280px;
 .flawless {
 	background: $color-rating-flawless;
 	color: $color-surface;
+}
+
+.didNotFinish {
+	background: $color-rating-did-not-finish;
+}
+
+.unrated {
+	background: $color-rating-unrated;
 }
 
 // --- Before / after ---------------------------------------------------------
