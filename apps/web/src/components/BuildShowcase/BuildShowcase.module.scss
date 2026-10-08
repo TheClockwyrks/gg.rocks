@@ -8,21 +8,49 @@ $stage-ratio: 16 / 9;
 	display: flex;
 	flex-direction: column;
 	gap: $s-5;
-	max-width: $layout-content;
-}
-
-.heading {
-	display: flex;
-	flex-direction: column;
-	gap: $s-1-5;
 }
 
 .title {
 	@include text-title-section;
 }
 
-.summary {
-	@include text-lead;
+.details {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: $s-5 $s-8;
+}
+
+.facts {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $s-5 $s-10;
+	margin: 0;
+}
+
+.fact {
+	display: flex;
+	flex-direction: column;
+	gap: $s-1;
+}
+
+.label {
+	@include text-label;
+}
+
+.value {
+	margin: 0;
+
+	@include text-mono($text-15, $color-ink);
+}
+
+.source {
+	@include text-mono($text-13, $color-accent);
+
+	&:hover {
+		color: $color-accent-hover;
+	}
 }
 
 .status {

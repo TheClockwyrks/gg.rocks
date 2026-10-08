@@ -1,12 +1,27 @@
 /**
  * The parts of a Test Cabinet run record the site reads. The record also
- * carries the run's cost, timings and validation results.
+ * carries the run's timings and validation results.
  */
 export interface Run {
 	id: string;
 	links: {
 		playableBuild: string;
 		sourceRepo?: string;
+	};
+	subject: {
+		harnessSlug: string;
+		harnessVersion: string;
+		modelId: string;
+		testCaseSlug: string;
+	};
+	metrics: {
+		/** In dollars. */
+		cost: { actual: number | null };
+		tokens: {
+			cachedInput: number | null;
+			uncachedInput: number | null;
+			output: number | null;
+		};
 	};
 }
 
@@ -16,8 +31,12 @@ export async function fetchRun(runUrl: string): Promise<Run> {
 		throw new Error(`Run request failed with status ${response.status}`);
 	}
 	const run = (await response.json()) as Partial<Run>;
-	if (!run.id || !run.links?.playableBuild) {
-		throw new Error("Run has no playable build");
+	if (!run.links?.playableBuild || !run.subject || !run.metrics) {
+		throw new Error("Run record is missing its build, subject or metrics");
 	}
 	return run as Run;
 }
+
+/** The run's page on The Test Cabinet, which sits beside its record. */
+export const runPageUrl = (runUrl: string): string =>
+	runUrl.replace(/\.json$/, "");
