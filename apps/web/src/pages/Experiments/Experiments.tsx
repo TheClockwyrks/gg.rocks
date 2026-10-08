@@ -25,7 +25,7 @@ export function Experiments() {
 	);
 
 	return (
-		<PageBody rail="experiments">
+		<PageBody>
 			<PageIntro
 				eyebrow="Experiments"
 				title="What we're testing"

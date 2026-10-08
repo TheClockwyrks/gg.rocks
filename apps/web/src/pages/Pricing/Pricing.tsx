@@ -6,7 +6,7 @@ import styles from "./Pricing.module.scss";
 
 export function Pricing() {
 	return (
-		<PageBody rail="pricing">
+		<PageBody>
 			<PageIntro
 				eyebrow="Pricing"
 				title="gg comes with Vantacloud"
