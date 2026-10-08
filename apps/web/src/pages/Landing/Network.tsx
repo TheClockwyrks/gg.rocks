@@ -15,7 +15,11 @@ const PRIMARY_MARKER_SIZE = 14;
 const SECONDARY_MARKER_SIZE = 10;
 
 /** Sections drawn with the smaller marker. */
-const secondary: ReadonlySet<SectionId> = new Set(["changelog", "docs"]);
+const secondary: ReadonlySet<SectionId> = new Set([
+	"changelog",
+	"docs",
+	"pricing",
+]);
 
 function timing({ delay, duration }: NetStroke): CSSProperties {
 	return {

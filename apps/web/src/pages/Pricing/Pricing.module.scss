@@ -1,0 +1,139 @@
+@use "@/styles" as *;
+
+// Width of the column that names each group, beside its plans.
+$group-column: 200px;
+// Width of the price column, so plan names line up down the page.
+$price-column: 140px;
+
+// A group is a band of the ledger: its name in the margin, its plans as rows.
+.group {
+	display: grid;
+	gap: $s-4;
+	padding-block: $s-7;
+	border-top: $border;
+
+	@include up($bp-md) {
+		grid-template-columns: $group-column minmax(0, 1fr);
+		gap: $s-8;
+	}
+}
+
+.groupHeading {
+	display: flex;
+	flex-direction: column;
+	align-self: start;
+	gap: $s-1-5;
+
+	// Stays in view while the group's plans scroll past.
+	@include up($bp-md) {
+		position: sticky;
+		top: $layout-header-height + $s-6;
+	}
+}
+
+.groupLabel {
+	margin: 0;
+
+	@include text-title-figure;
+}
+
+.groupSummary {
+	margin: 0;
+	font-size: $text-15;
+	line-height: $leading-normal;
+	color: $color-ink-subtle;
+}
+
+.plans {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.plan {
+	display: grid;
+	gap: $s-3;
+	padding-block: $s-5;
+
+	& + & {
+		border-top: $border-soft;
+	}
+
+	&:first-child {
+		padding-top: 0;
+	}
+
+	&:last-child {
+		padding-bottom: 0;
+	}
+
+	@include up($bp-sm) {
+		grid-template-columns: $price-column minmax(0, 1fr) auto;
+		align-items: center;
+		gap: $s-6;
+	}
+}
+
+.cost {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: $s-1 $s-2;
+	margin: 0;
+	font-family: $font-mono;
+}
+
+.price {
+	font-size: $text-28;
+	color: $color-accent;
+}
+
+.unit {
+	font-size: $text-13;
+	color: $color-ink-subtle;
+}
+
+.detail {
+	display: flex;
+	flex-direction: column;
+	gap: $s-1-5;
+}
+
+.name {
+	margin: 0;
+	font-size: $text-17;
+	font-weight: $weight-semibold;
+}
+
+.summary {
+	margin: 0;
+	font-size: $text-15;
+	color: $color-ink-muted;
+}
+
+.features {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $s-1 $s-4;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.feature {
+	@include text-mono($text-13);
+}
+
+.action {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	justify-self: start;
+	min-height: $control-height;
+	padding: 0 $s-4;
+	border: $border-width solid $color-accent;
+	border-radius: $radius-md;
+	font-size: $text-15;
+	font-weight: $weight-medium;
+	white-space: nowrap;
+}

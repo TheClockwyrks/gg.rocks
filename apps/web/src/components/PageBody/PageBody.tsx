@@ -11,12 +11,17 @@ interface PageBodyProps {
 	children: ReactNode;
 }
 
-/** Main column of a section page, indented to leave room for the strand. */
+/**
+ * Main column of a section page. It lines up with the top bar, or is indented
+ * to leave room for the strand when there is one.
+ */
 export function PageBody({ rail, width = "wide", children }: PageBodyProps) {
 	return (
 		<div className={styles.body}>
 			{rail && <SectionRail current={rail} />}
-			<main className={cx(styles.main, styles[width])}>{children}</main>
+			<main className={cx(styles.main, styles[width], rail && styles.railed)}>
+				{children}
+			</main>
 		</div>
 	);
 }

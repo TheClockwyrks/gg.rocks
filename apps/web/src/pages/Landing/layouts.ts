@@ -27,12 +27,6 @@ export interface NetNode {
 	serves: SectionId[];
 }
 
-export interface NetTag {
-	text: string;
-	at: Point;
-	serves: SectionId[];
-}
-
 /**
  * One arrangement of the landing network, drawn on a design canvas of
  * `width` x `height` and stretched to the real viewport about `origin`, the
@@ -52,7 +46,6 @@ export interface NetLayout {
 	filaments: NetStroke[];
 	routes: NetRoute[];
 	nodes: NetNode[];
-	tag?: NetTag;
 }
 
 const FILAMENT_DURATION = 300;
@@ -78,6 +71,7 @@ const WIDE_TO_DOWNLOAD = `${WIDE_FORK} C 680 500 660 580 720 640`;
 const WIDE_TO_BENCHMARKS = `${WIDE_FORK} C 780 430 920 520 1120 480`;
 const WIDE_TO_CHANGELOG = "M860 240 C 980 260 1080 160 1240 180";
 const WIDE_TO_DOCS = "M1120 480 C 1180 560 1170 680 1260 740";
+const WIDE_TO_PRICING = "M720 640 C 720 730 800 790 960 790";
 
 const wide: NetLayout = {
 	id: "wide",
@@ -92,6 +86,7 @@ const wide: NetLayout = {
 		haze(880, 0, WIDE_TO_BENCHMARKS),
 		haze(840, 0, `${WIDE_TO_EXPERIMENTS} C 980 260 1080 160 1240 180`),
 		haze(1100, 0, `${WIDE_TO_BENCHMARKS} C 1180 560 1170 680 1260 740`),
+		haze(900, 0, `${WIDE_TO_DOWNLOAD} C 720 730 800 790 960 790`),
 		haze(300, 290, "M520 150 C 600 90 680 60 760 40"),
 		haze(300, 510, "M640 420 C 760 360 880 320 1000 300"),
 		haze(250, 510, "M640 420 C 600 520 600 600 560 700"),
@@ -103,7 +98,7 @@ const wide: NetLayout = {
 		filament(30, "M180 86 C 200 140 180 190 210 230"),
 		filament(440, "M720 212 C 740 140 700 90 760 40"),
 		filament(510, "M640 420 C 600 470 590 520 560 560"),
-		filament(690, "M720 640 C 760 720 740 790 800 870"),
+		filament(900, "M960 790 C 1010 810 1040 850 1090 880"),
 		filament(840, "M1240 180 C 1320 150 1360 110 1420 120"),
 		filament(770, "M980 500 C 1000 400 1040 380 1010 320"),
 		filament(880, "M1120 480 C 1220 430 1330 450 1420 400"),
@@ -124,7 +119,7 @@ const wide: NetLayout = {
 			duration: 400,
 			tone: "accent",
 			weight: "trunk",
-			serves: ["download"],
+			serves: ["download", "pricing"],
 		},
 		{
 			d: WIDE_TO_BENCHMARKS,
@@ -150,6 +145,14 @@ const wide: NetLayout = {
 			weight: "branch",
 			serves: ["docs"],
 		},
+		{
+			d: WIDE_TO_PRICING,
+			delay: 900,
+			duration: 220,
+			tone: "accent",
+			weight: "branch",
+			serves: ["pricing"],
+		},
 	],
 	nodes: [
 		{
@@ -164,11 +167,16 @@ const wide: NetLayout = {
 			delay: 880,
 			serves: ["benchmarks", "docs"],
 		},
-		{ id: "download", at: [720, 640], delay: 690, serves: ["download"] },
+		{
+			id: "download",
+			at: [720, 640],
+			delay: 690,
+			serves: ["download", "pricing"],
+		},
 		{ id: "changelog", at: [1240, 180], delay: 840, serves: ["changelog"] },
 		{ id: "docs", at: [1260, 740], delay: 1100, serves: ["docs"] },
+		{ id: "pricing", at: [960, 790], delay: 900, serves: ["pricing"] },
 	],
-	tag: { text: "ships →", at: [1085, 202], serves: ["changelog"] },
 };
 
 // --- Medium: tablets and unfolded foldables -------------------------------
@@ -182,7 +190,7 @@ const medium: NetLayout = {
 	height: 800,
 	origin: [64, 44],
 	growth: "out",
-	settled: 890,
+	settled: 950,
 	haze: [],
 	filaments: [
 		filament(820, "M600 120 C 650 90 680 60 712 40"),
@@ -213,7 +221,15 @@ const medium: NetLayout = {
 			duration: 480,
 			tone: "accent",
 			weight: "trunk",
-			serves: ["download"],
+			serves: ["download", "pricing"],
+		},
+		{
+			d: "M110 500 C 110 580 170 650 260 650",
+			delay: 730,
+			duration: 220,
+			tone: "accent",
+			weight: "branch",
+			serves: ["pricing"],
 		},
 		{
 			d: "M540 330 C 580 400 560 500 520 560",
@@ -246,8 +262,14 @@ const medium: NetLayout = {
 			serves: ["experiments", "changelog"],
 		},
 		{ id: "changelog", at: [600, 120], delay: 820, serves: ["changelog"] },
-		{ id: "download", at: [110, 500], delay: 730, serves: ["download"] },
+		{
+			id: "download",
+			at: [110, 500],
+			delay: 730,
+			serves: ["download", "pricing"],
+		},
 		{ id: "docs", at: [520, 560], delay: 890, serves: ["docs"] },
+		{ id: "pricing", at: [260, 650], delay: 950, serves: ["pricing"] },
 	],
 };
 
@@ -262,7 +284,7 @@ const narrow: NetLayout = {
 	height: 844,
 	origin: [30, 58],
 	growth: "out",
-	settled: 620,
+	settled: 720,
 	haze: [],
 	filaments: [
 		filament(300, "M40 390 C 14 400 8 420 2 430"),
@@ -270,7 +292,7 @@ const narrow: NetLayout = {
 		filament(600, "M236 520 C 280 560 320 600 386 640"),
 		filament(600, "M236 520 C 280 500 330 470 386 460"),
 		filament(620, "M150 660 C 220 690 290 700 380 750"),
-		filament(620, "M70 660 C 60 720 80 770 70 840"),
+		filament(720, "M110 740 C 104 780 118 810 108 840"),
 	],
 	routes: [
 		{
@@ -306,6 +328,14 @@ const narrow: NetLayout = {
 			serves: ["docs"],
 		},
 		{
+			d: `${NARROW_TRUNK} C 32 620 28 700 50 728 C 66 746 90 742 110 740`,
+			delay: 0,
+			duration: 720,
+			tone: "accent",
+			weight: "trunk",
+			serves: ["pricing"],
+		},
+		{
 			d: "M176 420 C 172 460 200 500 236 520",
 			delay: 420,
 			duration: 200,
@@ -325,6 +355,7 @@ const narrow: NetLayout = {
 		{ id: "changelog", at: [236, 520], delay: 620, serves: ["changelog"] },
 		{ id: "download", at: [70, 560], delay: 480, serves: ["download"] },
 		{ id: "docs", at: [150, 660], delay: 600, serves: ["docs"] },
+		{ id: "pricing", at: [110, 740], delay: 720, serves: ["pricing"] },
 	],
 };
 

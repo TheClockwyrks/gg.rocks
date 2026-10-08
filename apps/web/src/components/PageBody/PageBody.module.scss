@@ -18,15 +18,19 @@
 		padding-block: $s-12 $s-24;
 	}
 
-	@include up($bp-lg) {
-		padding-left: $layout-rail-width + $s-12;
-	}
-
-	&.wide {
-		max-width: $layout-content-wide + $layout-rail-width + $s-12 + $s-8;
-	}
-
 	&.narrow {
 		gap: $s-10;
+	}
+
+	// Beside the strand the column is indented, and capped so that it does
+	// not stretch to the far edge of the pane.
+	&.railed {
+		@include up($bp-lg) {
+			padding-left: $layout-rail-width + $s-12;
+		}
+
+		&.wide {
+			max-width: $layout-content-wide + $layout-rail-width + $s-12 + $s-8;
+		}
 	}
 }
