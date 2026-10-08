@@ -4,7 +4,12 @@ import { Diamond } from "@/components/Strand/Diamond";
 import { harnessLabel, type HarnessResult } from "@/data/writeUps/types";
 import { cx } from "@/utils/cx";
 import { useElementSize } from "@/utils/useElementSize";
-import { formatDollars, formatPercent, formatThousands } from "@/utils/format";
+import {
+	formatDollars,
+	formatPercent,
+	formatThousands,
+	NO_DATA,
+} from "@/utils/format";
 import styles from "./charts.module.scss";
 
 // --- What can go on the x axis ----------------------------------------------
@@ -15,7 +20,7 @@ interface XAxis {
 	title: string;
 	/** Which way is better, to help read the chart. */
 	hint: string;
-	value: (result: HarnessResult) => number;
+	value: (result: HarnessResult) => number | null;
 	format: (value: number) => string;
 }
 
@@ -25,7 +30,7 @@ const xAxes: XAxis[] = [
 		label: "Cost",
 		title: "cost per run",
 		hint: "Up and to the left is better.",
-		value: (result) => result.costPerRun.value,
+		value: (result) => result.costPerRun?.value ?? null,
 		format: formatDollars,
 	},
 	{
@@ -33,7 +38,7 @@ const xAxes: XAxis[] = [
 		label: "Tokens",
 		title: "tokens per run",
 		hint: "Up and to the left is better.",
-		value: (result) => result.tokensPerRun.value,
+		value: (result) => result.tokensPerRun?.value ?? null,
 		format: formatThousands,
 	},
 	{
@@ -209,11 +214,14 @@ function pointLabel(result: HarnessResult, frame: Frame): string {
 }
 
 function describe(result: HarnessResult): string {
+	const spread = result.passRate?.spread;
 	return [
-		`pass rate ${formatPercent(result.passRate.value)} ±${result.passRate.spread.toFixed(1)}`,
-		`${formatDollars(result.costPerRun.value)} per run`,
-		`${formatThousands(result.tokensPerRun.value)} tokens per run`,
-		`${result.cachedShare}% cached`,
+		`pass rate ${formatPercent(result.passRate?.value)}${
+			spread === undefined ? "" : ` ±${spread.toFixed(1)}`
+		}`,
+		`${formatDollars(result.costPerRun?.value)} per run`,
+		`${formatThousands(result.tokensPerRun?.value)} tokens per run`,
+		`${result.cachedShare ?? NO_DATA}% cached`,
 	].join(" · ");
 }
 
@@ -223,22 +231,36 @@ function describe(result: HarnessResult): string {
  * Pass rate for each harness against a cost-like measure the reader picks.
  * The dashed trail runs from the baseline gg build to the experiment.
  */
-export function PassRateScatter({ results }: { results: HarnessResult[] }) {
+export function PassRateScatter({
+	results: all,
+}: {
+	results: HarnessResult[];
+}) {
 	const [axisId, setAxisId] = useState<XAxis["id"]>("cost");
 	const [activeId, setActiveId] = useState<string | null>(null);
 	const [ref, size] = useElementSize<HTMLDivElement>();
 	const axis = xAxes.find((candidate) => candidate.id === axisId) ?? xAxes[0]!;
 	const frame = frameFor(size?.width ?? 0);
 
-	const x = scale(results.map(axis.value), frame.left, frame.right);
+	// Only a harness with both figures has somewhere to sit on the chart.
+	const results = all.filter(
+		(result) => result.passRate !== null && axis.value(result) !== null,
+	);
+	const missing = all.filter((result) => !results.includes(result));
+
+	const x = scale(
+		results.map((result) => axis.value(result) ?? 0),
+		frame.left,
+		frame.right,
+	);
 	const y = scale(
-		results.map((result) => result.passRate.value),
+		results.map((result) => result.passRate?.value ?? 0),
 		frame.bottom,
 		frame.top,
 	);
 	const at = (result: HarnessResult) => ({
-		x: x.position(axis.value(result)),
-		y: y.position(result.passRate.value),
+		x: x.position(axis.value(result) ?? 0),
+		y: y.position(result.passRate?.value ?? 0),
 	});
 
 	const experiment = results.find((result) => result.role === "experiment");
@@ -275,7 +297,7 @@ export function PassRateScatter({ results }: { results: HarnessResult[] }) {
 				ref={ref}
 				className={cx(styles.plot, frame.compact && styles.compact)}
 			>
-				{size && (
+				{size && results.length > 0 && (
 					<svg
 						width={frame.width}
 						height={frame.height}
@@ -408,6 +430,12 @@ export function PassRateScatter({ results }: { results: HarnessResult[] }) {
 					</svg>
 				)}
 			</div>
+			{missing.length > 0 && (
+				<p className={styles.hint}>
+					No {axis.title} or pass rate yet for{" "}
+					{missing.map(harnessLabel).join(", ")}.
+				</p>
+			)}
 			{active && (
 				<p
 					className={styles.readout}

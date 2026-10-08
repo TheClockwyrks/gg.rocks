@@ -1,7 +1,11 @@
 import { Fragment, type CSSProperties, type ReactNode } from "react";
 import { Link } from "react-router";
 import { PlaceholderLink } from "@/components/PlaceholderLink/PlaceholderLink";
-import { ratings, type LineageStep, type Rating } from "@/data/writeUps/types";
+import {
+	outcomes,
+	type HarnessResult,
+	type LineageStep,
+} from "@/data/writeUps/types";
 import { cx } from "@/utils/cx";
 import styles from "./blocks.module.scss";
 
@@ -130,20 +134,21 @@ const MIN_LABELLED_SHARE = 8;
 
 export interface RatingColumn {
 	label: string;
-	counts: Record<Rating, number>;
+	counts: HarnessResult["functionality"];
 	highlight?: boolean;
 }
 
 /**
  * The make-up of functionality ratings across each harness's test runs: one
- * column per harness, stacked from Broken at the bottom to Flawless on top.
+ * column per harness, stacked from Broken at the bottom to Flawless on top,
+ * with any runs that have no rating underneath.
  */
 export function RatingColumns({ columns }: { columns: RatingColumn[] }) {
 	return (
 		<div className={styles.columns}>
 			{columns.map((column) => {
-				const total = ratings.reduce(
-					(sum, { id }) => sum + column.counts[id],
+				const total = outcomes.reduce(
+					(sum, { id }) => sum + (column.counts[id] ?? 0),
 					0,
 				);
 				return (
@@ -152,8 +157,9 @@ export function RatingColumns({ columns }: { columns: RatingColumn[] }) {
 						className={cx(styles.column, column.highlight && styles.highlight)}
 					>
 						<div className={styles.stack}>
-							{ratings.map(({ id, label }) => {
-								const count = column.counts[id];
+							{outcomes.map(({ id, label }) => {
+								const count = column.counts[id] ?? 0;
+								if (count === 0) return null;
 								const percent = Math.round((count / total) * 100);
 								return (
 									<span

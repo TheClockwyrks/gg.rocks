@@ -1,0 +1,406 @@
+@use "@/styles" as *;
+
+// Sizes that only these charts need.
+$label-column: 220px;
+$value-column: 180px;
+$track-height: $s-8;
+$run-size: 7px;
+$estimate-size: 12px;
+$panel-height: 150px;
+
+// --- Rows -------------------------------------------------------------------
+
+.rows {
+	display: flex;
+	flex-direction: column;
+	gap: $s-3;
+}
+
+// A label, a track and a summary: side by side where there is room, and with
+// the track on its own line where there is not.
+.row {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	grid-template-areas:
+		"label value"
+		"track track";
+	gap: $s-1-5 $s-4;
+	align-items: center;
+
+	@include text-mono($text-13, $color-ink-muted);
+
+	@include up($bp-md) {
+		grid-template-columns: $label-column minmax(0, 1fr) $value-column;
+		grid-template-areas: "label track value";
+	}
+
+	&.highlight {
+		color: $color-ink;
+	}
+}
+
+.rowLabel {
+	grid-area: label;
+}
+
+.rowValue {
+	grid-area: value;
+	white-space: nowrap;
+}
+
+.rowTrack {
+	grid-area: track;
+	position: relative;
+	min-width: 0;
+	height: $track-height;
+}
+
+.empty {
+	display: flex;
+	align-items: center;
+	height: 100%;
+	color: $color-ink-subtle;
+}
+
+.scale .rowTrack {
+	height: $s-5;
+}
+
+.tick {
+	position: absolute;
+	left: var(--at);
+	transform: translateX(-50%);
+	font-size: $text-11;
+	color: $color-ink-subtle;
+	white-space: nowrap;
+
+	&:first-child {
+		transform: none;
+	}
+
+	&:last-child {
+		transform: translateX(-100%);
+	}
+}
+
+// --- Paired differences -----------------------------------------------------
+
+.difference {
+	position: absolute;
+	inset: 0;
+	border-radius: $radius-sm;
+	background: $color-dot;
+}
+
+.zero {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 50%;
+	border-left: $border-outline;
+}
+
+.whisker {
+	position: absolute;
+	top: 50%;
+	left: var(--from);
+	width: calc(var(--to) - var(--from));
+	height: $s-0-5;
+	transform: translateY(-50%);
+	background: $color-ink-subtle;
+}
+
+.estimate {
+	position: absolute;
+	top: 50%;
+	left: var(--at);
+	width: $estimate-size;
+	height: $estimate-size;
+	transform: translate(-50%, -50%);
+	border: $s-0-5 solid $color-surface;
+	border-radius: $radius-full;
+	background: $color-ink-subtle;
+
+	&.clear {
+		background: $color-accent;
+	}
+}
+
+// --- Stacked bars -----------------------------------------------------------
+
+.stack {
+	display: flex;
+	gap: $s-0-5;
+	height: 100%;
+	min-width: $s-1;
+}
+
+.segment {
+	flex: 0 1 0;
+	min-width: 0;
+
+	&:first-child {
+		border-radius: $radius-sm 0 0 $radius-sm;
+	}
+
+	&:last-child {
+		border-radius: 0 $radius-sm $radius-sm 0;
+	}
+
+	&.strand {
+		background: $color-strand;
+	}
+
+	&.accent {
+		background: $color-accent;
+	}
+
+	&.info {
+		background: $color-info;
+	}
+
+	&.subtle {
+		background: $color-ink-subtle;
+	}
+
+	&.broken {
+		background: $color-rating-broken;
+	}
+}
+
+// --- Run-to-run spread ------------------------------------------------------
+
+.strip {
+	position: absolute;
+	inset: 0;
+	border-radius: $radius-sm;
+	background: $color-dot;
+}
+
+.middleHalf {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: var(--from);
+	width: calc(var(--to) - var(--from));
+	border-radius: $radius-sm;
+	background: $color-row-hover;
+}
+
+.run {
+	position: absolute;
+	top: var(--down);
+	left: var(--at);
+	width: $run-size;
+	height: $run-size;
+	transform: translate(-50%, -50%);
+	border-radius: $radius-full;
+	background: $color-info;
+	opacity: 0.7;
+
+	&.current {
+		background: $color-accent;
+	}
+
+	// A run that did not finish scores nothing: drawn hollow, at zero.
+	&.failed {
+		border: $border-width solid $color-ink-subtle;
+		background: transparent;
+	}
+}
+
+.median {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: var(--at);
+	border-left: $s-0-5 solid $color-ink;
+}
+
+// --- Case by case -----------------------------------------------------------
+
+.grid {
+	width: 100%;
+	border-collapse: separate;
+	border-spacing: $s-0-5;
+	text-align: right;
+
+	@include text-mono($text-13, $color-ink);
+
+	th {
+		padding: $s-2 $s-3;
+		font-weight: $weight-regular;
+		text-align: right;
+		white-space: nowrap;
+	}
+
+	thead th {
+		@include text-label($text-11);
+	}
+
+	// The case names stay put while the harness columns scroll under them.
+	th:first-child {
+		position: sticky;
+		left: 0;
+		z-index: 1;
+		background: $color-surface;
+		color: $color-ink-muted;
+		text-align: left;
+	}
+
+	td {
+		padding: $s-2 $s-3;
+		border-radius: $radius-sm;
+		white-space: nowrap;
+	}
+}
+
+.blank {
+	color: $color-ink-subtle;
+}
+
+.gap {
+	background: $color-dot;
+
+	&.ahead {
+		background: color-mix(
+			in srgb,
+			$color-rating-great var(--strength),
+			transparent
+		);
+	}
+
+	&.behind {
+		background: color-mix(
+			in srgb,
+			$color-rating-scuffed var(--strength),
+			transparent
+		);
+	}
+}
+
+// --- Version by version -----------------------------------------------------
+
+.panels {
+	display: grid;
+	gap: $s-6;
+
+	@include up($bp-sm) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.panel {
+	display: flex;
+	flex-direction: column;
+	gap: $s-2;
+	min-width: 0;
+
+	@include card($s-4);
+}
+
+.panelTitle {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: $s-1 $s-3;
+	font-size: $text-15;
+	font-weight: $weight-semibold;
+}
+
+.panelHint {
+	font-weight: $weight-regular;
+
+	@include text-mono($text-11);
+}
+
+.panelPlot {
+	position: relative;
+	height: $panel-height;
+	border-bottom: $border-outline;
+}
+
+.panelLine {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+
+	polyline {
+		fill: none;
+		stroke: $color-ink-subtle;
+		stroke-width: $stroke-route;
+		vector-effect: non-scaling-stroke;
+	}
+}
+
+.panelPoint {
+	position: absolute;
+	top: var(--down);
+	left: var(--at);
+	width: $s-2-5;
+	height: $s-2-5;
+	transform: translate(-50%, -50%);
+	border: $s-0-5 solid $color-surface;
+	border-radius: $radius-full;
+	background: $color-ink-subtle;
+	box-sizing: content-box;
+
+	&.current {
+		background: $color-accent;
+	}
+}
+
+.panelValue {
+	position: absolute;
+	bottom: calc(100% + #{$s-1-5});
+	left: 50%;
+	transform: translateX(-50%);
+	white-space: nowrap;
+
+	@include text-mono($text-12, $color-ink-muted);
+
+	.current & {
+		color: $color-ink;
+	}
+}
+
+.panelAxis {
+	display: flex;
+
+	@include text-mono($text-12);
+
+	span {
+		flex: 1;
+		text-align: center;
+	}
+
+	.current {
+		color: $color-ink;
+	}
+}
+
+// --- Filters ----------------------------------------------------------------
+
+.filters {
+	display: flex;
+	flex-direction: column;
+	gap: $s-3;
+	padding: $s-4;
+	border: $border-soft;
+	border-radius: $radius-lg;
+}
+
+.filter {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: $s-2 $s-4;
+}
+
+.filterLabel {
+	min-width: $s-16;
+
+	@include text-label;
+}

@@ -46,15 +46,18 @@ const placeholderDeltas: ExperimentDeltas = {
 	cacheHit: "[±x%]",
 };
 
-/** Change from the baseline gg build to the build under test. */
+/**
+ * Change from the baseline gg build to the build under test; every delta is
+ * blank while there is no baseline to measure against.
+ */
 export function writeUpDeltas(data: WriteUpData): ExperimentDeltas {
 	const from = baselineResult(data);
 	const to = experimentResult(data);
 	return {
-		tokens: formatChange(from.tokensPerRun.value, to.tokensPerRun.value),
-		cost: formatChange(from.costPerRun.value, to.costPerRun.value),
-		passRate: formatPoints(from.passRate.value, to.passRate.value),
-		cacheHit: formatPoints(from.cachedShare, to.cachedShare, 0),
+		tokens: formatChange(from?.tokensPerRun?.value, to.tokensPerRun?.value),
+		cost: formatChange(from?.costPerRun?.value, to.costPerRun?.value),
+		passRate: formatPoints(from?.passRate?.value, to.passRate?.value),
+		cacheHit: formatPoints(from?.cachedShare, to.cachedShare, 0),
 	};
 }
 

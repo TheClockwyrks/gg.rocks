@@ -17,7 +17,7 @@ export interface Release {
 const fromExperiment: ChangelogChange = {
 	summary: "[Change summary]",
 	source: "From experiment: [Experiment name] · [Δ pass rate], [Δ cost] →",
-	writeUp: "shared-prefix-fan-out",
+	writeUp: "sample-comparison",
 };
 
 const maintenance: ChangelogChange = {

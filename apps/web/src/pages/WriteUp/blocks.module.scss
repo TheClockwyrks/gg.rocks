@@ -231,6 +231,14 @@ $column-height: 280px;
 	color: $color-surface;
 }
 
+.didNotFinish {
+	background: $color-rating-did-not-finish;
+}
+
+.unrated {
+	background: $color-rating-unrated;
+}
+
 // --- Before / after ---------------------------------------------------------
 
 .beforeAfter {

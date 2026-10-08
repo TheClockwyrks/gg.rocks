@@ -5,11 +5,17 @@ import {
 	baselineResult,
 	experimentResult,
 	harnessLabel,
-	ratings,
+	outcomes,
 	type HarnessResult,
+	type Measure,
 	type WriteUpData,
 } from "@/data/writeUps/types";
-import { formatDollars, formatPercent, formatThousands } from "@/utils/format";
+import {
+	formatDollars,
+	formatPercent,
+	formatThousands,
+	NO_DATA,
+} from "@/utils/format";
 import {
 	ComparedAgainst,
 	DataLinks,
@@ -43,6 +49,26 @@ function rowLabel(result: HarnessResult): string {
 		: harnessLabel(result);
 }
 
+/** A figure with its spread, where one was measured. */
+function withSpread(
+	measure: Measure | null,
+	format: (value: number) => string,
+	digits: number,
+): string {
+	if (!measure) return NO_DATA;
+	const value = format(measure.value);
+	return measure.spread === undefined
+		? value
+		: `${value} ±${measure.spread.toFixed(digits)}`;
+}
+
+/** How many runs a harness's figures cover, and how many were scored. */
+function runCount(result: HarnessResult): string {
+	if (!result.runs) return NO_DATA;
+	const { total, scored } = result.runs;
+	return scored === total ? `${total}` : `${total} (${scored} scored)`;
+}
+
 /** How a harness is described in the "compared against" list. */
 function comparisonLabel(result: HarnessResult): string {
 	const detail = result.role === "baseline" ? "baseline" : result.snapshot;
@@ -58,6 +84,16 @@ export function StandardWriteUp({ data }: { data: WriteUpData }) {
 	const baseline = baselineResult(data);
 	const others = data.results.filter((result) => result !== experiment);
 	const deltas = writeUpDeltas(data);
+	const counted = data.results.some((result) => result.runs);
+	const withTokens = data.results.filter(
+		(result) => result.cachedShare !== null,
+	);
+	// Runs without a rating only get a legend entry when there are some.
+	const legend = outcomes.filter(
+		({ id }) =>
+			id in experiment.functionality ||
+			data.results.some((result) => (result.functionality[id] ?? 0) > 0),
+	);
 
 	return (
 		<WriteUpFrame
@@ -77,7 +113,11 @@ export function StandardWriteUp({ data }: { data: WriteUpData }) {
 					{ value: deltas.tokens, label: "Tokens per run" },
 					{ value: deltas.cacheHit, label: "Cached share" },
 				]}
-				basis={`Deltas vs. ${harnessLabel(baseline)}. ${data.sample}`}
+				basis={
+					baseline
+						? `Deltas vs. ${harnessLabel(baseline)}. ${data.sample}`
+						: `No earlier gg build to measure against yet. ${data.sample}`
+				}
 			/>
 
 			<ComparedAgainst
@@ -108,6 +148,7 @@ export function StandardWriteUp({ data }: { data: WriteUpData }) {
 					<DataTable
 						columns={[
 							"Harness",
+							...(counted ? ["Runs"] : []),
 							"Pass rate",
 							"Cost / run",
 							"Tokens / run",
@@ -118,9 +159,10 @@ export function StandardWriteUp({ data }: { data: WriteUpData }) {
 							tone: result.role === "experiment" ? "highlight" : "muted",
 							cells: [
 								rowLabel(result),
-								`${formatPercent(result.passRate.value)} ±${result.passRate.spread.toFixed(1)}`,
-								`${formatDollars(result.costPerRun.value)} ±${result.costPerRun.spread.toFixed(2)}`,
-								`${formatThousands(result.tokensPerRun.value)} ±${result.tokensPerRun.spread}`,
+								...(counted ? [runCount(result)] : []),
+								withSpread(result.passRate, formatPercent, 1),
+								withSpread(result.costPerRun, formatDollars, 2),
+								withSpread(result.tokensPerRun, formatThousands, 0),
 								formatPercent(result.cachedShare, 0),
 							],
 						}))}
@@ -147,9 +189,9 @@ export function StandardWriteUp({ data }: { data: WriteUpData }) {
 					note="Share of total tokens per run, averaged."
 				>
 					<TokenBars
-						bars={data.results.map((result) => ({
+						bars={withTokens.map((result) => ({
 							label: rowLabel(result),
-							cached: result.cachedShare,
+							cached: result.cachedShare ?? 0,
 							highlight: result.role === "experiment",
 						}))}
 					/>
@@ -157,7 +199,7 @@ export function StandardWriteUp({ data }: { data: WriteUpData }) {
 
 				<Figure
 					title="Functionality ratings"
-					legend={ratings.map(({ id, label }) => ({
+					legend={legend.map(({ id, label }) => ({
 						label,
 						swatch: "block",
 						tone: id,

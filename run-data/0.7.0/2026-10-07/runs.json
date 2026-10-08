@@ -1,0 +1,6127 @@
+{
+ "backend": "https://api.staging.tcab.testcabinet.ai",
+ "runStates": [
+  "published",
+  "unpublished"
+ ],
+ "pulledAt": "2026-10-07T23:43:09+00:00",
+ "runs": [
+  {
+   "id": "xji5c6sp9d98yst2p9iar394",
+   "listing": "published",
+   "startedAt": "2026-10-06T21:52:18.774663386Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 52.0,
+    "total": 156
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "1.0.4",
+    "engineSlug": "none",
+    "modelId": "anthropic/claude-haiku-4.5",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 91054,
+     "cachedInput": 5932145,
+     "output": 52524,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.9468885
+    },
+    "sessionSeconds": 769.660510689
+   }
+  },
+  {
+   "id": "z11uc7zj3wvbi81b02s8ih1q",
+   "listing": "published",
+   "startedAt": "2026-10-06T21:52:18.769397489Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 125.0,
+    "total": 156
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "1.0.4",
+    "engineSlug": "none",
+    "modelId": "anthropic/claude-haiku-4.5",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 106646,
+     "cachedInput": 9541810,
+     "output": 64262,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 1.382137
+    },
+    "sessionSeconds": 831.685036749
+   }
+  },
+  {
+   "id": "mtme95gpr0uijdl5l93ewrlr",
+   "listing": "published",
+   "startedAt": "2026-10-06T21:52:18.692413485Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 108.0,
+    "total": 156
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.160.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.5",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 61482,
+     "cachedInput": 1466752,
+     "output": 22359,
+     "reasoning": 1511
+    },
+    "cost": {
+     "comparable": 0.8784430000000001
+    },
+    "sessionSeconds": 466.268159043
+   }
+  },
+  {
+   "id": "vgg7vuq111e1wr738d93inhw",
+   "listing": "published",
+   "startedAt": "2026-10-06T21:52:18.621062458Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 87.0,
+    "total": 156
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.160.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.5",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 131810,
+     "cachedInput": 2204288,
+     "output": 25808,
+     "reasoning": 3014
+    },
+    "cost": {
+     "comparable": 1.3129270000000002
+    },
+    "sessionSeconds": 544.779701774
+   }
+  },
+  {
+   "id": "z11utathp70urus4no0500xp",
+   "listing": "published",
+   "startedAt": "2026-10-04T00:50:03.824279096Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "1.0.1",
+    "engineSlug": "none",
+    "modelId": "anthropic/claude-haiku-4.5",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 52273,
+     "cachedInput": 398490,
+     "output": 22654,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.205392
+    },
+    "sessionSeconds": 143.528803866
+   }
+  },
+  {
+   "id": "ntsij333yhjjxywiz0igci97",
+   "listing": "published",
+   "startedAt": "2026-10-04T00:49:58.942995623Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.160.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.5",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": null,
+     "cachedInput": null,
+     "output": null,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": null
+    },
+    "sessionSeconds": 164.547557479
+   }
+  },
+  {
+   "id": "17df48b6-1e6f-4ea4-9747-ee0dff48bf37",
+   "listing": "published",
+   "startedAt": "2026-08-18T22:19:50.436195805Z",
+   "state": "completed",
+   "rating": "great",
+   "score": {
+    "earned": 68.0,
+    "total": 72
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.1.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.147.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-luna",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 46495,
+     "cachedInput": 637696,
+     "output": 15304,
+     "reasoning": 2098
+    },
+    "cost": {
+     "comparable": 0.04293532
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "5b6ad4e3-70c3-42c1-b380-ef0dd93094e3",
+   "listing": "published",
+   "startedAt": "2026-08-07T14:33:21.784804022Z",
+   "state": "completed",
+   "rating": null,
+   "score": {
+    "earned": 28.0,
+    "total": 70
+   },
+   "caseName": "Band of Bots",
+   "subject": {
+    "testCaseSlug": "band-of-bots",
+    "testCaseVersion": "v1.0.0",
+    "testType": "game-jam",
+    "variant": "default",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.147.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 56836,
+     "cachedInput": 1104768,
+     "output": 18360,
+     "reasoning": 2650
+    },
+    "cost": {
+     "comparable": 1.4668640000000002
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "eaf72935-5c9f-4a7c-b269-7f1f91344944",
+   "listing": "published",
+   "startedAt": "2026-08-05T03:03:06.419113846Z",
+   "state": "completed",
+   "rating": null,
+   "score": {
+    "earned": 43.0,
+    "total": 70
+   },
+   "caseName": "Comfort Zone",
+   "subject": {
+    "testCaseSlug": "comfort-zone",
+    "testCaseVersion": "v1.0.0",
+    "testType": "game-jam",
+    "variant": "default",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 45739,
+     "cachedInput": 518400,
+     "output": 9768,
+     "reasoning": 954
+    },
+    "cost": {
+     "comparable": 0.809555
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "87564553-bc90-43cd-a53e-7ebbf1e6a78e",
+   "listing": "published",
+   "startedAt": "2026-08-04T07:00:04.577463148Z",
+   "state": "hung",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": null,
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": null,
+     "cachedInput": null,
+     "output": null,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": null
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "1678847c-66fd-4e0a-80e2-2287183e4c70",
+   "listing": "published",
+   "startedAt": "2026-08-04T06:54:15.710304266Z",
+   "state": "hung",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "pi",
+    "harnessVersion": null,
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": null,
+     "cachedInput": null,
+     "output": null,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": null
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "997eae5d-7845-41b0-a6c1-68f1d33346a8",
+   "listing": "published",
+   "startedAt": "2026-08-04T04:41:47.406768377Z",
+   "state": "hung",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "pi",
+    "harnessVersion": null,
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": null,
+     "cachedInput": null,
+     "output": null,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": null
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "d029d07b-ed80-4ba0-bd0a-35b0b7b1d5a8",
+   "listing": "published",
+   "startedAt": "2026-08-04T03:59:22.670294568Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 16555,
+     "cachedInput": 45952,
+     "output": 765,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.002454786
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "0587cda4-be57-4cbe-a7eb-109711f1cb2c",
+   "listing": "published",
+   "startedAt": "2026-08-04T03:52:00.644376025Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 82915,
+     "cachedInput": 84992,
+     "output": 6881,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.010230786
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "a5033546-f3f2-44ea-b6e0-ab492621ba95",
+   "listing": "published",
+   "startedAt": "2026-08-04T03:47:30.359053105Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 18662,
+     "cachedInput": 3968,
+     "output": 717,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.001880064
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "6118d4e6-f2b3-44b8-a316-26d4b281bdf4",
+   "listing": "published",
+   "startedAt": "2026-08-04T03:43:28.355247635Z",
+   "state": "hung",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "pi",
+    "harnessVersion": null,
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": null,
+     "cachedInput": null,
+     "output": null,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": null
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "abc9b9eb-a0a0-4a9b-b10e-55702b25da50",
+   "listing": "published",
+   "startedAt": "2026-08-04T03:37:07.053765286Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 308971,
+     "cachedInput": 13824,
+     "output": 1230,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.028277622
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "3ad80685-cf01-4189-92d5-0e6bcd52e8d9",
+   "listing": "published",
+   "startedAt": "2026-08-04T03:28:50.51495585Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 40023,
+     "cachedInput": 142208,
+     "output": 1648,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.006458454
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "072725c2-4d53-4ce1-be77-c7dbb47ca5ff",
+   "listing": "published",
+   "startedAt": "2026-08-04T03:27:39.807398246Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 64849,
+     "cachedInput": 78464,
+     "output": 1527,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.007523622000000001
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "15595532-df1c-46e6-b61e-4ad9a04b1b8d",
+   "listing": "published",
+   "startedAt": "2026-08-04T03:17:36.455439509Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 10915,
+     "cachedInput": 26368,
+     "output": 689,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.0015809939999999998
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "41d3939e-2eef-487c-a2ff-e6753a68873b",
+   "listing": "published",
+   "startedAt": "2026-08-04T03:07:06.615262125Z",
+   "state": "hung",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "pi",
+    "harnessVersion": null,
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": null,
+     "cachedInput": null,
+     "output": null,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": null
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "6a3d57d5-b1d7-4995-87c8-1867319f461e",
+   "listing": "published",
+   "startedAt": "2026-08-04T02:50:09.079850132Z",
+   "state": "completed",
+   "rating": "great",
+   "score": {
+    "earned": 73.0,
+    "total": 74
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 40791,
+     "cachedInput": 452864,
+     "output": 10407,
+     "reasoning": 1151
+    },
+    "cost": {
+     "comparable": 0.777127
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "dc43c337-8f59-44ca-9fbc-fbdbb6c558bb",
+   "listing": "published",
+   "startedAt": "2026-08-04T02:50:09.057035404Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 31841,
+     "cachedInput": 33280,
+     "output": 3890,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.00416493
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "038d074b-018a-4435-8bb1-59b831c727f3",
+   "listing": "published",
+   "startedAt": "2026-08-04T02:50:08.959098039Z",
+   "state": "completed",
+   "rating": "flawless",
+   "score": {
+    "earned": 72.0,
+    "total": 73
+   },
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 55786,
+     "cachedInput": 723200,
+     "output": 13916,
+     "reasoning": 1264
+    },
+    "cost": {
+     "comparable": 1.09593
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "c6b9772c-ea9d-451c-a23a-4d33c3027296",
+   "listing": "published",
+   "startedAt": "2026-08-04T02:50:07.739096023Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 32764,
+     "cachedInput": 30592,
+     "output": 2550,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.003958416
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "d02a7ad4-6ce6-4b81-ad5a-db7ee699299f",
+   "listing": "published",
+   "startedAt": "2026-07-24T08:09:29.122246365Z",
+   "state": "harness_error",
+   "rating": null,
+   "score": null,
+   "caseName": "Cascade",
+   "subject": {
+    "testCaseSlug": "cascade",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "draw-three",
+    "harnessSlug": "claude",
+    "harnessVersion": null,
+    "engineSlug": "none",
+    "modelId": "claude-sonnet-4-6",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": null,
+     "cachedInput": null,
+     "output": null,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": null
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "bce0aca7-55e1-4fd3-81da-4ba257b8db19",
+   "listing": "published",
+   "startedAt": "2026-07-23T02:05:41.861399246Z",
+   "state": "harness_error",
+   "rating": null,
+   "score": null,
+   "caseName": "Arc Foundry",
+   "subject": {
+    "testCaseSlug": "arc-foundry",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": null,
+    "engineSlug": "none",
+    "modelId": "gpt-5.3-codex-spark",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": null,
+     "cachedInput": null,
+     "output": null,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": null
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "135f7ef0-4e98-4c6f-bf61-c1573567d99b",
+   "listing": "published",
+   "startedAt": "2026-07-22T17:39:23.617732175Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Cascade",
+   "subject": {
+    "testCaseSlug": "cascade",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "draw-one",
+    "harnessSlug": "opencode",
+    "harnessVersion": "1.18.4",
+    "engineSlug": "none",
+    "modelId": "openrouter/moonshotai/kimi-k3",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 19646,
+     "cachedInput": 114239,
+     "output": 743,
+     "reasoning": 32049
+    },
+    "cost": {
+     "comparable": 0.5850897
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "dc4519ea-ad92-4d67-bb2d-ebdf68408b7a",
+   "listing": "published",
+   "startedAt": "2026-07-13T22:11:09.966406023Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 0.0,
+    "total": 34
+   },
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v1.1.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.144.3",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 102120,
+     "cachedInput": 548352,
+     "output": 9450,
+     "reasoning": 693
+    },
+    "cost": {
+     "comparable": 1.089066
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "d4p4lk7xikwvfe2nnh3siodj",
+   "listing": "unpublished",
+   "startedAt": "2026-10-07T01:48:50.582219879Z",
+   "state": "completed",
+   "rating": "passable",
+   "score": {
+    "earned": 155.0,
+    "total": 156
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "gg",
+    "harnessVersion": "0.7.0",
+    "engineSlug": "none",
+    "modelId": "anthropic/claude-opus-4.8",
+    "ggPreset": "simple-config",
+    "ggConfigId": "ktnuehxfi3ujafwmcc7sxvph"
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 238870,
+     "cachedInput": 6955533,
+     "output": 79132,
+     "reasoning": 0
+    },
+    "cost": {
+     "comparable": 6.6504164999999995
+    },
+    "sessionSeconds": 1003.643305465
+   }
+  },
+  {
+   "id": "uto2cidxx2o8g1i0j4z976ks",
+   "listing": "unpublished",
+   "startedAt": "2026-10-04T00:50:11.222102981Z",
+   "state": "harness_error",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": null,
+    "engineSlug": "none",
+    "modelId": "gpt-5.5",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": null,
+     "cachedInput": null,
+     "output": null,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": null
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "v4nothjsenz30i0py82imfem",
+   "listing": "unpublished",
+   "startedAt": "2026-10-04T00:46:37.336065637Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "1.0.1",
+    "engineSlug": "none",
+    "modelId": "anthropic/claude-haiku-4.5",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 45911,
+     "cachedInput": 338266,
+     "output": 18398,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.17172759999999998
+    },
+    "sessionSeconds": 125.869680477
+   }
+  },
+  {
+   "id": "tu8pw3td0pho2cft2flv7454",
+   "listing": "unpublished",
+   "startedAt": "2026-10-04T00:46:37.105134552Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.160.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.5",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": null,
+     "cachedInput": null,
+     "output": null,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": null
+    },
+    "sessionSeconds": 152.821866984
+   }
+  },
+  {
+   "id": "d13ui21bfkac7j835szj9j7k",
+   "listing": "unpublished",
+   "startedAt": "2026-10-04T00:42:59.581206059Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.160.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.5",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": null,
+     "cachedInput": null,
+     "output": null,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": null
+    },
+    "sessionSeconds": 358.73509896
+   }
+  },
+  {
+   "id": "dp1codaaftqp4ztgs7nkv6pq",
+   "listing": "unpublished",
+   "startedAt": "2026-10-03T23:14:40.847049752Z",
+   "state": "completed",
+   "rating": "flawless",
+   "score": {
+    "earned": 156.0,
+    "total": 156
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "1.0.1",
+    "engineSlug": "none",
+    "modelId": "anthropic/claude-opus-4.8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 115422,
+     "cachedInput": 6535759,
+     "output": 85517,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 5.9829145
+    },
+    "sessionSeconds": 1062.107799378
+   }
+  },
+  {
+   "id": "mdxbbp5gbjfp1kj5gtv1n6um",
+   "listing": "unpublished",
+   "startedAt": "2026-10-03T23:14:34.613435078Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 110.0,
+    "total": 156
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "1.0.1",
+    "engineSlug": "none",
+    "modelId": "anthropic/claude-opus-4.8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 124777,
+     "cachedInput": 6676591,
+     "output": 86374,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 6.1215305
+    },
+    "sessionSeconds": 1113.842118278
+   }
+  },
+  {
+   "id": "hrrx7ippb3p5xef73m5sm4tx",
+   "listing": "unpublished",
+   "startedAt": "2026-10-03T23:14:34.611242807Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 87.0,
+    "total": 156
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "1.0.1",
+    "engineSlug": "none",
+    "modelId": "anthropic/claude-opus-4.8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 106791,
+     "cachedInput": 4450647,
+     "output": 69685,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 4.5014035
+    },
+    "sessionSeconds": 889.37219598
+   }
+  },
+  {
+   "id": "lokdd0u5kfs98roncwsceslm",
+   "listing": "unpublished",
+   "startedAt": "2026-10-01T21:57:07.341426749Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 101.0,
+    "total": 156
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.160.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.5",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 135251,
+     "cachedInput": 1914112,
+     "output": 28867,
+     "reasoning": 3148
+    },
+    "cost": {
+     "comparable": 1.2968805
+    },
+    "sessionSeconds": 600.34360785
+   }
+  },
+  {
+   "id": "mpw4jjt2lbvqmcu73o1ilnnk",
+   "listing": "unpublished",
+   "startedAt": "2026-10-01T21:56:53.493506014Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 87.0,
+    "total": 156
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.160.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.5",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 64708,
+     "cachedInput": 1253248,
+     "output": 23465,
+     "reasoning": 1684
+    },
+    "cost": {
+     "comparable": 0.852317
+    },
+    "sessionSeconds": 479.935511259
+   }
+  },
+  {
+   "id": "wwxfxg93vpryjljh226kz2sp",
+   "listing": "unpublished",
+   "startedAt": "2026-10-01T21:56:53.021554426Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 87.0,
+    "total": 156
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.160.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.5",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 119312,
+     "cachedInput": 1715200,
+     "output": 23273,
+     "reasoning": 1307
+    },
+    "cost": {
+     "comparable": 1.09578
+    },
+    "sessionSeconds": 521.440394187
+   }
+  },
+  {
+   "id": "euxq7trt78n06xnh9cg6a4f8",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T09:29:04.369214878Z",
+   "state": "completed",
+   "rating": "scuffed",
+   "score": {
+    "earned": 930.0,
+    "total": 933
+   },
+   "caseName": "Wick",
+   "subject": {
+    "testCaseSlug": "wick",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 176443,
+     "cachedInput": 7936896,
+     "output": 53562,
+     "reasoning": 11079
+    },
+    "cost": {
+     "comparable": 0.8964928000000001
+    },
+    "sessionSeconds": 2796.918813464
+   }
+  },
+  {
+   "id": "tofwb6tnh8sqhsiewb8wcf25",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T09:23:24.114509251Z",
+   "state": "completed",
+   "rating": "scuffed",
+   "score": {
+    "earned": 932.0,
+    "total": 933
+   },
+   "caseName": "Wick",
+   "subject": {
+    "testCaseSlug": "wick",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 193184,
+     "cachedInput": 7268992,
+     "output": 46873,
+     "reasoning": 7427
+    },
+    "cost": {
+     "comparable": 0.8281335999999999
+    },
+    "sessionSeconds": 2578.041078796
+   }
+  },
+  {
+   "id": "jqx3o9x0cshieftkrksptz1q",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T09:17:07.424274345Z",
+   "state": "completed",
+   "rating": "scuffed",
+   "score": {
+    "earned": 918.0,
+    "total": 933
+   },
+   "caseName": "Wick",
+   "subject": {
+    "testCaseSlug": "wick",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 194967,
+     "cachedInput": 6849792,
+     "output": 52889,
+     "reasoning": 6802
+    },
+    "cost": {
+     "comparable": 0.8359116000000001
+    },
+    "sessionSeconds": 2724.757399875
+   }
+  },
+  {
+   "id": "u11hntdbj0olur4ltkia9qex",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T09:14:01.211238826Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 773.0,
+    "total": 933
+   },
+   "caseName": "Wick",
+   "subject": {
+    "testCaseSlug": "wick",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 140176,
+     "cachedInput": 5043328,
+     "output": 43024,
+     "reasoning": 1634
+    },
+    "cost": {
+     "comparable": 0.8677988
+    },
+    "sessionSeconds": 2195.087336003
+   }
+  },
+  {
+   "id": "rgvx9g7a8xu9dgaee1oj0uho",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T09:14:01.153561241Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 28.0,
+    "total": 933
+   },
+   "caseName": "Wick",
+   "subject": {
+    "testCaseSlug": "wick",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 123330,
+     "cachedInput": 4761600,
+     "output": 31320,
+     "reasoning": 1564
+    },
+    "cost": {
+     "comparable": 0.76391
+    },
+    "sessionSeconds": 1674.580674492
+   }
+  },
+  {
+   "id": "r2ks1s70l5r4eouehmyrarhs",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T08:57:35.225707821Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 16.0,
+    "total": 933
+   },
+   "caseName": "Wick",
+   "subject": {
+    "testCaseSlug": "wick",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 101664,
+     "cachedInput": 3087488,
+     "output": 23015,
+     "reasoning": 1471
+    },
+    "cost": {
+     "comparable": 0.5328428
+    },
+    "sessionSeconds": 1203.255331624
+   }
+  },
+  {
+   "id": "xmh7j4rdqr8ifkwwjnlrhj84",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T08:47:18.532856025Z",
+   "state": "completed",
+   "rating": "scuffed",
+   "score": {
+    "earned": 356.0,
+    "total": 368
+   },
+   "caseName": "Arc Foundry",
+   "subject": {
+    "testCaseSlug": "arc-foundry",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 275227,
+     "cachedInput": 13599232,
+     "output": 94630,
+     "reasoning": 43446
+    },
+    "cost": {
+     "comparable": 1.6455686
+    },
+    "sessionSeconds": 4987.898404026
+   }
+  },
+  {
+   "id": "n12lbd4gotuz9v3kdy7dl38q",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T08:40:08.764236746Z",
+   "state": "completed",
+   "rating": "scuffed",
+   "score": {
+    "earned": 349.0,
+    "total": 368
+   },
+   "caseName": "Arc Foundry",
+   "subject": {
+    "testCaseSlug": "arc-foundry",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 188397,
+     "cachedInput": 9914624,
+     "output": 55464,
+     "reasoning": 12449
+    },
+    "cost": {
+     "comparable": 1.0236932
+    },
+    "sessionSeconds": 3327.402343031
+   }
+  },
+  {
+   "id": "fha5tfod33l9r0v4hgnqetz9",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T08:36:14.674718172Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 335.0,
+    "total": 368
+   },
+   "caseName": "Arc Foundry",
+   "subject": {
+    "testCaseSlug": "arc-foundry",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 269515,
+     "cachedInput": 11630592,
+     "output": 67183,
+     "reasoning": 22606
+    },
+    "cost": {
+     "comparable": 1.2999896
+    },
+    "sessionSeconds": 3614.42881378
+   }
+  },
+  {
+   "id": "ybqg1oj42onyb0xofimzti10",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T08:33:14.461484607Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 166.0,
+    "total": 368
+   },
+   "caseName": "Arc Foundry",
+   "subject": {
+    "testCaseSlug": "arc-foundry",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 127408,
+     "cachedInput": 5277184,
+     "output": 41441,
+     "reasoning": 1630
+    },
+    "cost": {
+     "comparable": 0.8704813999999998
+    },
+    "sessionSeconds": 2168.101415809
+   }
+  },
+  {
+   "id": "b2cqu8lxuf6cud73vgjuyu6p",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T07:53:22.429975018Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 243.0,
+    "total": 368
+   },
+   "caseName": "Arc Foundry",
+   "subject": {
+    "testCaseSlug": "arc-foundry",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 145919,
+     "cachedInput": 7493632,
+     "output": 42206,
+     "reasoning": 2432
+    },
+    "cost": {
+     "comparable": 1.1184722
+    },
+    "sessionSeconds": 2200.696203189
+   }
+  },
+  {
+   "id": "ra71x13qmz5ez7wj7w2mwjcl",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T07:53:22.34348974Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 214.0,
+    "total": 368
+   },
+   "caseName": "Arc Foundry",
+   "subject": {
+    "testCaseSlug": "arc-foundry",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 138613,
+     "cachedInput": 7577856,
+     "output": 42968,
+     "reasoning": 1977
+    },
+    "cost": {
+     "comparable": 1.1211236
+    },
+    "sessionSeconds": 2427.816358672
+   }
+  },
+  {
+   "id": "pq5gkswz1qaxmr54n8og1ojv",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T07:53:12.065258253Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 257.0,
+    "total": 399
+   },
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 146845,
+     "cachedInput": 8409216,
+     "output": 55436,
+     "reasoning": 2059
+    },
+    "cost": {
+     "comparable": 1.2752416
+    },
+    "sessionSeconds": 2821.989001218
+   }
+  },
+  {
+   "id": "l2l4s41sid6t2zxt04hz051h",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T07:53:11.875823718Z",
+   "state": "completed",
+   "rating": "scuffed",
+   "score": {
+    "earned": 388.0,
+    "total": 399
+   },
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 219822,
+     "cachedInput": 10326016,
+     "output": 69230,
+     "reasoning": 20257
+    },
+    "cost": {
+     "comparable": 1.1835578
+    },
+    "sessionSeconds": 3729.466177235
+   }
+  },
+  {
+   "id": "bj1uox80bocalalnre0660of",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T07:53:11.825701801Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 377.0,
+    "total": 399
+   },
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 219489,
+     "cachedInput": 9669888,
+     "output": 73030,
+     "reasoning": 20131
+    },
+    "cost": {
+     "comparable": 1.1687884
+    },
+    "sessionSeconds": 3917.974784396
+   }
+  },
+  {
+   "id": "vmox5m47u9gyzgl1276bfvba",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T07:53:10.777056764Z",
+   "state": "completed",
+   "rating": "scuffed",
+   "score": {
+    "earned": 397.0,
+    "total": 399
+   },
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 196721,
+     "cachedInput": 9157888,
+     "output": 64114,
+     "reasoning": 14808
+    },
+    "cost": {
+     "comparable": 1.0492254
+    },
+    "sessionSeconds": 3410.523935647
+   }
+  },
+  {
+   "id": "sbx90fzz1kf4l2upljhepxza",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T07:53:10.728493569Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 237.0,
+    "total": 399
+   },
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 146619,
+     "cachedInput": 8027136,
+     "output": 37258,
+     "reasoning": 2338
+    },
+    "cost": {
+     "comparable": 1.1473126
+    },
+    "sessionSeconds": 2055.751918305
+   }
+  },
+  {
+   "id": "bzvuere2fn4ak5ow6a3xql4h",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T07:53:10.7145065Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 263.0,
+    "total": 399
+   },
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 120304,
+     "cachedInput": 4506880,
+     "output": 33962,
+     "reasoning": 1588
+    },
+    "cost": {
+     "comparable": 0.748742
+    },
+    "sessionSeconds": 1848.190428217
+   }
+  },
+  {
+   "id": "arqb06g2l6qm54dlrehw5r77",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T06:27:32.944366404Z",
+   "state": "completed",
+   "rating": "scuffed",
+   "score": {
+    "earned": 793.0,
+    "total": 816
+   },
+   "caseName": "Gantry",
+   "subject": {
+    "testCaseSlug": "gantry",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-3d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 186151,
+     "cachedInput": 10027392,
+     "output": 50750,
+     "reasoning": 10397
+    },
+    "cost": {
+     "comparable": 0.9932556
+    },
+    "sessionSeconds": 2780.438276925
+   }
+  },
+  {
+   "id": "vi70wrzgxrlisg57cbwrhosn",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T06:27:32.912904564Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 496.0,
+    "total": 816
+   },
+   "caseName": "Gantry",
+   "subject": {
+    "testCaseSlug": "gantry",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-3d",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 221207,
+     "cachedInput": 3749248,
+     "output": 35447,
+     "reasoning": 1855
+    },
+    "cost": {
+     "comparable": 0.7826417999999999
+    },
+    "sessionSeconds": 1868.356646581
+   }
+  },
+  {
+   "id": "xoiiuz3qpipykvt2x1st6pzs",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T06:27:32.663553979Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 800.0,
+    "total": 816
+   },
+   "caseName": "Gantry",
+   "subject": {
+    "testCaseSlug": "gantry",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-3d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 212240,
+     "cachedInput": 11116416,
+     "output": 62004,
+     "reasoning": 12879
+    },
+    "cost": {
+     "comparable": 1.1424758000000002
+    },
+    "sessionSeconds": 3315.47857893
+   }
+  },
+  {
+   "id": "hivs2ampjl8wpz35hpigp87g",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T06:27:31.341033719Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 800.0,
+    "total": 816
+   },
+   "caseName": "Gantry",
+   "subject": {
+    "testCaseSlug": "gantry",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-3d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 340764,
+     "cachedInput": 15657216,
+     "output": 75063,
+     "reasoning": 20917
+    },
+    "cost": {
+     "comparable": 1.6035248
+    },
+    "sessionSeconds": 4135.916591289
+   }
+  },
+  {
+   "id": "yh9hsxlgsmzg8sgp046ksvre",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T06:27:31.340456853Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 386.0,
+    "total": 816
+   },
+   "caseName": "Gantry",
+   "subject": {
+    "testCaseSlug": "gantry",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-3d",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 98384,
+     "cachedInput": 3720448,
+     "output": 27004,
+     "reasoning": 1699
+    },
+    "cost": {
+     "comparable": 0.6139437999999999
+    },
+    "sessionSeconds": 384.102160758
+   }
+  },
+  {
+   "id": "xri6mb4e7ywo8fhw2aro6rcq",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T06:27:31.338838432Z",
+   "state": "completed",
+   "rating": "broken",
+   "score": {
+    "earned": 551.0,
+    "total": 816
+   },
+   "caseName": "Gantry",
+   "subject": {
+    "testCaseSlug": "gantry",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-3d",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 126414,
+     "cachedInput": 5605632,
+     "output": 33790,
+     "reasoning": 1723
+    },
+    "cost": {
+     "comparable": 0.8645422
+    },
+    "sessionSeconds": 1837.551845443
+   }
+  },
+  {
+   "id": "xn2i9ffgefu221v6fwunuj0a",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T02:47:08.541771731Z",
+   "state": "completed",
+   "rating": "scuffed",
+   "score": {
+    "earned": 383.0,
+    "total": 399
+   },
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 267875,
+     "cachedInput": 7112960,
+     "output": 62963,
+     "reasoning": 16799
+    },
+    "cost": {
+     "comparable": 1.022333
+    },
+    "sessionSeconds": 3251.8207684
+   }
+  },
+  {
+   "id": "ayu2l5no77ozbhk5sr8d0xo4",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T02:47:08.539960273Z",
+   "state": "completed",
+   "rating": "flawless",
+   "score": {
+    "earned": 0.0,
+    "total": 0
+   },
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v2.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 180710,
+     "cachedInput": 6904448,
+     "output": 56593,
+     "reasoning": 11928
+    },
+    "cost": {
+     "comparable": 0.8685374
+    },
+    "sessionSeconds": 2917.732301357
+   }
+  },
+  {
+   "id": "z11r48k8aecjr4ewmg0bgzph",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T02:45:38.524352475Z",
+   "state": "completed",
+   "rating": "passable",
+   "score": {
+    "earned": 191.0,
+    "total": 192
+   },
+   "caseName": "Facet",
+   "subject": {
+    "testCaseSlug": "facet",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 146944,
+     "cachedInput": 4673664,
+     "output": 43559,
+     "reasoning": 9250
+    },
+    "cost": {
+     "comparable": 0.6446722
+    },
+    "sessionSeconds": 2231.793360791
+   }
+  },
+  {
+   "id": "u13xz25dyh0wk5ww0nvysv8u",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T02:45:35.213264884Z",
+   "state": "completed",
+   "rating": "scuffed",
+   "score": {
+    "earned": 191.0,
+    "total": 192
+   },
+   "caseName": "Facet",
+   "subject": {
+    "testCaseSlug": "facet",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 108134,
+     "cachedInput": 2842752,
+     "output": 26130,
+     "reasoning": 4088
+    },
+    "cost": {
+     "comparable": 0.4013616
+    },
+    "sessionSeconds": 1409.409697511
+   }
+  },
+  {
+   "id": "vfvutwaholdxpe1wemzjk7q6",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T02:45:07.019686501Z",
+   "state": "completed",
+   "rating": "flawless",
+   "score": {
+    "earned": 165.0,
+    "total": 165
+   },
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 138690,
+     "cachedInput": 5163776,
+     "output": 42314,
+     "reasoning": 14349
+    },
+    "cost": {
+     "comparable": 0.6801938000000001
+    },
+    "sessionSeconds": 2293.35365848
+   }
+  },
+  {
+   "id": "s4wwm6ie2sgwa42eqvl6o3la",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T02:45:07.017731599Z",
+   "state": "completed",
+   "rating": "flawless",
+   "score": {
+    "earned": 165.0,
+    "total": 165
+   },
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 134095,
+     "cachedInput": 4396544,
+     "output": 34661,
+     "reasoning": 6542
+    },
+    "cost": {
+     "comparable": 0.5599372
+    },
+    "sessionSeconds": 1809.665211511
+   }
+  },
+  {
+   "id": "to28s72cdio7lslxlmcie47b",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T02:40:02.686413167Z",
+   "state": "timed_out",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "gg",
+    "harnessVersion": null,
+    "engineSlug": "simple-2d",
+    "modelId": "qwen/qwen3.8-27b",
+    "ggPreset": "Tool Calling Baseline",
+    "ggConfigId": "q6sigtaq1j5gw3clch3ncg3i"
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": null,
+     "cachedInput": null,
+     "output": null,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": null
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "fm0wjr6ljij237g5k7q11x63",
+   "listing": "unpublished",
+   "startedAt": "2026-09-30T02:30:20.188148796Z",
+   "state": "completed",
+   "rating": "flawless",
+   "score": {
+    "earned": 155.0,
+    "total": 155
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v3.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.159.2",
+    "engineSlug": "simple-2d",
+    "modelId": "gpt-6.1-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 88492,
+     "cachedInput": 1510528,
+     "output": 18422,
+     "reasoning": 2287
+    },
+    "cost": {
+     "comparable": 0.2675634
+    },
+    "sessionSeconds": 699.9929942
+   }
+  },
+  {
+   "id": "e0757c23-289b-4b58-8345-0eb0a6138819",
+   "listing": "unpublished",
+   "startedAt": "2026-08-18T22:19:50.437924671Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.1.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.147.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 30969,
+     "cachedInput": 417792,
+     "output": 7555,
+     "reasoning": 747
+    },
+    "cost": {
+     "comparable": 0.2451204
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "06c9f552-7791-46d4-8a1a-947e663aae5c",
+   "listing": "unpublished",
+   "startedAt": "2026-08-17T22:00:40.370158875Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.1.0",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "opencode",
+    "harnessVersion": "1.18.18",
+    "engineSlug": "none",
+    "modelId": "openrouter/deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 762398,
+     "cachedInput": 10339200,
+     "output": 36404,
+     "reasoning": 105327
+    },
+    "cost": {
+     "comparable": 0.435918
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "f65c9475-e467-480b-a52b-bd86fc9c8f53",
+   "listing": "unpublished",
+   "startedAt": "2026-08-14T17:22:57.59057056Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.1.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.147.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 44956,
+     "cachedInput": 654080,
+     "output": 11694,
+     "reasoning": 1315
+    },
+    "cost": {
+     "comparable": 0.94209
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "f8b56e36-7805-41dc-8fe2-83f1337cb242",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:59:47.173492908Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.147.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 40430,
+     "cachedInput": 538368,
+     "output": 9590,
+     "reasoning": 703
+    },
+    "cost": {
+     "comparable": 0.1560248
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "5d2dcb10-b472-494b-924c-b1928ee58480",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:57:07.543099041Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.147.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 53116,
+     "cachedInput": 547712,
+     "output": 9631,
+     "reasoning": 1194
+    },
+    "cost": {
+     "comparable": 0.864186
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "cd0a2f21-31f5-49cf-8dd0-f43b6a350786",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:56:13.042083528Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.147.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 57864,
+     "cachedInput": 665088,
+     "output": 11933,
+     "reasoning": 1725
+    },
+    "cost": {
+     "comparable": 0.2063208
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "cfe46f34-7a9f-41a6-8bff-0cefdd4b0f97",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:55:49.108212355Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.147.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 46997,
+     "cachedInput": 438784,
+     "output": 10168,
+     "reasoning": 576
+    },
+    "cost": {
+     "comparable": 0.776697
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "20130ff5-11b9-4ba1-9b2f-6ed5c2667685",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:46:12.582608415Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 80657,
+     "cachedInput": 1927424,
+     "output": 14364,
+     "reasoning": 1299
+    },
+    "cost": {
+     "comparable": 0.3673774
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "81390d8c-ea17-42d3-a384-3fadff9f5c2b",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:45:15.817301143Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 39546,
+     "cachedInput": 479232,
+     "output": 13277,
+     "reasoning": 521
+    },
+    "cost": {
+     "comparable": 0.1702572
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "28a0fa6a-f29c-4b8f-927b-fa23e88c8aea",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:44:22.976737046Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 62202,
+     "cachedInput": 930432,
+     "output": 11725,
+     "reasoning": 938
+    },
+    "cost": {
+     "comparable": 0.2312232
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "9434bc9f-2ac7-4326-bd60-b870e0e1cadf",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:40:13.093391974Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 79975,
+     "cachedInput": 1277056,
+     "output": 16988,
+     "reasoning": 1354
+    },
+    "cost": {
+     "comparable": 1.588663
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "0f88ac08-e73e-4185-b056-37c0a031d334",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:28:37.247070686Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 54434,
+     "cachedInput": 715136,
+     "output": 12294,
+     "reasoning": 804
+    },
+    "cost": {
+     "comparable": 1.022678
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "0fdf5926-ed94-4d35-baa7-0d87bc6e5d9c",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:28:36.875078214Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 134338,
+     "cachedInput": 4090368,
+     "output": 33814,
+     "reasoning": 3124
+    },
+    "cost": {
+     "comparable": 3.825014
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "1e3d1078-1f4d-4084-a0e2-7cd8535ebd8c",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:28:36.716192493Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 69389,
+     "cachedInput": 687232,
+     "output": 11804,
+     "reasoning": 1653
+    },
+    "cost": {
+     "comparable": 0.2188542
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "667ce74b-1721-43ea-b4c4-d610086c69c1",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:28:36.670274199Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 75352,
+     "cachedInput": 1052160,
+     "output": 14351,
+     "reasoning": 1320
+    },
+    "cost": {
+     "comparable": 1.37297
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "d9029892-3905-4f11-8155-abd165937c94",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:28:36.651931596Z",
+   "state": "completed",
+   "rating": "flawless",
+   "score": {
+    "earned": 71.0,
+    "total": 71
+   },
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 69469,
+     "cachedInput": 378496,
+     "output": 11271,
+     "reasoning": 927
+    },
+    "cost": {
+     "comparable": 0.902533
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "80360cc4-788c-44c1-b4a6-115421235deb",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:28:36.626939722Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 102053,
+     "cachedInput": 2725888,
+     "output": 20585,
+     "reasoning": 3321
+    },
+    "cost": {
+     "comparable": 0.5180777999999999
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "f4b04713-1cfb-45de-9d77-8588469ba712",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:28:36.569204123Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 61111,
+     "cachedInput": 452352,
+     "output": 10650,
+     "reasoning": 754
+    },
+    "cost": {
+     "comparable": 0.8738509999999999
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "e1823840-f6f5-4e55-88a5-0e8d537f7277",
+   "listing": "unpublished",
+   "startedAt": "2026-08-07T01:28:36.496906327Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.1",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 54655,
+     "cachedInput": 587776,
+     "output": 18276,
+     "reasoning": 900
+    },
+    "cost": {
+     "comparable": 0.2284886
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "1bcca498-8d9e-426c-9700-acdb366d979a",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T10:15:23.091240022Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 76279,
+     "cachedInput": 1113856,
+     "output": 14239,
+     "reasoning": 1478
+    },
+    "cost": {
+     "comparable": 1.409833
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "e8878daf-0898-4e17-b665-2c8f3bbfb533",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T07:18:48.590150987Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 383333,
+     "cachedInput": 14200832,
+     "output": 141776,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 5.16753
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "91295052-5f1b-4396-8679-400757f12a99",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T07:12:33.411264461Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 51187,
+     "cachedInput": 128640,
+     "output": 1131,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.00712593
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "08e358ce-ee22-45bf-9828-9344a3af1262",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T07:07:14.423331326Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 122830,
+     "cachedInput": 2356352,
+     "output": 61370,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 1.2029679999999998
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "1f430750-d9cf-4875-9058-4bae5389bd06",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:59:00.027858298Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 14480,
+     "cachedInput": 44416,
+     "output": 822,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.002250648
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "bf4d05b2-2850-4ac4-85df-58829b77994b",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:56:30.727871341Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 152274,
+     "cachedInput": 4533760,
+     "output": 72450,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 1.872688
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "1ac96ccb-d0f5-4d88-98e6-ebd210612c5b",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:55:32.502177815Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 16407,
+     "cachedInput": 49152,
+     "output": 765,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.0024990660000000003
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "3dcc0f04-c0b1-4d27-a78e-b801f05fbd7d",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:53:55.35601696Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 148037,
+     "cachedInput": 271488,
+     "output": 1403,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.018462654
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "fc668e97-c979-4314-aed3-e399a82f31da",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:51:18.083318983Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 12836,
+     "cachedInput": 22016,
+     "output": 525,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.034325999999999995
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "e4878f85-680b-4470-b908-91646a80077b",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:50:13.323969783Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 24886,
+     "cachedInput": 25728,
+     "output": 808,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.0028482840000000004
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "d6a35207-21b4-497b-8cfb-7769d9e83898",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:29:11.612169529Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 205723,
+     "cachedInput": 2651520,
+     "output": 57093,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 1.416884
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "afdc2889-c89a-4f5a-91a8-fa2eaedd3af0",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:18:50.136497861Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 32958,
+     "cachedInput": 40064,
+     "output": 704,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.003814092
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "35f3cca8-5bf7-4013-b5f3-99ce50408eb2",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:16:19.056035184Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 173522,
+     "cachedInput": 2795008,
+     "output": 77270,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 1.509416
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "9cac381b-aa6c-45d0-8e71-fc23d95768e6",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:15:14.224419501Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 29052,
+     "cachedInput": 94080,
+     "output": 963,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.00448146
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "086737eb-70bb-4ae8-b0f7-9e5de10f1c06",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:10:27.363378925Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 51495,
+     "cachedInput": 272896,
+     "output": 1102,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.009745038
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "3ccdaa8c-eef5-4fce-a7ca-6ea70aab2cbf",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:09:32.876154046Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 243452,
+     "cachedInput": 4910464,
+     "output": 111471,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 2.383346
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "487260ac-0b0c-4d64-a4e7-5fcab05e0b3e",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:09:32.706414571Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 52978,
+     "cachedInput": 142976,
+     "output": 1233,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.007563528
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "b95c5a17-46a8-4419-bbe4-e5b5e6c5bc3e",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:09:18.524057571Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 52077,
+     "cachedInput": 115840,
+     "output": 949,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.00694287
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "a43b1f82-283f-4cb6-acc0-890913c44fe7",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:08:21.910085846Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 12800,
+     "cachedInput": 35328,
+     "output": 743,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.001921644
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "790c13d2-6103-4f2f-88a3-0ab4f5456ab7",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:07:23.392530393Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 10939,
+     "cachedInput": 36224,
+     "output": 748,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.001771182
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "faa21160-7fb8-4ee9-9050-04d98033c285",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:06:20.503787512Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 14414,
+     "cachedInput": 44544,
+     "output": 754,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.002234772
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "38305b75-c69a-42ad-9f93-9730a9fd4054",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:03:09.066864643Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 173658,
+     "cachedInput": 896128,
+     "output": 8906,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.624784
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "67d6fd73-fe51-471b-8c6e-25e0f6593bdb",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:02:58.862991445Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 109650,
+     "cachedInput": 5129614,
+     "output": 67612,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 5.352745000000001
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "9d0f1e7f-082f-4877-a966-18dec05d5bd1",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T06:00:46.14373381Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 70357,
+     "cachedInput": 589824,
+     "output": 11118,
+     "reasoning": 1331
+    },
+    "cost": {
+     "comparable": 0.2040334
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "5b441c6c-c459-46ba-833b-af89c346bf25",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:59:47.357656872Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 10625,
+     "cachedInput": 27648,
+     "output": 661,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.001572894
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "ecea099a-180f-49e1-b072-be4e2bcebfce",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:52:48.066257325Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 111993,
+     "cachedInput": 4869865,
+     "output": 73098,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 5.383445500000001
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "ad2f4183-44b4-4372-aa7a-efcc1e302d0d",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:52:47.841125001Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 102542,
+     "cachedInput": 1441792,
+     "output": 14543,
+     "reasoning": 1690
+    },
+    "cost": {
+     "comparable": 0.3441192
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "5da5dfcf-bb82-472e-b8bc-dfec53502186",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:48:29.950521581Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 63116,
+     "cachedInput": 626688,
+     "output": 11651,
+     "reasoning": 968
+    },
+    "cost": {
+     "comparable": 1.007494
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "2d93cbd6-29cf-4775-82f7-29ababdc08ee",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:43:07.025319228Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 445224,
+     "cachedInput": 59028801,
+     "output": 267511,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 41.90720275000001
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "8c761609-bd1f-4a78-91f5-c466ac1b2700",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:39:43.251908961Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 46748,
+     "cachedInput": 583168,
+     "output": 10107,
+     "reasoning": 1054
+    },
+    "cost": {
+     "comparable": 0.8601540000000001
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "e6d5d624-288f-4393-bd4e-f125dd9ef877",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:39:07.180220105Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 96964,
+     "cachedInput": 2167040,
+     "output": 19036,
+     "reasoning": 2887
+    },
+    "cost": {
+     "comparable": 0.445206
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "868d2f49-3046-43af-92e8-e3fdcaa2d1a6",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:38:26.56508431Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 30227,
+     "cachedInput": 93568,
+     "output": 1013,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.004586994
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "f2a3b833-b65b-4d88-ae0f-7c00176e8ca8",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:36:33.722639907Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 127044,
+     "cachedInput": 5281623,
+     "output": 88931,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 6.1357195
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "14407504-1d56-4356-9819-c3dcc09341b0",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:31:26.768828697Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 39974,
+     "cachedInput": 515328,
+     "output": 8254,
+     "reasoning": 1200
+    },
+    "cost": {
+     "comparable": 0.1482308
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "05cd52c0-3365-4657-8873-2ded949d4bd9",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:31:18.659205364Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 125159,
+     "cachedInput": 4221282,
+     "output": 80340,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 5.371970000000002
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "12ba70ff-2b72-4dc5-b649-dba468511e5d",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:30:32.491422082Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 240226,
+     "cachedInput": 14146737,
+     "output": 161067,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 13.503331499999998
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "1cafdb9d-a47d-4fcd-a31d-b42cff11ef1d",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:23:58.973512271Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 37311,
+     "cachedInput": 432128,
+     "output": 7307,
+     "reasoning": 718
+    },
+    "cost": {
+     "comparable": 0.1286738
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "c41a5741-6f01-421e-8825-d09695dbbc75",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:20:47.515405364Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 75644,
+     "cachedInput": 619264,
+     "output": 13109,
+     "reasoning": 753
+    },
+    "cost": {
+     "comparable": 1.103712
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "73a1373a-4250-4609-8fb2-915a76bf49b3",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:17:05.399419142Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 122861,
+     "cachedInput": 5300870,
+     "output": 71833,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 5.676027999999998
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "123c523c-03a6-424c-8cb8-9f585f3d42f2",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:16:10.806918419Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 23810,
+     "cachedInput": 16128,
+     "output": 698,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.002558844
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "56da7ecb-e7b2-4b0c-a630-2b8c403401df",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:14:46.081456796Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 54222,
+     "cachedInput": 710912,
+     "output": 12741,
+     "reasoning": 2036
+    },
+    "cost": {
+     "comparable": 0.2139752
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "9ec62cdb-3efd-4a2c-aa59-cce6d777c04f",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:11:40.625752318Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 260146,
+     "cachedInput": 15739957,
+     "output": 184905,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 15.095041500000006
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "78084fbd-7219-432d-807f-6654924c6537",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:07:46.901464193Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 47698,
+     "cachedInput": 702208,
+     "output": 11346,
+     "reasoning": 767
+    },
+    "cost": {
+     "comparable": 0.952984
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "035b7500-346a-4aee-98bf-b5875a721a85",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:02:44.067173572Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 169000,
+     "cachedInput": 8568908,
+     "output": 116871,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 8.897233
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "e7ae6098-ac33-43f8-8535-8f92f2834cd2",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T05:02:27.902195766Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 82872,
+     "cachedInput": 604416,
+     "output": 10926,
+     "reasoning": 1110
+    },
+    "cost": {
+     "comparable": 1.0776480000000002
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "ea04f166-b786-4168-84eb-6394da9ab183",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:59:26.5638883Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 62010,
+     "cachedInput": 1070336,
+     "output": 14426,
+     "reasoning": 1466
+    },
+    "cost": {
+     "comparable": 0.2643956
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "9514d389-19ce-4d2b-8811-457f56a83b8f",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:58:22.050693372Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 18563,
+     "cachedInput": 26880,
+     "output": 713,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.0022828500000000003
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "cff8273f-a8c6-4da5-b561-e2276941c629",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:53:11.424191734Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 45521,
+     "cachedInput": 514816,
+     "output": 10171,
+     "reasoning": 773
+    },
+    "cost": {
+     "comparable": 0.8133330000000001
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "75c41726-70b7-46b2-bcf6-d2a2f7d18200",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:51:58.992128305Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 53530,
+     "cachedInput": 270720,
+     "output": 1070,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.00988326
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "6eca42c6-9e4a-4f10-814e-e6f8d570328c",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:49:18.478649595Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 16428,
+     "cachedInput": 17792,
+     "output": 568,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.040712
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "4ddd5c8c-c654-4fff-a7d8-489265b22981",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:44:59.071884111Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 11066,
+     "cachedInput": 33280,
+     "output": 677,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.0017168400000000003
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "f3e9c435-9699-44aa-a9de-f19557da159c",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:35:06.310681089Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 133277,
+     "cachedInput": 6591609,
+     "output": 86913,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 6.802482500000001
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "6a69c8be-a8ab-49e7-aba1-e47c6fc7c3d4",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:34:17.759533686Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 59811,
+     "cachedInput": 1089280,
+     "output": 14634,
+     "reasoning": 704
+    },
+    "cost": {
+     "comparable": 0.26076699999999997
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "44abe013-899b-46f5-86cf-300514e69e6c",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:27:16.604620017Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 35409,
+     "cachedInput": 473856,
+     "output": 8923,
+     "reasoning": 865
+    },
+    "cost": {
+     "comparable": 0.1415226
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "0ed93acb-2808-418e-971a-9c27ea03e8bd",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:13:15.601779461Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 137598,
+     "cachedInput": 2133632,
+     "output": 74106,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 1.25324
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "ee8002a9-377f-4c34-9c00-f6465552b0bc",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:12:21.037311369Z",
+   "state": "catastrophic",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "gyre",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "deepseek/deepseek-v4-flash-0731",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 11589,
+     "cachedInput": 28800,
+     "output": 754,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 0.00169713
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "c0d5e62b-1d55-4b57-9715-9443b5d17b87",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:08:45.364048464Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 137776,
+     "cachedInput": 5290242,
+     "output": 95735,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 6.4174349999999984
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "84ff013a-6962-45ae-92a0-d5d3646abb70",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:07:52.890881553Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 458511,
+     "cachedInput": 57498210,
+     "output": 296703,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 45.02466725000002
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "d5e2ddac-2365-41d4-8558-5770eb3c11e7",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:03:35.663115086Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 148108,
+     "cachedInput": 3857152,
+     "output": 76623,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 1.7202419999999998
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "ab8fdea4-c727-4b29-86dd-69aa048b0d47",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T04:00:25.027396394Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 65206,
+     "cachedInput": 428032,
+     "output": 9764,
+     "reasoning": 994
+    },
+    "cost": {
+     "comparable": 0.862786
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "f109e73a-0326-4dfb-9c4e-5574b60208ba",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T03:56:13.242564178Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "pi",
+    "harnessVersion": "0.83.0",
+    "engineSlug": "none",
+    "modelId": "qwen/qwen3.8-max",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 115607,
+     "cachedInput": 2156928,
+     "output": 58122,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 1.119178
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "9fb5f957-5395-45fe-9918-a9ae03adbc19",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T03:52:00.597585018Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 52743,
+     "cachedInput": 402176,
+     "output": 10209,
+     "reasoning": 704
+    },
+    "cost": {
+     "comparable": 0.1584386
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "f1189e12-9a62-447b-ad75-457d28707936",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T03:51:58.553309077Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 173376,
+     "cachedInput": 8458728,
+     "output": 113397,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 8.799097999999999
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "5c456397-ba79-4d06-962c-c427d11b732e",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T03:48:30.787522734Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 286015,
+     "cachedInput": 21739913,
+     "output": 202309,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 18.7885195
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "c09a5f49-1e6b-4983-9ed3-d6d86c1a1680",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T03:40:08.673610293Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 56453,
+     "cachedInput": 771072,
+     "output": 12810,
+     "reasoning": 701
+    },
+    "cost": {
+     "comparable": 1.073131
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "3c0dbed6-8b63-4992-9b43-492f297ab073",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T03:36:08.395563832Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 69681,
+     "cachedInput": 1487872,
+     "output": 14349,
+     "reasoning": 2177
+    },
+    "cost": {
+     "comparable": 0.31762419999999997
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "980d585c-e840-4da1-bfc0-beab612d5cf1",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T03:30:17.496837923Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 83337,
+     "cachedInput": 1224960,
+     "output": 13614,
+     "reasoning": 939
+    },
+    "cost": {
+     "comparable": 1.465755
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "f47647dc-0c0d-435a-b0db-8543229c47fd",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T03:18:33.078268149Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 143109,
+     "cachedInput": 6551552,
+     "output": 29220,
+     "reasoning": 4114
+    },
+    "cost": {
+     "comparable": 0.9982682
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "8c9c1a9e-c8c5-4979-bfb1-3f348a152942",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T03:17:14.121468092Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 71225,
+     "cachedInput": 961792,
+     "output": 12229,
+     "reasoning": 1531
+    },
+    "cost": {
+     "comparable": 0.24996420000000005
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "96cd380b-a882-4b8b-b89a-285df0b64f8b",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T03:13:50.552030958Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 77440,
+     "cachedInput": 1243136,
+     "output": 15505,
+     "reasoning": 1273
+    },
+    "cost": {
+     "comparable": 1.512108
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "21f186ed-1d6b-4404-8f54-2aebb7ba59f6",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T03:12:09.368535328Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 37694,
+     "cachedInput": 360192,
+     "output": 8879,
+     "reasoning": 718
+    },
+    "cost": {
+     "comparable": 0.6564760000000001
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "35f3a745-4d8e-4963-ad7e-70a6654ea534",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T03:08:47.655351619Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 168502,
+     "cachedInput": 6179328,
+     "output": 29743,
+     "reasoning": 2761
+    },
+    "cost": {
+     "comparable": 4.907294
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "aa5e0bc4-30d1-4309-9953-2b94ad32ee27",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T03:06:24.649701587Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "multi",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 41073,
+     "cachedInput": 574464,
+     "output": 8534,
+     "reasoning": 903
+    },
+    "cost": {
+     "comparable": 0.15514139999999998
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "1bc29d9a-7486-45e4-85d5-d5e9bcbf9b15",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T02:53:53.800639475Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 342999,
+     "cachedInput": 33460526,
+     "output": 235849,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 26.056901000000003
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "d0a8b200-ba56-4e1c-b6fd-58639ee4c180",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T02:52:44.2547122Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Deepcore",
+   "subject": {
+    "testCaseSlug": "deepcore",
+    "testCaseVersion": "v1.0.0",
+    "testType": "full-stack",
+    "variant": "base",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-sol",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 220529,
+     "cachedInput": 7778560,
+     "output": 36326,
+     "reasoning": 2895
+    },
+    "cost": {
+     "comparable": 6.1685550000000005
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "91bbacb3-212b-48a2-a034-22cc024e6c1a",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T02:50:09.126695978Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Fathom",
+   "subject": {
+    "testCaseSlug": "fathom",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "kindle",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 71605,
+     "cachedInput": 1024512,
+     "output": 12280,
+     "reasoning": 1402
+    },
+    "cost": {
+     "comparable": 0.2561482
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "7a2cdd28-3491-448c-8f51-4f3d2215c225",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T02:50:07.783070462Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Carom",
+   "subject": {
+    "testCaseSlug": "pong",
+    "testCaseVersion": "v2.0.1",
+    "testType": "end-to-end",
+    "variant": "base",
+    "harnessSlug": "claude",
+    "harnessVersion": "2.1.221",
+    "engineSlug": "none",
+    "modelId": "claude-opus-4-8",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 116134,
+     "cachedInput": 4248933,
+     "output": 74562,
+     "reasoning": null
+    },
+    "cost": {
+     "comparable": 5.151059500000001
+    },
+    "sessionSeconds": null
+   }
+  },
+  {
+   "id": "d8974fec-0c1a-4d8d-8840-784b325ab08b",
+   "listing": "unpublished",
+   "startedAt": "2026-08-04T02:50:07.72260203Z",
+   "state": "completed",
+   "rating": null,
+   "score": null,
+   "caseName": "Shatter",
+   "subject": {
+    "testCaseSlug": "shatter",
+    "testCaseVersion": "v2.0.0",
+    "testType": "end-to-end",
+    "variant": "warhead",
+    "harnessSlug": "codex",
+    "harnessVersion": "0.146.0",
+    "engineSlug": "none",
+    "modelId": "gpt-5.6-terra",
+    "ggPreset": null,
+    "ggConfigId": null
+   },
+   "metrics": {
+    "tokens": {
+     "uncachedInput": 50327,
+     "cachedInput": 815872,
+     "output": 11206,
+     "reasoning": 648
+    },
+    "cost": {
+     "comparable": 0.2030382
+    },
+    "sessionSeconds": null
+   }
+  }
+ ],
+ "models": [
+  {
+   "slug": "claude-fable-5",
+   "name": "Claude Fable 5",
+   "aliases": [
+    "anthropic/claude-fable-5",
+    "claude-fable-5"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "claude-haiku-4-5",
+   "name": "Claude Haiku 4.5",
+   "aliases": [
+    "anthropic/claude-haiku-4.5",
+    "claude-haiku-4-5"
+   ],
+   "coveredModelIds": [
+    "anthropic/claude-haiku-4.5"
+   ]
+  },
+  {
+   "slug": "claude-opus-4-8",
+   "name": "Claude Opus 4.8",
+   "aliases": [
+    "anthropic/claude-opus-4.8",
+    "claude-opus-4-8"
+   ],
+   "coveredModelIds": [
+    "anthropic/claude-opus-4.8",
+    "claude-opus-4-8"
+   ]
+  },
+  {
+   "slug": "claude-sonnet-4-6",
+   "name": "Claude Sonnet 4.6",
+   "aliases": [
+    "anthropic/claude-sonnet-4.6",
+    "claude-sonnet-4-6"
+   ],
+   "coveredModelIds": [
+    "claude-sonnet-4-6"
+   ]
+  },
+  {
+   "slug": "claude-sonnet-5",
+   "name": "Claude Sonnet 5",
+   "aliases": [
+    "anthropic/claude-sonnet-5",
+    "claude-sonnet-5"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "deepseek-v4-flash",
+   "name": "DeepSeek V4 Flash",
+   "aliases": [
+    "deepseek/deepseek-v4-flash"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "deepseek-v4-flash-0731",
+   "name": "DeepSeek V4 Flash 0731",
+   "aliases": [
+    "deepseek/deepseek-v4-flash-0731"
+   ],
+   "coveredModelIds": [
+    "openrouter/deepseek/deepseek-v4-flash-0731",
+    "deepseek/deepseek-v4-flash-0731"
+   ]
+  },
+  {
+   "slug": "deepseek-v4-pro",
+   "name": "DeepSeek V4 Pro",
+   "aliases": [
+    "deepseek/deepseek-v4-pro"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "deepseek-v4-1-flash",
+   "name": "DeepSeek V4.1 Flash",
+   "aliases": [
+    "deepseek/deepseek-v4.1-flash"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "devstral-2512",
+   "name": "Devstral 2512",
+   "aliases": [
+    "mistralai/devstral-2512"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "gemini-3.1-flash-lite",
+   "name": "Gemini 3.1 Flash Lite",
+   "aliases": [
+    "google/gemini-3.1-flash-lite"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "gemini-3.1-pro-preview",
+   "name": "Gemini 3.1 Pro Preview",
+   "aliases": [
+    "google/gemini-3.1-pro-preview"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "gemini-3.5-flash",
+   "name": "Gemini 3.5 Flash",
+   "aliases": [
+    "google/gemini-3.5-flash"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "glm-5.1",
+   "name": "GLM 5.1",
+   "aliases": [
+    "z-ai/glm-5.1"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "glm-5-2",
+   "name": "GLM 5.2",
+   "aliases": [
+    "z-ai/glm-5.2"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "z-ai-glm-5-3-flash",
+   "name": "GLM 5.3 Flash",
+   "aliases": [
+    "z-ai/glm-5.3-flash"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "gpt-5-3-codex-spark",
+   "name": "GPT-5.3 Codex Spark",
+   "aliases": [
+    "gpt-5.3-codex-spark"
+   ],
+   "coveredModelIds": [
+    "gpt-5.3-codex-spark"
+   ]
+  },
+  {
+   "slug": "gpt-5.4",
+   "name": "GPT-5.4",
+   "aliases": [
+    "gpt-5.4",
+    "openai/gpt-5.4"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "gpt-5.4-mini",
+   "name": "GPT-5.4 Mini",
+   "aliases": [
+    "gpt-5.4-mini",
+    "openai/gpt-5.4-mini"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "gpt-5.4-nano",
+   "name": "GPT-5.4 Nano",
+   "aliases": [
+    "gpt-5.4-nano",
+    "openai/gpt-5.4-nano"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "gpt-5.5",
+   "name": "GPT-5.5",
+   "aliases": [
+    "gpt-5.5",
+    "openai/gpt-5.5"
+   ],
+   "coveredModelIds": [
+    "gpt-5.5"
+   ]
+  },
+  {
+   "slug": "gpt-5-6-luna",
+   "name": "GPT-5.6 Luna",
+   "aliases": [
+    "gpt-5.6-luna"
+   ],
+   "coveredModelIds": [
+    "gpt-5.6-luna"
+   ]
+  },
+  {
+   "slug": "gpt-5-6-sol",
+   "name": "GPT-5.6 Sol",
+   "aliases": [
+    "gpt-5.6-sol"
+   ],
+   "coveredModelIds": [
+    "gpt-5.6-sol"
+   ]
+  },
+  {
+   "slug": "gpt-5-6-terra",
+   "name": "GPT-5.6 Terra",
+   "aliases": [
+    "gpt-5.6-terra"
+   ],
+   "coveredModelIds": [
+    "gpt-5.6-terra"
+   ]
+  },
+  {
+   "slug": "gpt-6-sol",
+   "name": "GPT-6 Sol",
+   "aliases": [
+    "openai/gpt-6-sol"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "gpt-6-1-sol",
+   "name": "GPT-6.1 Sol",
+   "aliases": [
+    "gpt-6.1-sol",
+    "openai/gpt-6.1-sol"
+   ],
+   "coveredModelIds": [
+    "gpt-6.1-sol"
+   ]
+  },
+  {
+   "slug": "grok-4.3",
+   "name": "Grok 4.3",
+   "aliases": [
+    "x-ai/grok-4.3"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "grok-4-5",
+   "name": "Grok 4.5",
+   "aliases": [
+    "x-ai/grok-4.5"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "inkling",
+   "name": "Inkling",
+   "aliases": [
+    "thinkingmachines/inkling"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "kimi-k2.7-code",
+   "name": "Kimi K2.7 Code",
+   "aliases": [
+    "moonshotai/kimi-k2.7-code"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "kimi-k3",
+   "name": "Kimi K3",
+   "aliases": [
+    "moonshotai/kimi-k3"
+   ],
+   "coveredModelIds": [
+    "openrouter/moonshotai/kimi-k3"
+   ]
+  },
+  {
+   "slug": "laguna-s-2-1",
+   "name": "Laguna S 2.1",
+   "aliases": [
+    "poolside/laguna-s-2.1"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "longcat-2-0",
+   "name": "LongCat 2.0",
+   "aliases": [
+    "meituan/longcat-2.0"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "mimo-v2.5",
+   "name": "MiMo-V2.5",
+   "aliases": [
+    "xiaomi/mimo-v2.5"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "mimo-v2.5-pro",
+   "name": "MiMo-V2.5-Pro",
+   "aliases": [
+    "xiaomi/mimo-v2.5-pro"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "minimax-m3",
+   "name": "MiniMax M3",
+   "aliases": [
+    "minimax/minimax-m3"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "mistral-medium-3-5",
+   "name": "Mistral Medium 3.5",
+   "aliases": [
+    "mistralai/mistral-medium-3-5"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "muse-spark-1-1",
+   "name": "Muse Spark 1.1",
+   "aliases": [
+    "meta/muse-spark-1.1"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "muse-spark-1-2",
+   "name": "Muse Spark 1.2",
+   "aliases": [
+    "meta/muse-spark-1.2"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "pareto-code",
+   "name": "Pareto Code Router",
+   "aliases": [
+    "openrouter/pareto-code",
+    "pareto-code"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "qwen3.7-max",
+   "name": "Qwen3.7 Max",
+   "aliases": [
+    "qwen/qwen3.7-max"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "qwen3.7-plus",
+   "name": "Qwen3.7 Plus",
+   "aliases": [
+    "qwen/qwen3.7-plus"
+   ],
+   "coveredModelIds": []
+  },
+  {
+   "slug": "qwen3-8-27b",
+   "name": "Qwen3.8 27B",
+   "aliases": [
+    "qwen/qwen3.8-27b"
+   ],
+   "coveredModelIds": [
+    "qwen/qwen3.8-27b"
+   ]
+  },
+  {
+   "slug": "qwen3-8-max",
+   "name": "Qwen3.8 Max",
+   "aliases": [
+    "qwen/qwen3.8-max"
+   ],
+   "coveredModelIds": [
+    "qwen/qwen3.8-max"
+   ]
+  }
+ ]
+}
