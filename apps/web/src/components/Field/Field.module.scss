@@ -1,0 +1,35 @@
+@use "@/styles" as *;
+
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: $s-1-5;
+}
+
+.label {
+	font-size: $text-14;
+	font-weight: $weight-medium;
+	color: $color-ink-muted;
+}
+
+.input {
+	width: 100%;
+	min-height: $tap-target;
+	padding: 0 $s-3;
+	border: $border-outline;
+	border-radius: $radius-md;
+	background: $color-raised;
+	color: $color-ink;
+	font: inherit;
+	font-size: $text-15;
+	transition: border-color $duration-fast ease;
+
+	&:hover,
+	&:focus {
+		border-color: $color-accent;
+	}
+}
+
+.hint {
+	@include text-mono;
+}

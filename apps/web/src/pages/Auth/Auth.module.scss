@@ -1,0 +1,22 @@
+@use "@/styles" as *;
+
+$form-width: 400px;
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: $s-5;
+	max-width: $form-width;
+}
+
+.switch {
+	margin: 0;
+	font-size: $text-15;
+	color: $color-ink-muted;
+}
+
+.demo {
+	margin: 0;
+
+	@include text-mono;
+}

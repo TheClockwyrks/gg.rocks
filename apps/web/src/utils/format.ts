@@ -36,3 +36,9 @@ export function formatThousands(value: Figure): string {
 		? `${(value / 1000).toFixed(2)}M`
 		: `${Math.round(value)}k`;
 }
+
+const dateFormat = new Intl.DateTimeFormat("en-US", { dateStyle: "medium" });
+
+/** A calendar date from an ISO string, e.g. "Oct 7, 2026". */
+export const formatDate = (iso: string): string =>
+	dateFormat.format(new Date(iso));

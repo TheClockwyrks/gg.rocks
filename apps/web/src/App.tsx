@@ -4,7 +4,15 @@ import {
 	RouterProvider,
 	ScrollRestoration,
 } from "react-router";
+import { AuthProvider } from "@/auth/AuthProvider";
+import { GuestOnly, RequireAuth } from "@/auth/guards";
 import { SiteLayout } from "@/components/SiteLayout/SiteLayout";
+import { accountPaths } from "@/data/site";
+import { AccountLayout } from "@/pages/Account/AccountLayout";
+import { Billing } from "@/pages/Account/Billing";
+import { MyAccount } from "@/pages/Account/MyAccount";
+import { Subscription } from "@/pages/Account/Subscription";
+import { Login, Signup } from "@/pages/Auth/Auth";
 import { Changelog } from "@/pages/Changelog/Changelog";
 import { ComingSoon, NotFound } from "@/pages/ComingSoon/ComingSoon";
 import { Experiments } from "@/pages/Experiments/Experiments";
@@ -36,6 +44,30 @@ const router = createBrowserRouter([
 					{ path: "/benchmarks", element: <ComingSoon section="benchmarks" /> },
 					{ path: "/docs", element: <ComingSoon section="docs" /> },
 					{ path: "/download", element: <ComingSoon section="download" /> },
+					{
+						element: <GuestOnly />,
+						children: [
+							{ path: accountPaths.login, element: <Login /> },
+							{ path: accountPaths.signup, element: <Signup /> },
+						],
+					},
+					{
+						element: <RequireAuth />,
+						children: [
+							{
+								path: accountPaths.account,
+								element: <AccountLayout />,
+								children: [
+									{ index: true, element: <MyAccount /> },
+									{
+										path: accountPaths.subscription,
+										element: <Subscription />,
+									},
+									{ path: accountPaths.billing, element: <Billing /> },
+								],
+							},
+						],
+					},
 					{ path: "*", element: <NotFound /> },
 				],
 			},
@@ -44,5 +76,9 @@ const router = createBrowserRouter([
 ]);
 
 export function App() {
-	return <RouterProvider router={router} />;
+	return (
+		<AuthProvider>
+			<RouterProvider router={router} />
+		</AuthProvider>
+	);
 }
