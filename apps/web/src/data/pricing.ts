@@ -1,58 +1,40 @@
 export interface Plan {
 	id: string;
 	name: string;
-	price: string;
-	/** What the price is charged per, e.g. a seat or a month. */
-	unit: string;
+	/** Monthly price in US dollars. */
+	price: number;
 	summary: string;
 	features: string[];
-	/** Label of the plan's call to action. */
-	action: string;
-	/** Marks the plan the page steers people towards. */
-	featured?: boolean;
 }
 
-export interface PricingQuestion {
-	question: string;
-	answer: string;
+/** A set of plans aimed at one kind of user. */
+export interface PlanGroup {
+	id: string;
+	label: string;
+	summary: string;
+	plans: Plan[];
 }
 
-const features = ["[Included feature]", "[Included feature]", "[Usage limit]"];
+// Placeholder content, apart from the prices, until the plans are decided.
+const plan = (price: number): Plan => ({
+	id: `plan-${price}`,
+	name: "[Plan name]",
+	price,
+	summary: "[Who this plan is for]",
+	features: ["[Included feature]", "[Included feature]", "[Usage limit]"],
+});
 
-// Placeholder content until real pricing is decided.
-export const plans: Plan[] = [
+export const planGroups: PlanGroup[] = [
 	{
-		id: "plan-1",
-		name: "[Plan name]",
-		price: "[price]",
-		unit: "[billing unit]",
-		summary: "[Who this plan is for]",
-		features,
-		action: "[Call to action]",
+		id: "casual",
+		label: "Casual",
+		summary: "[Who the casual plans suit]",
+		plans: [plan(20), plan(50)],
 	},
 	{
-		id: "plan-2",
-		name: "[Plan name]",
-		price: "[price]",
-		unit: "[billing unit]",
-		summary: "[Who this plan is for]",
-		features: ["Everything in [Plan name]", ...features],
-		action: "[Call to action]",
-		featured: true,
+		id: "professional",
+		label: "Professional",
+		summary: "[Who the professional plans suit]",
+		plans: [plan(100), plan(200), plan(500)],
 	},
-	{
-		id: "plan-3",
-		name: "[Plan name]",
-		price: "[price]",
-		unit: "[billing unit]",
-		summary: "[Who this plan is for]",
-		features: ["Everything in [Plan name]", ...features],
-		action: "[Call to action]",
-	},
-];
-
-export const pricingQuestions: PricingQuestion[] = [
-	{ question: "[Pricing question]", answer: "[Answer]" },
-	{ question: "[Pricing question]", answer: "[Answer]" },
-	{ question: "[Pricing question]", answer: "[Answer]" },
 ];

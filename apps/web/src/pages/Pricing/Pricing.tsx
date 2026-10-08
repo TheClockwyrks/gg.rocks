@@ -1,8 +1,7 @@
 import { PageBody } from "@/components/PageBody/PageBody";
 import { PageIntro } from "@/components/PageIntro/PageIntro";
 import { PlaceholderLink } from "@/components/PlaceholderLink/PlaceholderLink";
-import { plans, pricingQuestions } from "@/data/pricing";
-import { cx } from "@/utils/cx";
+import { planGroups } from "@/data/pricing";
 import styles from "./Pricing.module.scss";
 
 export function Pricing() {
@@ -10,60 +9,55 @@ export function Pricing() {
 		<PageBody rail="pricing">
 			<PageIntro
 				eyebrow="Pricing"
-				title="What gg costs"
+				title="gg comes with Vantacloud"
 			>
-				[One or two sentences on how gg is priced, and what stays free while it
-				is in pre-release.]
+				gg is not sold on its own. A Vantacloud subscription gives you access to
+				gg and other products, on a plan sized for casual or professional use.
 			</PageIntro>
 
-			<ul className={styles.plans}>
-				{plans.map((plan) => (
-					<li
-						key={plan.id}
-						className={cx(styles.plan, plan.featured && styles.featured)}
+			<div className={styles.ledger}>
+				{planGroups.map((group) => (
+					<section
+						key={group.id}
+						className={styles.group}
 					>
-						<div className={styles.heading}>
-							<h2 className={styles.name}>{plan.name}</h2>
-							{plan.featured && (
-								<span className={styles.flag}>Recommended</span>
-							)}
-						</div>
-						<p className={styles.cost}>
-							<span className={styles.price}>{plan.price}</span>
-							<span className={styles.unit}>/ {plan.unit}</span>
-						</p>
-						<p className={styles.summary}>{plan.summary}</p>
-						<ul className={styles.features}>
-							{plan.features.map((feature, index) => (
+						<header className={styles.groupHeading}>
+							<h2 className={styles.groupLabel}>{group.label}</h2>
+							<p className={styles.groupSummary}>{group.summary}</p>
+						</header>
+						<ul className={styles.plans}>
+							{group.plans.map((plan) => (
 								<li
-									key={index}
-									className={styles.feature}
+									key={plan.id}
+									className={styles.plan}
 								>
-									{feature}
+									<p className={styles.cost}>
+										<span className={styles.price}>${plan.price}</span>
+										<span className={styles.unit}>/ month</span>
+									</p>
+									<div className={styles.detail}>
+										<h3 className={styles.name}>{plan.name}</h3>
+										<p className={styles.summary}>{plan.summary}</p>
+										<ul className={styles.features}>
+											{plan.features.map((feature, index) => (
+												<li
+													key={index}
+													className={styles.feature}
+												>
+													{feature}
+												</li>
+											))}
+										</ul>
+									</div>
+									<PlaceholderLink className={styles.action}>
+										Get Started
+									</PlaceholderLink>
 								</li>
 							))}
 						</ul>
-						<PlaceholderLink className={styles.action}>
-							{plan.action}
-						</PlaceholderLink>
-					</li>
+					</section>
 				))}
-			</ul>
-
-			<section className={styles.questions}>
-				<h2 className={styles.questionsTitle}>Questions</h2>
-				<dl className={styles.list}>
-					{pricingQuestions.map((item, index) => (
-						<div
-							key={index}
-							className={styles.item}
-						>
-							<dt className={styles.question}>{item.question}</dt>
-							<dd className={styles.answer}>{item.answer}</dd>
-						</div>
-					))}
-				</dl>
-			</section>
+			</div>
 		</PageBody>
 	);
 }
