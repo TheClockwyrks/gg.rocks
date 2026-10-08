@@ -13,6 +13,7 @@ import { Billing } from "@/pages/Account/Billing";
 import { MyAccount } from "@/pages/Account/MyAccount";
 import { Subscription } from "@/pages/Account/Subscription";
 import { Login, Signup } from "@/pages/Auth/Auth";
+import { Benchmarks } from "@/pages/Benchmarks/Benchmarks";
 import { Changelog } from "@/pages/Changelog/Changelog";
 import { ComingSoon, NotFound } from "@/pages/ComingSoon/ComingSoon";
 import { Experiments } from "@/pages/Experiments/Experiments";
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
 					{ path: "/experiments/:slug", element: <WriteUp /> },
 					{ path: "/pricing", element: <Pricing /> },
 					{ path: "/changelog", element: <Changelog /> },
-					{ path: "/benchmarks", element: <ComingSoon section="benchmarks" /> },
+					{ path: "/benchmarks", element: <Benchmarks /> },
 					{ path: "/docs", element: <ComingSoon section="docs" /> },
 					{ path: "/download", element: <ComingSoon section="download" /> },
 					{

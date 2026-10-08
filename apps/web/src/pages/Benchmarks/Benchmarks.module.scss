@@ -1,0 +1,38 @@
+@use "@/styles" as *;
+
+// Shape of the space held for a build while its run record loads; matches
+// the player's stage so the page does not jump.
+$stage-ratio: 16 / 9;
+
+.build {
+	display: flex;
+	flex-direction: column;
+	gap: $s-5;
+	max-width: $layout-content;
+}
+
+.heading {
+	display: flex;
+	flex-direction: column;
+	gap: $s-1-5;
+}
+
+.title {
+	@include text-title-section;
+}
+
+.summary {
+	@include text-lead;
+}
+
+.status {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: $stage-ratio;
+	margin: 0;
+	border: $border;
+	border-radius: $radius-lg;
+
+	@include text-mono($text-13);
+}
