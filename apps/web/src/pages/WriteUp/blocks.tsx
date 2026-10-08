@@ -71,63 +71,10 @@ export function ComparedAgainst({ baselines, note }: ComparedAgainstProps) {
 	);
 }
 
-// --- Bars ------------------------------------------------------------------
-
-interface BarRowProps {
-	label: string;
-	/** Summary of the bar, shown at its end. */
-	value: string;
-	highlight?: boolean;
-	children: ReactNode;
-}
-
-/** One labelled bar, split into segments, in a set of comparable bars. */
-function BarRow({ label, value, highlight, children }: BarRowProps) {
-	return (
-		<div className={cx(styles.barRow, highlight && styles.highlight)}>
-			<span className={styles.barLabel}>{label}</span>
-			<div className={styles.bar}>{children}</div>
-			<span className={styles.barValue}>{value}</span>
-		</div>
-	);
-}
+// --- Rating columns ---------------------------------------------------------
 
 const share = (value: number): CSSProperties =>
 	({ "--share": value }) as CSSProperties;
-
-export interface TokenBar {
-	label: string;
-	/** Percentage of tokens served from cache, 0-100. */
-	cached: number;
-	highlight?: boolean;
-}
-
-/** How each harness's tokens split between cached and uncached. */
-export function TokenBars({ bars }: { bars: TokenBar[] }) {
-	return (
-		<div className={styles.bars}>
-			{bars.map((bar) => (
-				<BarRow
-					key={bar.label}
-					label={bar.label}
-					value={`${bar.cached}% cached`}
-					highlight={bar.highlight}
-				>
-					<span
-						className={cx(styles.segment, styles.cached)}
-						style={share(bar.cached)}
-						title={`Cached: ${bar.cached}%`}
-					/>
-					<span
-						className={cx(styles.segment, styles.uncached)}
-						style={share(100 - bar.cached)}
-						title={`Uncached: ${100 - bar.cached}%`}
-					/>
-				</BarRow>
-			))}
-		</div>
-	);
-}
 
 /** Segments smaller than this share of the whole have no room for a label. */
 const MIN_LABELLED_SHARE = 8;

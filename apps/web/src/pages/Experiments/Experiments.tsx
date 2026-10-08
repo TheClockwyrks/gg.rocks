@@ -18,10 +18,7 @@ const filters: { id: Filter; label: string }[] = [
 export function Experiments() {
 	const [filter, setFilter] = useState<Filter>("all");
 	const visible = experiments.filter(
-		// The template is not a real experiment, so it only shows under "All".
-		(experiment) =>
-			filter === "all" ||
-			(experiment.status === filter && !experiment.template),
+		(experiment) => filter === "all" || experiment.status === filter,
 	);
 
 	return (

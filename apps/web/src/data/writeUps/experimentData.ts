@@ -1,7 +1,7 @@
 import type { HarnessResult, LineageStep, WriteUpData } from "./types";
 
-// The shape of the experiment.json that scripts/gg-experiment-data.py writes
-// to run-data/. A null figure means "no data", never zero.
+// The shape of the experiment.json that
+// scripts/experiments/gg-experiment-data.py writes to run-data/. A null figure means "no data", never zero.
 
 export type MetricId =
 	| "passRate"
@@ -42,10 +42,11 @@ export interface ComparisonScope {
 	subject: Side;
 	other: Side;
 	metrics: Record<MetricId, PairedMetric>;
+	/** Each case carries only the metrics the case by case grid can show. */
 	cases: {
 		case: string;
 		pairs: number;
-		metrics: Record<MetricId, PairedMetric>;
+		metrics: Partial<Record<MetricId, PairedMetric>>;
 	}[];
 }
 
@@ -55,7 +56,7 @@ export interface SubjectScope extends Side {
 	cases: {
 		case: string;
 		pairs: number;
-		metrics: Record<MetricId, number | null>;
+		metrics: Partial<Record<MetricId, number | null>>;
 	}[];
 }
 
@@ -72,11 +73,9 @@ export interface Series {
 export interface ExperimentRun {
 	series: string;
 	model: string;
-	case: string;
 	category: Category;
 	/** A fraction, 0-1. */
 	passRate: number | null;
-	costUsd: number | null;
 }
 
 export interface ExperimentFile {
@@ -198,22 +197,59 @@ export function scopeResults(
 }
 
 /**
- * The figures the experiments index and the verdict quote: gg and its previous
- * build on the pairs both ran, so that the change between them is like for like.
+ * The shape of summary.json: the few figures the experiments index and the
+ * verdict quote, which ship with every page. gg and its previous build are
+ * measured on the pairs both ran, so the change between them is like for like.
  */
-function summaryResults(file: ExperimentFile): HarnessResult[] {
-	const results = scopeResults(file, ALL_MODELS);
-	const [subject] = file.series;
-	const baseline = file.comparisons.find(
-		(comparison) => comparison.against === "gg-previous",
-	)?.scopes[ALL_MODELS];
-	if (subject && baseline && baseline.pairs > 0)
-		results[0] = result(
-			subject,
-			pick(baseline.metrics, "subject"),
-			baseline.subject,
-		);
-	return results;
+export interface SummaryFile {
+	pulledAt: string;
+	/** Every run was invented, to show the page with a full set of data. */
+	synthetic: boolean;
+	models: number;
+	cases: number;
+	pairs: number;
+	runs: number;
+	experiment: SummaryFigures;
+	/** Null until the previous build has runs on a pair this one ran. */
+	baseline: SummaryFigures | null;
+}
+
+interface SummaryFigures {
+	version: string | null;
+	passRate: number | null;
+	costUsd: number | null;
+	totalTokens: number | null;
+	cachedInputTokens: number | null;
+}
+
+function summaryResult(
+	figures: SummaryFigures,
+	role: HarnessResult["role"],
+): HarnessResult {
+	const measure = (value: number | null, per = 1) =>
+		value === null ? null : { value: value / per };
+	return {
+		id: role,
+		name: "gg",
+		version: figures.version,
+		role,
+		passRate: measure(figures.passRate, 0.01),
+		costPerRun: measure(figures.costUsd),
+		tokensPerRun: measure(figures.totalTokens, 1000),
+		cachedShare:
+			figures.cachedInputTokens !== null && figures.totalTokens
+				? Math.round(
+						(figures.cachedInputTokens / figures.totalTokens) * 100,
+					)
+				: null,
+		functionality: {
+			broken: 0,
+			scuffed: 0,
+			passable: 0,
+			great: 0,
+			flawless: 0,
+		},
+	};
 }
 
 /** The parts of a write-up that are written rather than measured. */
@@ -229,13 +265,20 @@ interface Written {
 	dataLinks: string[];
 }
 
-/** A write-up whose every number comes from one experiment.json. */
+const count = (n: number, one: string, many: string) =>
+	`${n} ${n === 1 ? one : many}`;
+
+/**
+ * A write-up whose every number comes from one pull: its summary, which is
+ * part of the site, and its experiment.json, which `load` fetches when the
+ * page is opened.
+ */
 export function comparisonWriteUp(
-	file: ExperimentFile,
+	summary: SummaryFile,
+	load: () => Promise<{ default: unknown }>,
 	written: Written,
 ): WriteUpData {
-	const own = file.subject.scopes[ALL_MODELS];
-	const pulledOn = new Date(file.meta.pulledAt).toLocaleDateString("en-GB", {
+	const pulledOn = new Date(summary.pulledAt).toLocaleDateString("en-GB", {
 		day: "numeric",
 		month: "short",
 		year: "numeric",
@@ -243,10 +286,16 @@ export function comparisonWriteUp(
 	});
 	return {
 		...written,
+		synthetic: summary.synthetic,
 		period: `runs pulled ${pulledOn}`,
-		sample: `gg ran ${file.models.length} ${file.models.length === 1 ? "model" : "models"} on ${file.cases.length} ${file.cases.length === 1 ? "test case" : "test cases"}: ${own?.pairs ?? 0} model and case pairs, ${own?.runs ?? 0} runs. Every other harness is measured only on the pairs it shares with gg, averaged per pair and then across pairs.`,
+		sample: `gg ran ${count(summary.models, "model", "models")} on ${count(summary.cases, "test case", "test cases")}: ${count(summary.pairs, "model and case pair", "model and case pairs")}, ${count(summary.runs, "run", "runs")}. Every other harness is measured only on the pairs it shares with gg, averaged per pair and then across pairs.`,
 		spread: "Intervals are 95% bootstrap ranges over the shared pairs; none is drawn below three pairs.",
-		results: summaryResults(file),
-		comparison: file,
+		results: [
+			summaryResult(summary.experiment, "experiment"),
+			...(summary.baseline
+				? [summaryResult(summary.baseline, "baseline")]
+				: []),
+		],
+		load: () => load().then((module) => module.default as ExperimentFile),
 	};
 }

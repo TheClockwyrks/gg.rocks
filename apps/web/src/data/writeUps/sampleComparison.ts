@@ -1,15 +1,16 @@
-import file from "@run-data/sample/experiment.json";
-import { comparisonWriteUp, type ExperimentFile } from "./experimentData";
+import summary from "@run-data/sample/summary.json";
+import { comparisonWriteUp } from "./experimentData";
 
 const name = "[Sample] gg 0.8.0 against the field";
 
 /**
  * A mock entry: every run behind it was invented by
- * scripts/gg-experiment-sample.py, to show the comparison layout with enough
+ * scripts/experiments/gg-experiment-sample.py, to show the comparison layout with enough
  * runs to fill every chart.
  */
 export const sampleComparison = comparisonWriteUp(
-	file as unknown as ExperimentFile,
+	summary,
+	() => import("@run-data/sample/experiment.json"),
 	{
 		slug: "sample-comparison",
 		name,

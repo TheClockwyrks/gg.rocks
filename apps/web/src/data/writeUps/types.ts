@@ -43,8 +43,6 @@ export interface HarnessResult {
 	 * missing until the previous build has runs of its own.
 	 */
 	role: "experiment" | "baseline" | "other";
-	/** When another harness's runs were taken, e.g. "runs from Sep 2026". */
-	snapshot?: string;
 	/** How many runs the figures cover, and how many of those have a score. */
 	runs?: { total: number; scored: number };
 	/** Percentage of test runs that passed. Null figures have no data. */
@@ -73,13 +71,11 @@ export interface LineageStep {
 }
 
 /**
- * Everything a standard experiment write-up needs. The numbers come from The
+ * Everything an experiment write-up needs. The numbers come from The
  * Test Cabinet; the prose is written once the experiment has concluded.
  */
 export interface WriteUpData {
 	slug: string;
-	/** Marks the blank-slate entry that shows how a write-up is filled in. */
-	template?: boolean;
 	name: string;
 	status: "shipped" | "retired";
 	/** Outcome as shown in the status pill. */
@@ -101,12 +97,13 @@ export interface WriteUpData {
 	discussion: string[];
 	lineage: LineageStep[];
 	dataLinks: string[];
+	/** Every run behind the page was invented, to show the layout. */
+	synthetic: boolean;
 	/**
-	 * The full pull behind the numbers. A write-up that has one is drawn with
-	 * the comparison layout, which charts gg against each harness on the runs
-	 * they share.
+	 * Fetches the full pull the charts are drawn from. It is kept out of the
+	 * site's own bundle, so that a new experiment costs nothing until opened.
 	 */
-	comparison?: ExperimentFile;
+	load: () => Promise<ExperimentFile>;
 }
 
 export const writeUpPath = (slug: string): string => `/experiments/${slug}`;

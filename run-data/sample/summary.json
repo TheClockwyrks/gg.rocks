@@ -1,0 +1,22 @@
+{
+ "pulledAt": "2026-10-07T00:00:00+00:00",
+ "synthetic": true,
+ "models": 3,
+ "cases": 12,
+ "pairs": 36,
+ "runs": 144,
+ "experiment": {
+  "version": "0.8.0",
+  "passRate": 0.8445,
+  "costUsd": 2.888,
+  "totalTokens": 1208000.0,
+  "cachedInputTokens": 1111000.0
+ },
+ "baseline": {
+  "version": "0.7.0",
+  "passRate": 0.8076,
+  "costUsd": 4.02,
+  "totalTokens": 1604000.0,
+  "cachedInputTokens": 1399000.0
+ }
+}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DataTable } from "@/components/DataTable/DataTable";
 import { Figure } from "@/components/Figure/Figure";
 import { SegmentedControl } from "@/components/SegmentedControl/SegmentedControl";
@@ -13,6 +13,7 @@ import {
 } from "@/data/writeUps/experimentData";
 import {
 	baselineResult,
+	experimentResult,
 	harnessLabel,
 	outcomes,
 	type WriteUpData,
@@ -72,17 +73,70 @@ const percent = (value: number | null) =>
 	value === null ? NO_DATA : `${Math.round(value * 100)}%`;
 
 /**
- * The experiment write-up that compares gg with each harness on the runs they
- * share. The frame and every figure are fixed; a new experiment supplies its
- * experiment.json and prose (see `data/writeUps`).
+ * The experiment write-up: gg against each harness on the runs they share.
+ * The frame and every figure are fixed; a new experiment supplies its pull
+ * and prose (see `data/writeUps`). The verdict is drawn at once from the
+ * summary, and the rest once the pull behind the charts has been fetched.
  */
-export function ComparisonWriteUp({
-	data,
-	file,
-}: {
-	data: WriteUpData;
-	file: ExperimentFile;
-}) {
+export function ComparisonWriteUp({ data }: { data: WriteUpData }) {
+	const [file, setFile] = useState<ExperimentFile | null>(null);
+	const [failed, setFailed] = useState(false);
+	useEffect(() => {
+		let current = true;
+		data.load().then(
+			(loaded) => current && setFile(loaded),
+			() => current && setFailed(true),
+		);
+		return () => {
+			current = false;
+		};
+	}, [data]);
+
+	const baseline = baselineResult(data);
+	const deltas = writeUpDeltas(data);
+
+	return (
+		<WriteUpFrame
+			name={data.name}
+			status={data.status}
+			outcome={data.outcome}
+			timeline={`${data.period} · tested on gg ${experimentResult(data).version ?? NO_DATA}`}
+			notice={data.synthetic ? SAMPLE_NOTICE : undefined}
+			toc={toc}
+		>
+			<Verdict
+				status={data.status}
+				summary={data.verdict}
+				stats={[
+					{ value: deltas.passRate, label: "Pass rate" },
+					{ value: deltas.cost, label: "Cost per run" },
+					{ value: deltas.tokens, label: "Tokens per run" },
+					{ value: deltas.cacheHit, label: "Cached share" },
+				]}
+				basis={
+					baseline
+						? `Deltas vs. ${harnessLabel(baseline)}, on the runs both builds share. ${data.sample}`
+						: `No earlier gg build to measure against yet. ${data.sample}`
+				}
+			/>
+			{file ? (
+				<Sections
+					data={data}
+					file={file}
+				/>
+			) : (
+				<Method>
+					{failed
+						? "The runs behind this page could not be loaded."
+						: "Loading the runs behind this page…"}
+				</Method>
+			)}
+		</WriteUpFrame>
+	);
+}
+
+/** Everything below the verdict, which needs the full pull. */
+function Sections({ data, file }: { data: WriteUpData; file: ExperimentFile }) {
 	const [scope, setScope] = useState(ALL_MODELS);
 	const [metricId, setMetricId] = useState(metrics[0]!.id);
 	const metric = metrics.find((entry) => entry.id === metricId) ?? metrics[0]!;
@@ -104,8 +158,6 @@ export function ComparisonWriteUp({
 		});
 	const sharing = compared.filter((entry) => (entry.scope?.pairs ?? 0) > 0);
 	const results = scopeResults(file, scope);
-	const baseline = baselineResult(data);
-	const deltas = writeUpDeltas(data);
 	const model = file.models.find((entry) => entry.id === scope);
 	const where = model ? `on ${model.name}` : "across the models gg ran";
 
@@ -143,30 +195,7 @@ export function ComparisonWriteUp({
 	);
 
 	return (
-		<WriteUpFrame
-			name={data.name}
-			status={data.status}
-			outcome={data.outcome}
-			timeline={`${data.period} · tested on gg ${file.meta.currentVersion ?? NO_DATA}`}
-			notice={file.meta.synthetic ? SAMPLE_NOTICE : undefined}
-			toc={toc}
-		>
-			<Verdict
-				status={data.status}
-				summary={data.verdict}
-				stats={[
-					{ value: deltas.passRate, label: "Pass rate" },
-					{ value: deltas.cost, label: "Cost per run" },
-					{ value: deltas.tokens, label: "Tokens per run" },
-					{ value: deltas.cacheHit, label: "Cached share" },
-				]}
-				basis={
-					baseline
-						? `Deltas vs. ${harnessLabel(baseline)}, on the runs both builds share. ${data.sample}`
-						: `No earlier gg build to measure against yet. ${data.sample}`
-				}
-			/>
-
+		<>
 			<ComparedAgainst
 				baselines={others
 					.filter((series) => series.runs > 0)
@@ -431,6 +460,6 @@ export function ComparisonWriteUp({
 			>
 				<DataLinks links={data.dataLinks} />
 			</Section>
-		</WriteUpFrame>
+		</>
 	);
 }
