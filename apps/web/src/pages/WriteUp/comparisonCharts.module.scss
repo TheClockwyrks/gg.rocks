@@ -381,26 +381,57 @@ $panel-height: 150px;
 	}
 }
 
-// --- Filters ----------------------------------------------------------------
+// --- Model bar -------------------------------------------------------------
 
-.filters {
+// The model every figure in the results is limited to. It stays pinned under
+// the top bar (and, on smaller screens, the contents row) for as long as the
+// results are on screen, and lets go when the next section arrives.
+.modelBar {
+	position: sticky;
+	top: $layout-header-height + $tap-target;
+	z-index: $z-header - 2;
 	display: flex;
-	flex-direction: column;
-	gap: $s-3;
-	padding: $s-4;
-	border: $border-soft;
-	border-radius: $radius-lg;
-}
-
-.filter {
-	display: flex;
-	flex-wrap: wrap;
 	align-items: center;
-	gap: $s-2 $s-4;
+	gap: $s-3;
+	// Runs to the edges of the screen, like the contents row above it.
+	margin-inline: -$s-4;
+	padding: $s-1-5 $s-4;
+	border-bottom: $border;
+	background: $color-surface;
+
+	@include up($bp-sm) {
+		margin-inline: -$s-8;
+		padding-inline: $s-8;
+	}
+
+	@include up($bp-lg) {
+		top: $layout-header-height;
+		margin-inline: 0;
+		padding: $s-2-5 0;
+	}
 }
 
-.filterLabel {
-	min-width: $s-16;
+.modelBarLabel {
+	flex: none;
 
 	@include text-label;
+}
+
+// One row however many models there are: on a narrow screen the options
+// scroll sideways rather than wrap and take more of the screen.
+.modelBarOptions {
+	// The offset parent of its options, so one can be scrolled to.
+	position: relative;
+	min-width: 0;
+	overflow-x: auto;
+	scrollbar-width: none;
+
+	[role="group"] {
+		flex-wrap: nowrap;
+	}
+
+	button {
+		flex: none;
+		white-space: nowrap;
+	}
 }

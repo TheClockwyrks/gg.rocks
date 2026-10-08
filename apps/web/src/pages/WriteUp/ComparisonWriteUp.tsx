@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { DataTable } from "@/components/DataTable/DataTable";
-import { Figure } from "@/components/Figure/Figure";
+import { Figure, type LegendItem } from "@/components/Figure/Figure";
 import { SegmentedControl } from "@/components/SegmentedControl/SegmentedControl";
 import { writeUpDeltas } from "@/data/experiments";
 import {
@@ -36,6 +36,7 @@ import {
 	StackedBars,
 	VersionTrend,
 	type Compared,
+	type Metric,
 } from "./comparisonCharts";
 import styles from "./comparisonCharts.module.scss";
 import { PassRateScatter } from "./PassRateScatter";
@@ -135,11 +136,62 @@ export function ComparisonWriteUp({ data }: { data: WriteUpData }) {
 	);
 }
 
+interface MeasuredFigureProps {
+	title: string;
+	hint: string;
+	legend: LegendItem[];
+	note: string;
+	children: (metric: Metric) => ReactNode;
+}
+
+/**
+ * A figure that can show any one measure. It keeps its own choice, with the
+ * control beside the chart it changes, so the reader never has to scroll back
+ * to a shared one.
+ */
+function MeasuredFigure({
+	title,
+	hint,
+	legend,
+	note,
+	children,
+}: MeasuredFigureProps) {
+	const [metricId, setMetricId] = useState(metrics[0]!.id);
+	const metric = metrics.find((entry) => entry.id === metricId) ?? metrics[0]!;
+	return (
+		<Figure
+			title={`${title}: ${metric.label.toLowerCase()}`}
+			hint={hint}
+			legend={legend}
+			note={note}
+		>
+			<SegmentedControl
+				label={`Measure shown in “${title}”`}
+				options={metrics}
+				value={metricId}
+				onChange={setMetricId}
+				size="small"
+			/>
+			{children(metric)}
+		</Figure>
+	);
+}
+
 /** Everything below the verdict, which needs the full pull. */
 function Sections({ data, file }: { data: WriteUpData; file: ExperimentFile }) {
 	const [scope, setScope] = useState(ALL_MODELS);
-	const [metricId, setMetricId] = useState(metrics[0]!.id);
-	const metric = metrics.find((entry) => entry.id === metricId) ?? metrics[0]!;
+	// Where the models do not all fit, keep the chosen one in view: it is the
+	// only sign of what the figures are showing.
+	const options = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const row = options.current;
+		const chosen = row?.querySelector<HTMLElement>('[aria-pressed="true"]');
+		if (row && chosen)
+			row.scrollTo({
+				left: chosen.offsetLeft - (row.clientWidth - chosen.offsetWidth) / 2,
+				behavior: "smooth",
+			});
+	}, [scope]);
 
 	const [subject, ...others] = file.series;
 	const own = file.subject.scopes[scope];
@@ -226,11 +278,14 @@ function Sections({ data, file }: { data: WriteUpData; file: ExperimentFile }) {
 				}
 				spacious
 			>
-				<div className={styles.filters}>
-					<div className={styles.filter}>
-						<span className={styles.filterLabel}>Model</span>
+				<div className={styles.modelBar}>
+					<span className={styles.modelBarLabel}>Model</span>
+					<div
+						ref={options}
+						className={styles.modelBarOptions}
+					>
 						<SegmentedControl
-							label="Model the figures below are limited to"
+							label="Model every figure in the results is limited to"
 							options={[
 								{ id: ALL_MODELS, label: "All models" },
 								...file.models.map(({ id, name }) => ({ id, label: name })),
@@ -240,20 +295,10 @@ function Sections({ data, file }: { data: WriteUpData; file: ExperimentFile }) {
 							size="small"
 						/>
 					</div>
-					<div className={styles.filter}>
-						<span className={styles.filterLabel}>Measure</span>
-						<SegmentedControl
-							label="Measure the difference charts show"
-							options={metrics}
-							value={metricId}
-							onChange={setMetricId}
-							size="small"
-						/>
-					</div>
 				</div>
 
-				<Figure
-					title={`gg against each harness: ${metric.label.toLowerCase()}`}
+				<MeasuredFigure
+					title="gg against each harness"
 					hint={`${where}, on the runs they share`}
 					legend={[
 						{ label: "Clear of zero", swatch: "dot", tone: "accent" },
@@ -262,11 +307,13 @@ function Sections({ data, file }: { data: WriteUpData; file: ExperimentFile }) {
 					]}
 					note="Each row is gg minus that harness, averaged over the model and test case pairs both ran. To the right is better for gg whichever the measure. A pair is one model on one test case."
 				>
-					<DifferencePlot
-						rows={compared}
-						metric={metric}
-					/>
-				</Figure>
+					{(metric) => (
+						<DifferencePlot
+							rows={compared}
+							metric={metric}
+						/>
+					)}
+				</MeasuredFigure>
 
 				<Figure
 					title="Headline numbers"
@@ -301,7 +348,7 @@ function Sections({ data, file }: { data: WriteUpData; file: ExperimentFile }) {
 						{ label: "gg builds", swatch: "diamond", tone: "accent" },
 						{ label: "Other harnesses", swatch: "dot", tone: "info" },
 					]}
-					note="Hover or focus a point for its exact values. Pick a single model above to hold the model fixed."
+					note="Hover or focus a point for its exact values. Pick a single model to hold the model fixed."
 				>
 					<PassRateScatter results={results} />
 				</Figure>
@@ -371,8 +418,8 @@ function Sections({ data, file }: { data: WriteUpData; file: ExperimentFile }) {
 					/>
 				</Figure>
 
-				<Figure
-					title={`Case by case: ${metric.label.toLowerCase()}`}
+				<MeasuredFigure
+					title="Case by case"
 					hint={where}
 					legend={[
 						{ label: "gg ahead", swatch: "block", tone: "great" },
@@ -380,13 +427,15 @@ function Sections({ data, file }: { data: WriteUpData; file: ExperimentFile }) {
 					]}
 					note="The gg column is gg's own figure on each test case. Every other column is gg minus that harness on the case; the stronger the colour, the wider the gap. A dash means the harness has no run of that case on a model gg ran."
 				>
-					<CaseGrid
-						file={file}
-						scope={scope}
-						metric={metric}
-						columns={sharing}
-					/>
-				</Figure>
+					{(metric) => (
+						<CaseGrid
+							file={file}
+							scope={scope}
+							metric={metric}
+							columns={sharing}
+						/>
+					)}
+				</MeasuredFigure>
 
 				<Figure
 					title="Where the tokens went"
