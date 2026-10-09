@@ -1,7 +1,8 @@
+@use "sass:math";
 @use "@/styles" as *;
 
 // Shape of the stage in the page; builds scale themselves to fit it.
-$stage-ratio: 16 / 9;
+$stage-ratio: math.div(16, 9);
 
 .player {
 	display: flex;

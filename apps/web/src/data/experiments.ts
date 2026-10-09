@@ -45,8 +45,8 @@ const placeholderDeltas: ExperimentDeltas = {
 };
 
 /**
- * Change from the baseline gg build to the build under test; every delta is
- * blank while there is no baseline to measure against.
+ * Change from the last gg build that shipped to the build under test; every
+ * delta is blank where the two have no runs in common.
  */
 export function writeUpDeltas(data: WriteUpData): ExperimentDeltas {
 	const from = baselineResult(data);

@@ -1,9 +1,11 @@
 /**
  * The parts of a Test Cabinet run record the site reads. The record also
- * carries the run's timings and validation results.
+ * carries the run's duration and validation results.
  */
 export interface Run {
 	id: string;
+	/** When the run ended, as an ISO timestamp. */
+	finishedAt: string;
 	links: {
 		playableBuild: string;
 		sourceRepo?: string;
@@ -31,8 +33,15 @@ export async function fetchRun(runUrl: string): Promise<Run> {
 		throw new Error(`Run request failed with status ${response.status}`);
 	}
 	const run = (await response.json()) as Partial<Run>;
-	if (!run.links?.playableBuild || !run.subject || !run.metrics) {
-		throw new Error("Run record is missing its build, subject or metrics");
+	if (
+		!run.links?.playableBuild ||
+		!run.subject ||
+		!run.metrics ||
+		!run.finishedAt
+	) {
+		throw new Error(
+			"Run record is missing its build, subject, metrics or date",
+		);
 	}
 	return run as Run;
 }

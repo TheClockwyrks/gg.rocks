@@ -1,0 +1,14 @@
+@use "@/styles" as *;
+
+.opening {
+	display: flex;
+	flex-direction: column;
+	gap: $s-4;
+}
+
+// Which build the figures are for and when they were gathered.
+.snapshot {
+	margin: 0;
+
+	@include text-mono($text-13);
+}

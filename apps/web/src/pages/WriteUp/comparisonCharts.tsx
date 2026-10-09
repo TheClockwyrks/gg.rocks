@@ -3,12 +3,13 @@ import { FigureScroll } from "@/components/Figure/Figure";
 import {
 	seriesLabel,
 	type ComparisonScope,
+	type ComparisonFile,
 	type ExperimentFile,
-	type ExperimentRun,
+	type PulledRun,
 	type MetricId,
 	type PairedMetric,
 	type Series,
-} from "@/data/writeUps/experimentData";
+} from "@/data/runData";
 import { cx } from "@/utils/cx";
 import {
 	formatChange,
@@ -313,7 +314,7 @@ export function RunStrip({
 	runs,
 }: {
 	series: Series[];
-	runs: ExperimentRun[];
+	runs: PulledRun[];
 }) {
 	return (
 		<div className={styles.rows}>
@@ -333,7 +334,7 @@ export function RunStrip({
 						key={entry.id}
 						label={seriesLabel(entry)}
 						value={`middle half ${low.toFixed(0)}–${high.toFixed(0)}%`}
-						highlight={entry.role === "experiment"}
+						highlight={entry.role === "subject"}
 					>
 						<div
 							className={styles.strip}
@@ -352,7 +353,7 @@ export function RunStrip({
 									className={cx(
 										styles.run,
 										run.category === "didNotFinish" && styles.failed,
-										entry.role === "experiment" && styles.current,
+										entry.role === "subject" && styles.current,
 									)}
 									style={
 										{
@@ -393,7 +394,7 @@ export function CaseGrid({
 	metric,
 	columns,
 }: {
-	file: ExperimentFile;
+	file: ComparisonFile;
 	scope: string;
 	metric: Metric;
 	columns: Compared[];

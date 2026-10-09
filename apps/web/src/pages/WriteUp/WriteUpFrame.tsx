@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router";
+import { PageNotice } from "@/components/PageNotice/PageNotice";
 import { StatusPill } from "@/components/StatusPill/StatusPill";
 import type { ExperimentStatus } from "@/data/experiments";
 import { sections } from "@/data/site";
@@ -36,7 +37,7 @@ export function WriteUpFrame({
 			<Toc items={toc} />
 			<main className={styles.article}>
 				<header className={styles.header}>
-					{notice && <p className={styles.notice}>{notice}</p>}
+					{notice && <PageNotice>{notice}</PageNotice>}
 					<span className={styles.breadcrumb}>
 						<Link to={sections.experiments.path}>
 							{sections.experiments.label}

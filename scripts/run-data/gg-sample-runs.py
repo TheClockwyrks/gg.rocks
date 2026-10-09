@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""A made-up runs.json, so the experiment page can be looked at before gg has
-enough real runs to fill it.
+"""A made-up runs.json, so the benchmarks page and an experiment write-up can
+be looked at before gg has enough real runs to fill them.
 
-    scripts/experiments/gg-experiment-sample.py /tmp/sample-runs.json
-    scripts/experiments/gg-experiment-data.py --from-runs /tmp/sample-runs.json --out run-data/sample
+    scripts/run-data/gg-sample-runs.py /tmp/sample-runs.json
+    scripts/run-data/gg-benchmark-data.py --from-runs /tmp/sample-runs.json --out run-data/sample/benchmark
+    scripts/run-data/gg-experiment-data.py --from-runs /tmp/sample-runs.json --baseline 0.7.0 --out run-data/sample/experiment
 
 Every run in it is invented: four gg versions and four other harnesses over
 three models and twelve test cases, with a few repeats of each. It is marked
-`synthetic`, which the page reads to say so. The same seed gives the same file.
+`synthetic`, which the pages read to say so. The same seed gives the same file.
 """
 
 import json

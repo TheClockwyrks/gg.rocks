@@ -30,7 +30,7 @@ export function DesignChange() {
 					{ value: "[±x%]", label: "[The metric this experiment targeted]" },
 					{ value: "[±x%]", label: "Cost per run" },
 				]}
-				basis="Compared against gg [previous build] only. Averages over [n] runs on [k] selected test cases."
+				basis="Compared against gg [last shipped build] only. Averages over [n] runs on [k] selected test cases."
 			/>
 
 			<Section
@@ -44,7 +44,7 @@ export function DesignChange() {
 				<BeforeAfter
 					variants={[
 						{
-							label: "Before · gg [previous build]",
+							label: "Before · gg [last shipped build]",
 							steps: [
 								{ label: "[Component]" },
 								{ label: "[Component being changed]" },
@@ -81,7 +81,11 @@ export function DesignChange() {
 				<Figure
 					title="[Metric] by [variable]"
 					legend={[
-						{ label: "gg [previous build]", swatch: "line", tone: "subtle" },
+						{
+							label: "gg [last shipped build]",
+							swatch: "line",
+							tone: "subtle",
+						},
 						{ label: "This experiment", swatch: "line", tone: "accent" },
 					]}
 					note="Illustrative shape. Hover shows values at each point; a table view sits behind a toggle."

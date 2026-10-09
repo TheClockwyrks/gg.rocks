@@ -1,8 +1,9 @@
+@use "sass:math";
 @use "@/styles" as *;
 
 // Shape of the space held for a build while its run record loads; matches
 // the player's stage so the page does not jump.
-$stage-ratio: 16 / 9;
+$stage-ratio: math.div(16, 9);
 
 .build {
 	display: flex;
@@ -11,7 +12,9 @@ $stage-ratio: 16 / 9;
 }
 
 .title {
-	@include text-title-section;
+	margin: 0;
+
+	@include text-title-figure;
 }
 
 .details {

@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { PlayableBuild } from "@/components/PlayableBuild/PlayableBuild";
 import { fetchRun, runPageUrl, type Run } from "@/services/runs";
-import { formatDollars, formatThousands } from "@/utils/format";
+import { formatDay, formatDollars, formatThousands } from "@/utils/format";
 import { useLoaded } from "@/utils/useLoaded";
 import styles from "./BuildShowcase.module.scss";
 
@@ -23,7 +23,8 @@ const sum = (a: number | null, b: number | null): number | null =>
 const tokens = (count: number | null): string =>
 	formatThousands(count == null ? null : count / 1000);
 
-function facts({ subject, metrics }: Run): [label: string, value: string][] {
+function facts(run: Run): [label: string, value: string][] {
+	const { subject, metrics } = run;
 	const { cachedInput, uncachedInput, output } = metrics.tokens;
 	return [
 		["Harness", `${subject.harnessSlug} ${subject.harnessVersion}`],
@@ -31,12 +32,13 @@ function facts({ subject, metrics }: Run): [label: string, value: string][] {
 		["Input tokens", tokens(sum(cachedInput, uncachedInput))],
 		["Output tokens", tokens(output)],
 		["Cost", formatDollars(metrics.cost.actual)],
+		["Run on", formatDay(run.finishedAt)],
 	];
 }
 
 /**
  * A finished build from a Test Cabinet run: playable, with the run's harness,
- * model, token use and cost. Everything shown is loaded from the run record.
+ * model, token use, cost and date. Everything shown is loaded from the run record.
  */
 export function BuildShowcase({ runUrl }: BuildShowcaseProps) {
 	const load = useCallback(() => fetchRun(runUrl), [runUrl]);
@@ -59,7 +61,7 @@ export function BuildShowcase({ runUrl }: BuildShowcaseProps) {
 
 	return (
 		<section className={styles.build}>
-			<h2 className={styles.title}>{title}</h2>
+			<h3 className={styles.title}>{title}</h3>
 			<PlayableBuild
 				title={title}
 				src={run.data.links.playableBuild}

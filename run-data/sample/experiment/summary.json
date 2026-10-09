@@ -5,6 +5,7 @@
  "cases": 12,
  "pairs": 36,
  "runs": 144,
+ "sharedPairs": 36,
  "experiment": {
   "version": "0.8.0",
   "passRate": 0.8445,
