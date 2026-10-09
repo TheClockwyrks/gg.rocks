@@ -16,7 +16,6 @@ import {
 	Prose,
 	Section,
 } from "./blocks";
-import { VersionTrend } from "./comparisonCharts";
 import { ResultFigures } from "./ResultFigures";
 import { Verdict } from "./Verdict";
 import { WriteUpFrame } from "./WriteUpFrame";
@@ -25,7 +24,6 @@ const toc = [
 	{ id: "verdict", label: "Verdict" },
 	{ id: "changed", label: "What changed" },
 	{ id: "results", label: "Results" },
-	{ id: "versions", label: "Versions" },
 	{ id: "discussion", label: "Discussion" },
 	{ id: "lineage", label: "Lineage" },
 	{ id: "data", label: "Data" },
@@ -135,23 +133,6 @@ function Sections({ data, file }: { data: WriteUpData; file: ExperimentFile }) {
 				<ResultFigures
 					file={file}
 					against="baseline"
-				/>
-			</Section>
-
-			<Section
-				id="versions"
-				title="Version by version"
-				lead={
-					<Method>
-						{file.trend.basis === "shared"
-							? "Every gg version on the model and test case pairs all of them ran, so the line moves only when gg does."
-							: "No pair was run by every gg version, so each version is averaged over its own runs and the line also reflects what each was run on."}
-					</Method>
-				}
-			>
-				<VersionTrend
-					trend={file.trend}
-					current={file.meta.currentVersion}
 				/>
 			</Section>
 

@@ -104,7 +104,7 @@ check $B "the newest gg version is current" 'd["meta"]["currentVersion"]' "2.0.0
 check $B "the time of the pull is kept" 'd["meta"]["pulledAt"]' "2026-01-12T00:00:00+00:00"
 check $B "a gg run with no version joins the nearest version" 'd["series"][0]["runs"]' "5"
 check $B "other harnesses are found without being named" '[s["id"] for s in d["series"][1:]]' "['codex', 'claude']"
-check $B "gg's earlier builds are left to the experiments" '[s["role"] for s in d["series"]], "trend" in d' "(['subject', 'other', 'other'], False)"
+check $B "gg's earlier builds are left to the experiments" '[s["role"] for s in d["series"]]' "['subject', 'other', 'other']"
 check $B "models are matched across spellings" 'vs["codex"]["scopes"]["all"]["pairs"]' "2"
 # gg: gpt/a = 0.9, gpt/b = (0.6 + 0) / 2 = 0.3. codex: 0.7 and 0.5.
 check $B "pass rate is averaged per pair, then across pairs" 'round(vs["codex"]["scopes"]["all"]["metrics"]["passRate"]["subject"], 6)' "0.6"
@@ -123,10 +123,9 @@ echo "gg-experiment-data.py"
 E=experiment/experiment.json
 check $E "the named build is the baseline" 'd["meta"]["currentVersion"], d["meta"]["baselineVersion"]' "('2.0.0', '1.0.0')"
 check $E "the time of the pull is kept" 'd["meta"]["pulledAt"]' "2026-01-12T00:00:00+00:00"
-check $E "no other harness is read" '[(s["id"], s["role"]) for s in d["series"]]' "[('gg', 'subject'), ('gg-baseline', 'baseline')]"
+check $E "no other harness or gg version is read" '[(s["id"], s["role"]) for s in d["series"]]' "[('gg', 'subject'), ('gg-baseline', 'baseline')]"
 # gg 2.0.0 and 1.0.0 share only gpt/a: 0.9 against 0.5.
 check $E "the baseline is compared on shared pairs" 'vs["gg-baseline"]["scopes"]["all"]["pairs"], vs["gg-baseline"]["scopes"]["all"]["metrics"]["passRate"]["delta"]' "(1, 0.4)"
-check $E "the trend uses the pairs every version ran" 'd["trend"]["basis"], [v["pairs"] for v in d["trend"]["versions"]]' "('shared', [1, 1])"
 check $E "only gg's runs are kept for the spread" 'sorted({r["series"] for r in d["runs"]})' "['gg', 'gg-baseline']"
 check experiment/summary.json "the summary compares gg's builds like for like" 'd["experiment"]["passRate"], d["baseline"]["passRate"], d["sharedPairs"]' "(0.9, 0.5, 1)"
 check experiment/summary.json "the summary counts what gg ran" 'd["models"], d["cases"], d["pairs"], d["runs"]' "(2, 2, 3, 5)"

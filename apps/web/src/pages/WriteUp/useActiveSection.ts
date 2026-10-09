@@ -20,8 +20,14 @@ export function useActiveSection(ids: string[]): string | undefined {
 					current = id;
 				}
 			}
+			// At the foot of the page the last section may be too short to reach
+			// the reading line. A page that has not been scrolled is at its top,
+			// however little of it there is yet.
 			const page = document.documentElement;
-			if (window.innerHeight + window.scrollY >= page.scrollHeight - 2) {
+			if (
+				window.scrollY > 0 &&
+				window.innerHeight + window.scrollY >= page.scrollHeight - 2
+			) {
 				current = sectionIds.at(-1);
 			}
 			setActive(current);
@@ -30,9 +36,13 @@ export function useActiveSection(ids: string[]): string | undefined {
 		update();
 		window.addEventListener("scroll", update, { passive: true });
 		window.addEventListener("resize", update);
+		// Sections move without a scroll when content above them loads.
+		const resized = new ResizeObserver(update);
+		resized.observe(document.body);
 		return () => {
 			window.removeEventListener("scroll", update);
 			window.removeEventListener("resize", update);
+			resized.disconnect();
 		};
 	}, [key]);
 

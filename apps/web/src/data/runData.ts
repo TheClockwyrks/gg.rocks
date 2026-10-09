@@ -122,16 +122,6 @@ export type BenchmarkFile = ComparisonFile;
 /** experiment.json: the gg build under test against the last that shipped. */
 export interface ExperimentFile extends ComparisonFile {
 	meta: Meta & { baselineVersion: string };
-	trend: {
-		basis: "shared" | "own";
-		versions: {
-			version: string;
-			firstRun: string | null;
-			runs: number;
-			pairs: number;
-			metrics: Record<MetricId, number | null>;
-		}[];
-	};
 }
 
 export const ALL_MODELS = "all";

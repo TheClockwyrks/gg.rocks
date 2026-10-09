@@ -14,6 +14,7 @@ import { harnessLabel, outcomes } from "@/data/writeUps/types";
 import { formatThousands, NO_DATA } from "@/utils/format";
 import { RatingColumns } from "./blocks";
 import {
+	CaseBars,
 	CaseGrid,
 	DifferencePlot,
 	metrics,
@@ -50,9 +51,7 @@ interface Copy {
 	headline: string;
 	scatter: { legend: LegendItem[]; note: string };
 	spread: { legend: LegendItem[]; note: string };
-	cases: string;
-	ahead: string;
-	behind: string;
+	cases: { legend: LegendItem[]; note: string };
 }
 
 const copies: Record<ResultFiguresProps["against"], Copy> = {
@@ -79,10 +78,13 @@ const copies: Record<ResultFiguresProps["against"], Copy> = {
 			],
 			note: "One dot per run. The shaded band holds the middle half of a harness's runs; hollow dots at zero are runs that did not finish. A narrow band means the harness scores the same from one run to the next.",
 		},
-		cases:
-			"The gg column is gg's own figure on each test case. Every other column is gg minus that harness on the case; the stronger the colour, the wider the gap. A dash means the harness has no run of that case on a model gg ran.",
-		ahead: "gg ahead",
-		behind: "gg behind",
+		cases: {
+			legend: [
+				{ label: "gg ahead", swatch: "block", tone: "great" },
+				{ label: "gg behind", swatch: "block", tone: "scuffed" },
+			],
+			note: "The gg column is gg's own figure on each test case. Every other column is gg minus that harness on the case; the stronger the colour, the wider the gap. A dash means the harness has no run of that case on a model gg ran.",
+		},
 	},
 	// A gg build under test against the last build that shipped: an experiment.
 	baseline: {
@@ -108,10 +110,13 @@ const copies: Record<ResultFiguresProps["against"], Copy> = {
 			],
 			note: "One dot per run. The shaded band holds the middle half of a build's runs; hollow dots at zero are runs that did not finish. A narrow band means the build scores the same from one run to the next.",
 		},
-		cases:
-			"The gg column is this build's own figure on each test case. The other column is this build minus the baseline on the case; the stronger the colour, the wider the gap. A dash means the baseline has no run of that case on a model this build ran.",
-		ahead: "Better than the baseline",
-		behind: "Worse than the baseline",
+		cases: {
+			legend: [
+				{ label: "This experiment", swatch: "block", tone: "accent" },
+				{ label: "Baseline", swatch: "block", tone: "subtle" },
+			],
+			note: "Each test case has a bar for this build above one for the baseline, on the model and case pairs both ran. The figure at the end of the row is this build minus the baseline: blue where that is better, red where it is worse. A case the baseline has no run of is left out.",
+		},
 	},
 };
 
@@ -374,20 +379,25 @@ export function ResultFigures({ file, against }: ResultFiguresProps) {
 			<MeasuredFigure
 				title="Case by case"
 				hint={where}
-				legend={[
-					{ label: copy.ahead, swatch: "block", tone: "great" },
-					{ label: copy.behind, swatch: "block", tone: "scuffed" },
-				]}
-				note={copy.cases}
+				legend={copy.cases.legend}
+				note={copy.cases.note}
 			>
-				{(metric) => (
-					<CaseGrid
-						file={file}
-						scope={scope}
-						metric={metric}
-						columns={sharing}
-					/>
-				)}
+				{(metric) =>
+					against === "baseline" ? (
+						<CaseBars
+							file={file}
+							metric={metric}
+							compared={sharing[0]}
+						/>
+					) : (
+						<CaseGrid
+							file={file}
+							scope={scope}
+							metric={metric}
+							columns={sharing}
+						/>
+					)
+				}
 			</MeasuredFigure>
 
 			<Figure

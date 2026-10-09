@@ -14,8 +14,9 @@ Usage:
     scripts/run-data/gg-experiment-data.py --from-runs /tmp/runs.json --baseline 0.7.0 --out run-data/sample/experiment
 
 The newest gg version among the runs is taken as the build under test
-(--current names another). No other harness is read: how gg stands against
-them is the benchmarks page (see gg-benchmark-data.py). Two files land in
+(--current names another). Nothing else is read, neither gg's other versions
+nor any other harness: how gg stands against those is the benchmarks page (see
+gg-benchmark-data.py). Two files land in
 run-data/experiments/<gg version>/<date>/ (the UTC date of the pull); --out
 writes somewhere else:
 
@@ -24,9 +25,6 @@ writes somewhere else:
                      quote, small enough to ship with every page
 
 ttc.py describes how the figures are defined and what experiment.json holds.
-Beside that, experiment.json has:
-
-    trend        each gg version on the pairs all of them ran
 """
 
 import argparse
@@ -69,26 +67,6 @@ def main():
     ]
     parts, a, comparisons = ttc.compare(runs, series)
 
-    # Each gg version on the pairs all of them ran, or on its own pairs when
-    # no pair is common to them all.
-    by_version = {v: ttc.units_of(runs.of_version(v)) for v in runs.versions}
-    common = set.intersection(*[set(u) for u in by_version.values()]) if by_version else set()
-    trend = []
-    for v in runs.versions:
-        units = by_version[v]
-        keys = common or set(units)
-        started = sorted(r["startedAt"] for r in runs.of_version(v) if r["startedAt"])
-        fig = ttc.figure([units[k] for k in sorted(keys)])
-        trend.append(
-            {
-                "version": v,
-                "firstRun": started[0][:10] if started else None,
-                "runs": fig["runs"],
-                "pairs": fig["pairs"],
-                "metrics": fig["metrics"],
-            }
-        )
-
     out = args.out or ttc.run_dir("experiments", runs.current, runs.data.get("pulledAt"))
     os.makedirs(out, exist_ok=True)
     if args.save_runs:
@@ -96,11 +74,7 @@ def main():
     ttc.write(
         out,
         "experiment.json",
-        {
-            "meta": runs.meta(baselineVersion=args.baseline),
-            **parts,
-            "trend": {"basis": "shared" if common else "own", "versions": trend},
-        },
+        {"meta": runs.meta(baselineVersion=args.baseline), **parts},
         compact=True,
     )
 
