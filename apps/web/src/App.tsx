@@ -43,7 +43,6 @@ const router = createBrowserRouter([
 					{ path: "/pricing", element: <Pricing /> },
 					{ path: "/changelog", element: <Changelog /> },
 					{ path: "/benchmarks", element: <Benchmarks /> },
-					{ path: "/docs", element: <ComingSoon section="docs" /> },
 					{ path: "/download", element: <ComingSoon section="download" /> },
 					{
 						element: <GuestOnly />,
