@@ -32,7 +32,12 @@ export async function fetchRun(runUrl: string): Promise<Run> {
 	if (!response.ok) {
 		throw new Error(`Run request failed with status ${response.status}`);
 	}
-	const run = (await response.json()) as Partial<Run>;
+	// The record now comes wrapped as { record, reviews, media }; older
+	// responses were the bare record.
+	const body = (await response.json()) as {
+		record?: Partial<Run>;
+	} & Partial<Run>;
+	const run = body.record ?? body;
 	if (
 		!run.links?.playableBuild ||
 		!run.subject ||
