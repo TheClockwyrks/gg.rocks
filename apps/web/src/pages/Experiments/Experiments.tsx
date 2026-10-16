@@ -27,9 +27,9 @@ export function Experiments() {
 				eyebrow="Experiments"
 				title="What we're testing"
 			>
-				Every change to gg starts here. Each one is measured on TTC runs against
-				the current build, then either ships to Vantacode or is retired with a
-				write-up.
+				Every change to gg starts here. Each one is built as its own version and
+				measured on TTC runs against the last build that shipped, then either
+				ships to Vantacode or is retired with a write-up.
 			</PageIntro>
 
 			<SegmentedControl

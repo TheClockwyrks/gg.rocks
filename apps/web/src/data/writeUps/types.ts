@@ -1,4 +1,4 @@
-import type { ExperimentFile } from "./experimentData";
+import type { ExperimentFile } from "@/data/runData";
 
 /** Functionality ratings given to each test run, worst to best. */
 export const ratings = [
@@ -31,18 +31,19 @@ export interface Measure {
 	spread?: number;
 }
 
-/** One harness's results from The Test Cabinet for an experiment. */
+/** One harness's results from The Test Cabinet, over a set of runs. */
 export interface HarnessResult {
 	id: string;
 	name: string;
 	/** Null when the runs span several versions. */
 	version: string | null;
 	/**
-	 * "experiment" is the gg build under test and "baseline" the gg build it
-	 * is measured against. Every write-up has one experiment; the baseline is
-	 * missing until the previous build has runs of its own.
+	 * "subject" is the gg build being measured, "baseline" the gg build an
+	 * experiment measures it against (the last one that shipped) and "other"
+	 * another harness. An experiment has a subject and a baseline; the
+	 * benchmarks have a subject and the others.
 	 */
-	role: "experiment" | "baseline" | "other";
+	role: "subject" | "baseline" | "other";
 	/** How many runs the figures cover, and how many of those have a score. */
 	runs?: { total: number; scored: number };
 	/** Percentage of test runs that passed. Null figures have no data. */
@@ -82,6 +83,8 @@ export interface WriteUpData {
 	outcome: string;
 	/** When the experiment ran, e.g. "14 Sep – 28 Sep 2026". */
 	period: string;
+	/** When its runs were read from The Test Cabinet, as an ISO timestamp. */
+	pulledAt: string;
 	/** The decision and why, in two or three sentences. */
 	verdict: string;
 	/** How many runs and test cases the averages cover. */
@@ -119,7 +122,7 @@ const byRole = (
 	data.results.find((entry) => entry.role === role);
 
 export function experimentResult(data: WriteUpData): HarnessResult {
-	const result = byRole(data, "experiment");
+	const result = byRole(data, "subject");
 	if (!result)
 		throw new Error(`Write-up "${data.slug}" has no experiment result`);
 	return result;

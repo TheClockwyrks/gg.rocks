@@ -1,33 +1,17 @@
-#!/usr/bin/env python3
-"""Everything an experiment write-up charts, from The Test Cabinet's runs.
+"""What the run data scripts share: reading The Test Cabinet's runs and working
+out the figures the site charts.
 
-Reads every run summary from a backend and writes, for gg's current version:
-
-    experiment.json  the figures the page draws (described below), loaded when
-                     the page is opened
-    summary.json     the few figures the experiments index and the verdict
-                     quote, small enough to ship with every page
-
-The runs themselves are not kept: --save-runs also writes them, as runs.json,
-which --from-runs reads back in place of a backend.
+gg-benchmark-data.py and gg-experiment-data.py differ only in what gg is set
+against, the other harnesses or an earlier build of its own; everything else
+is here.
 
 Only GET requests are issued, and only two reads: the summary projection of the
 run listing, and the model catalog, which names the same model across harnesses
-that spell its id differently. Every harness the backend has runs for is
-compared, so a new one shows up without being named here.
+that spell its id differently. The backend is REQUIRED and has no default, so a
+read can never silently reach prod.
 
-Usage:
-    scripts/experiments/gg-experiment-data.py --env staging --run-state published,unpublished
-    scripts/experiments/gg-experiment-data.py --backend https://api.example
-    scripts/experiments/gg-experiment-data.py --from-runs /tmp/runs.json --out run-data/sample
-
-The files land in run-data/<gg version>/<date>/ at the repository root (the
-current version among the runs read, and the UTC date of the pull); --out
-writes somewhere else. The backend is REQUIRED and has no default, so a read
-can never silently reach prod.
-
-The one rule behind every comparison: a harness is only compared with gg on
-the PAIRS both ran, a pair being one model on one test case. A harness that
+The one rule behind every comparison: another series is only compared with gg
+on the PAIRS both ran, a pair being one model on one test case. A series that
 ran a stronger model, or easier cases, gets no credit for it.
 
 How the figures are defined:
@@ -44,21 +28,22 @@ How the figures are defined:
 - A difference is gg minus the other side, averaged over the shared pairs. Its
   interval is a 95% bootstrap over those pairs, and is null below three pairs.
 
-What experiment.json holds:
+What both scripts write, beside what is their own:
 
-    series       gg's current build, its previous build, and each other harness
-    models       the models gg's current build ran: the page's model filter
-    cases        the test cases gg's current build ran
+    meta         where and when the runs were read; `pulledAt` is the moment of
+                 the pull, in UTC, which every page built on the file shows
+    series       gg's build first, then each series it is set against
+    models       the models gg's build ran: the page's model filter
+    cases        the test cases gg's build ran
     subject      gg's own figures, per scope
     comparisons  gg against each other series on their shared pairs, per scope
     runs         every run on a pair gg ran, for the run-to-run spread
-    trend        each gg version on the pairs all of them ran
 
 A scope is "all" (every shared pair) or one model's id (that model's pairs).
 
 A gg run that failed before reporting its version is counted with the gg
 version whose runs started nearest in time, so that failures are not dropped.
-A null figure means "no data", never zero. experiment.json is written compact,
+A null figure means "no data", never zero. The large file is written compact,
 with figures rounded to four significant digits, to keep it small.
 """
 
@@ -128,7 +113,7 @@ CASE_METRICS = [
     "totalTokens",
     "durationSeconds",
 ]
-# What the experiments index and the verdict quote.
+# The few figures a summary.json quotes.
 SUMMARY_METRICS = ["passRate", "costUsd", "totalTokens", "cachedInputTokens"]
 
 SUBJECT_FIELDS = [
@@ -479,38 +464,11 @@ def scopes(keys, models, build):
     return out
 
 
-# --- main ------------------------------------------------------------------
-
-
-def parse_args():
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--env", choices=sorted(BACKENDS), help="a deployed backend, over the VPN")
-    ap.add_argument("--backend", help="a backend base URL (or set TCAB_BACKEND)")
-    ap.add_argument("--from-runs", help="compute from a saved runs.json, reading nothing")
-    ap.add_argument("--save-runs", action="store_true", help="also write the runs read, as runs.json")
-    ap.add_argument("--out", help="output directory (default run-data/<gg version>/<date>)")
-    ap.add_argument(
-        "--run-state",
-        default="published",
-        help="the run listings to read, e.g. published,unpublished (default published)",
-    )
-    ap.add_argument("--test-types", default="end-to-end,full-stack")
-    ap.add_argument("--competitors", help="only these harness slugs (default: every other harness)")
-    ap.add_argument("--current", help="gg's current version (default: the newest)")
-    ap.add_argument("--previous", help="gg's previous version (default: the next newest)")
-    return ap.parse_args()
+# --- writing ---------------------------------------------------------------
 
 
 def split_list(value):
     return [v.strip() for v in (value or "").split(",") if v.strip()]
-
-
-def run_dir(version, pulled_at):
-    date = (pulled_at or "")[:10]
-    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
-        date = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
-    name = re.sub(r"[^\w.+-]", "_", version or "") or "unknown"
-    return os.path.join(RUN_DATA, name, date)
 
 
 def rounded(value):
@@ -554,74 +512,104 @@ def case_labels(rows):
     return labels
 
 
-def main():
-    args = parse_args()
+# --- a pull ----------------------------------------------------------------
 
+
+def add_source_args(ap):
+    """The arguments that say where the runs come from and where files go."""
+    ap.add_argument("--env", choices=sorted(BACKENDS), help="a deployed backend, over the VPN")
+    ap.add_argument("--backend", help="a backend base URL (or set TCAB_BACKEND)")
+    ap.add_argument("--from-runs", help="compute from a saved runs.json, reading nothing")
+    ap.add_argument("--save-runs", action="store_true", help="also write the runs read, as runs.json")
+    ap.add_argument("--out", help="output directory (default under run-data/, by gg version and date)")
+    ap.add_argument(
+        "--run-state",
+        default="published",
+        help="the run listings to read, e.g. published,unpublished (default published)",
+    )
+    ap.add_argument("--test-types", default="end-to-end,full-stack")
+    ap.add_argument("--current", help="the gg version the figures are for (default: the newest)")
+
+
+def read(args):
+    """The runs and model catalog, from a saved runs.json or a backend."""
     if args.from_runs:
         with open(args.from_runs) as f:
-            data = json.load(f)
-    else:
-        backend = args.backend or BACKENDS.get(args.env) or os.environ.get("TCAB_BACKEND")
-        if not backend:
-            die("name the backend: --env <prod|staging>, --backend <url> or TCAB_BACKEND", 2)
-        states = split_list(args.run_state)
-        print(f"reading {' and '.join(states)} runs from {backend}", file=sys.stderr)
-        data = pull(backend, states)
+            return json.load(f)
+    backend = args.backend or BACKENDS.get(args.env) or os.environ.get("TCAB_BACKEND")
+    if not backend:
+        die("name the backend: --env <prod|staging>, --backend <url> or TCAB_BACKEND", 2)
+    states = split_list(args.run_state)
+    print(f"reading {' and '.join(states)} runs from {backend}", file=sys.stderr)
+    return pull(backend, states)
 
-    index = model_index(data["models"])
-    unmatched = set()
-    rows = [to_row(run, index, unmatched) for run in data["runs"]]
-    types = set(split_list(args.test_types))
-    excluded_types = sum(r["testType"] not in types for r in rows)
-    rows = [r for r in rows if r["testType"] in types]
 
-    # gg's versions.
-    gg_rows = [r for r in rows if r["harness"] == SUBJECT]
-    adopted = adopt_versions(gg_rows)
-    if adopted:
-        warn(f"{adopted} gg run(s) reported no version and were counted with the nearest one in time")
-    versions = sorted({r["version"] for r in gg_rows if r["version"]}, key=version_key)
-    current = args.current or (versions[-1] if versions else None)
-    older = [v for v in versions if v != current]
-    previous = args.previous or (older[-1] if older else None)
+class Runs:
+    """The rows of one pull, and gg's among them by version."""
 
-    # The series: gg's two builds, then every other harness, busiest first.
-    wanted = set(split_list(args.competitors))
-    others = {}
-    for r in rows:
-        if r["harness"] != SUBJECT and (not wanted or r["harness"] in wanted):
-            others.setdefault(r["harness"], []).append(r)
-    series = [
-        {"id": "gg", "label": "gg", "role": "experiment", "version": current,
-         "rows": [r for r in gg_rows if current and r["version"] == current]},
-        {"id": "gg-previous", "label": "gg", "role": "baseline", "version": previous,
-         "rows": [r for r in gg_rows if previous and r["version"] == previous]},
-    ]  # fmt: skip
-    for slug, rs in sorted(others.items(), key=lambda kv: (-len(kv[1]), kv[0])):
-        seen = sorted({r["version"] for r in rs if r["version"]}, key=version_key)
-        series.append(
-            {
-                "id": slug,
-                "label": LABELS.get(slug, slug),
-                "role": "other",
-                # One version when its runs agree on it, else the range they span.
-                "version": seen[0] if len(seen) == 1 else None,
-                "versions": seen,
-                "rows": rs,
-            }
-        )
+    def __init__(self, data, args):
+        self.data = data
+        self.types = set(split_list(args.test_types))
+        index = model_index(data["models"])
+        self.unmatched = set()
+        rows = [to_row(run, index, self.unmatched) for run in data["runs"]]
+        self.excluded_types = sum(r["testType"] not in self.types for r in rows)
+        self.rows = [r for r in rows if r["testType"] in self.types]
 
+        self.gg = [r for r in self.rows if r["harness"] == SUBJECT]
+        adopted = adopt_versions(self.gg)
+        if adopted:
+            warn(f"{adopted} gg run(s) reported no version and were counted with the nearest one in time")
+        self.versions = sorted({r["version"] for r in self.gg if r["version"]}, key=version_key)
+        self.current = args.current or (self.versions[-1] if self.versions else None)
+
+    def of_version(self, version):
+        return [r for r in self.gg if version and r["version"] == version]
+
+    def subject(self):
+        """gg's build under measurement, as the first series of a file."""
+        return {
+            "id": "gg",
+            "label": "gg",
+            "role": "subject",
+            "version": self.current,
+            "rows": self.of_version(self.current),
+        }
+
+    def meta(self, **extra):
+        return {
+            "backend": self.data.get("backend"),
+            "pulledAt": self.data.get("pulledAt"),
+            "runStates": self.data.get("runStates", ["published"]),
+            "testTypes": sorted(self.types),
+            "currentVersion": self.current,
+            **extra,
+            "synthetic": bool(self.data.get("synthetic")),
+            "excluded": {"otherTestTypes": self.excluded_types},
+            "warnings": warnings,
+        }
+
+
+def run_dir(kind, version, pulled_at):
+    """run-data/<kind>/<gg version>/<UTC date of the pull>"""
+    date = (pulled_at or "")[:10]
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
+        date = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
+    name = re.sub(r"[^\w.+-]", "_", version or "") or "unknown"
+    return os.path.join(RUN_DATA, kind, name, date)
+
+
+def compare(runs, series):
+    """gg, the first series, against each of the others on their shared pairs.
+
+    Returns the parts of a file every page reads, and the units and
+    comparisons a summary is drawn from."""
     subject_rows = series[0]["rows"]
     if not subject_rows:
         warn("no gg runs; every figure is null")
     a = units_of(subject_rows)
     models = sorted({k[0] for k in a})
     model_names = {r["model"]: r["modelName"] for r in subject_rows}
-
-    out = args.out or run_dir(current, data.get("pulledAt"))
-    os.makedirs(out, exist_ok=True)
-    if args.save_runs:
-        write(out, "runs.json", data)
 
     comparisons, shown_runs = [], list(subject_rows)
     for s in series[1:]:
@@ -635,8 +623,8 @@ def main():
             reason = "no shared test cases on the shared models"
         else:
             reason = None
-        if reason and s["role"] == "other":
-            warn(f"gg vs {s['label']}: {reason}")
+        if reason:
+            warn(f"gg vs {s['label']} {s['version'] or ''}".rstrip() + f": {reason}")
         comparisons.append(
             {
                 "against": s["id"],
@@ -646,123 +634,64 @@ def main():
         )
         shown_runs += [r for r in s["rows"] if (r["model"], r["case"]) in keys]
 
-    # Each gg version on the pairs all of them ran, or on its own pairs when
-    # no pair is common to them all.
-    by_version = {v: units_of([r for r in gg_rows if r["version"] == v]) for v in versions}
-    common = set.intersection(*[set(u) for u in by_version.values()]) if by_version else set()
-    trend = []
-    for v in versions:
-        units = by_version[v]
-        keys = common or set(units)
-        started = sorted(r["startedAt"] for r in gg_rows if r["version"] == v and r["startedAt"])
-        fig = figure([units[k] for k in sorted(keys)])
-        trend.append(
-            {
-                "version": v,
-                "firstRun": started[0][:10] if started else None,
-                "runs": fig["runs"],
-                "pairs": fig["pairs"],
-                "metrics": fig["metrics"],
-            }
-        )
-
     labels = case_labels(subject_rows)
     series_of = {id(r): s["id"] for s in series for r in s["rows"]}
-    if unmatched:
+    if runs.unmatched:
         warn(
-            f"{len(unmatched)} model id(s) match no catalog entry and are compared by "
-            f"their own id: {', '.join(sorted(unmatched))}"
+            f"{len(runs.unmatched)} model id(s) match no catalog entry and are compared by "
+            f"their own id: {', '.join(sorted(runs.unmatched))}"
         )
 
-    write(
-        out,
-        "experiment.json",
-        {
-            "meta": {
-                "backend": data.get("backend"),
-                "pulledAt": data.get("pulledAt"),
-                "runStates": data.get("runStates", ["published"]),
-                "testTypes": sorted(types),
-                "currentVersion": current,
-                "previousVersion": previous,
-                "synthetic": bool(data.get("synthetic")),
-                "excluded": {"otherTestTypes": excluded_types},
-                "warnings": warnings,
-            },
-            "series": [
-                {
-                    "id": s["id"],
-                    "label": s["label"],
-                    "role": s["role"],
-                    "version": s["version"],
-                    "versions": s.get("versions", [s["version"]] if s["version"] else []),
-                    "runs": len(s["rows"]),
-                }
-                for s in series
-            ],
-            "models": [{"id": m, "name": model_names[m]} for m in models],
-            "cases": [{"id": c, "label": labels[c]} for c in sorted(labels, key=labels.get)],
-            "subject": {"scopes": scopes(set(a), models, lambda ks: subject_scope(a, ks))},
-            "comparisons": comparisons,
-            "runs": [
-                {
-                    "series": series_of[id(r)],
-                    "model": r["model"],
-                    "category": r["category"],
-                    "passRate": r["passRate"],
-                }
-                for r in shown_runs
-            ],
-            "trend": {"basis": "shared" if common else "own", "versions": trend},
-        },
-        compact=True,
-    )
-
-    # gg and its previous build on the pairs both ran, so that the change the
-    # index quotes is like for like; gg alone when there is no previous build.
-    own = figure(list(a.values()))
-    against_previous = comparisons[0]["scopes"]["all"]
-    like_for_like = against_previous["pairs"] > 0
-    write(
-        out,
-        "summary.json",
-        rounded(
+    parts = {
+        "series": [
             {
-                "pulledAt": data.get("pulledAt"),
-                "synthetic": bool(data.get("synthetic")),
-                "models": len(models),
-                "cases": len(labels),
-                "pairs": own["pairs"],
-                "runs": own["runs"],
-                "experiment": {
-                    "version": current,
-                    **{
-                        m: against_previous["metrics"][m]["subject"] if like_for_like else own["metrics"][m]
-                        for m in SUMMARY_METRICS
-                    },
-                },
-                "baseline": {
-                    "version": previous,
-                    **{m: against_previous["metrics"][m]["other"] for m in SUMMARY_METRICS},
-                }
-                if like_for_like
-                else None,
+                "id": s["id"],
+                "label": s["label"],
+                "role": s["role"],
+                "version": s["version"],
+                "versions": s.get("versions", [s["version"]] if s["version"] else []),
+                "runs": len(s["rows"]),
             }
-        ),
-    )
+            for s in series
+        ],
+        "models": [{"id": m, "name": model_names[m]} for m in models],
+        "cases": [{"id": c, "label": labels[c]} for c in sorted(labels, key=labels.get)],
+        "subject": {"scopes": scopes(set(a), models, lambda ks: subject_scope(a, ks))},
+        "comparisons": comparisons,
+        "runs": [
+            {
+                "series": series_of[id(r)],
+                "model": r["model"],
+                "category": r["category"],
+                "passRate": r["passRate"],
+            }
+            for r in shown_runs
+        ],
+    }
+    return parts, a, comparisons
+
+
+def counts(parts, own):
+    """What gg's build ran, for a summary."""
+    return {
+        "models": len(parts["models"]),
+        "cases": len(parts["cases"]),
+        "pairs": own["pairs"],
+        "runs": own["runs"],
+    }
+
+
+def report(series, comparisons, out):
+    """The pass rate differences, as a table on the terminal."""
 
     def pct(v):
         return "    -" if v is None else f"{v * 100:+5.1f}"
 
-    print(f"\ngg {current} against, on shared pairs:", file=sys.stderr)
+    print(f"\ngg {series[0]['version']} against, on shared pairs:", file=sys.stderr)
     print(f"{'':<4}{'series':<22}{'pairs':>6}{'pass rate, pts':>16}{'interval':>18}")
     for s, c in zip(series[1:], comparisons):
         m = c["scopes"]["all"]["metrics"]["passRate"]
         label = f"{s['label']} {s['version'] or ''}".strip()
         span = f"[{pct(m['low'])}, {pct(m['high'])}]" if m["low"] is not None else "-"
         print(f"{'':<4}{label:<22}{c['scopes']['all']['pairs']:>6}{pct(m['delta']):>16}{span:>18}")
-    print(f"\nwrote {os.path.relpath(out)}/ ({len(warnings)} warning(s); see experiment.json)")
-
-
-if __name__ == "__main__":
-    main()
+    print(f"\nwrote {os.path.relpath(out)}/ ({len(warnings)} warning(s); see meta.warnings)")

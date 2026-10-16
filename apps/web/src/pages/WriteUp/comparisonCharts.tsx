@@ -3,12 +3,12 @@ import { FigureScroll } from "@/components/Figure/Figure";
 import {
 	seriesLabel,
 	type ComparisonScope,
-	type ExperimentFile,
-	type ExperimentRun,
+	type ComparisonFile,
+	type PulledRun,
 	type MetricId,
 	type PairedMetric,
 	type Series,
-} from "@/data/writeUps/experimentData";
+} from "@/data/runData";
 import { cx } from "@/utils/cx";
 import {
 	formatChange,
@@ -103,16 +103,18 @@ interface RowProps {
 	label: string;
 	value: string;
 	highlight?: boolean;
+	/** Colours the summary, where it is a change for the better or worse. */
+	tone?: "better" | "worse";
 	children: React.ReactNode;
 }
 
 /** One labelled track in a set of comparable tracks, with a summary at its end. */
-function Row({ label, value, highlight, children }: RowProps) {
+function Row({ label, value, highlight, tone, children }: RowProps) {
 	return (
 		<div className={cx(styles.row, highlight && styles.highlight)}>
 			<span className={styles.rowLabel}>{label}</span>
 			<div className={styles.rowTrack}>{children}</div>
-			<span className={styles.rowValue}>{value}</span>
+			<span className={cx(styles.rowValue, tone && styles[tone])}>{value}</span>
 		</div>
 	);
 }
@@ -313,7 +315,7 @@ export function RunStrip({
 	runs,
 }: {
 	series: Series[];
-	runs: ExperimentRun[];
+	runs: PulledRun[];
 }) {
 	return (
 		<div className={styles.rows}>
@@ -333,7 +335,7 @@ export function RunStrip({
 						key={entry.id}
 						label={seriesLabel(entry)}
 						value={`middle half ${low.toFixed(0)}–${high.toFixed(0)}%`}
-						highlight={entry.role === "experiment"}
+						highlight={entry.role === "subject"}
 					>
 						<div
 							className={styles.strip}
@@ -352,7 +354,7 @@ export function RunStrip({
 									className={cx(
 										styles.run,
 										run.category === "didNotFinish" && styles.failed,
-										entry.role === "experiment" && styles.current,
+										entry.role === "subject" && styles.current,
 									)}
 									style={
 										{
@@ -393,7 +395,7 @@ export function CaseGrid({
 	metric,
 	columns,
 }: {
-	file: ExperimentFile;
+	file: ComparisonFile;
 	scope: string;
 	metric: Metric;
 	columns: Compared[];
@@ -489,104 +491,86 @@ export function CaseGrid({
 	);
 }
 
-// --- Version by version -----------------------------------------------------
-
-const trendMetrics: MetricId[] = [
-	"passRate",
-	"goodShare",
-	"costUsd",
-	"durationSeconds",
-];
+// --- Case by case, two builds ------------------------------------------------
 
 /**
- * gg from one version to the next: a small chart per metric, each on its own
- * scale, with the build under test picked out.
+ * gg against one other series on each test case, as a pair of bars: gg's
+ * above, the other's below, with the difference between them at the end of
+ * the row. For a comparison of two, where a grid would have a single column.
  */
-export function VersionTrend({
-	trend,
-	current,
+export function CaseBars({
+	file,
+	metric,
+	compared,
 }: {
-	trend: ExperimentFile["trend"];
-	current: string | null;
+	file: ComparisonFile;
+	metric: Metric;
+	compared: Compared | undefined;
 }) {
-	const { versions } = trend;
-	const across = (index: number) => ((index + 0.5) / versions.length) * 100;
+	const rows = file.cases.flatMap((entry) => {
+		const paired = compared?.scope?.cases.find((row) => row.case === entry.id)
+			?.metrics[metric.id];
+		return paired ? [{ ...entry, paired }] : [];
+	});
+	// Shares are drawn against the whole; anything else against the largest
+	// figure on the chart.
+	const isShare = metric.difference === points;
+	const largest = Math.max(
+		...rows.flatMap(({ paired }) => [paired.subject ?? 0, paired.other ?? 0]),
+		0,
+	);
+	const full = isShare ? 1 : largest || 1;
+	const other = compared ? seriesLabel(compared.series) : "";
+
+	if (rows.length === 0)
+		return (
+			<p className={styles.empty}>
+				{compared?.reason ?? "no shared runs for this model"}
+			</p>
+		);
 
 	return (
-		<div className={styles.panels}>
-			{trendMetrics.map((id) => {
-				const metric = metrics.find((candidate) => candidate.id === id);
-				if (!metric) return null;
-				const values = versions.map((version) => version.metrics[id]);
-				const known = values.filter((value) => value !== null);
-				const low = Math.min(...known);
-				const high = Math.max(...known);
-				// Leave room above for the value labels and below for the baseline.
-				const down = (value: number) =>
-					high === low ? 50 : 78 - ((value - low) / (high - low)) * 50;
+		<div className={styles.rows}>
+			{rows.map(({ id, label, paired }) => {
+				const { subject, other: against, delta } = paired;
+				const better =
+					delta === null || delta === 0
+						? undefined
+						: delta > 0 === metric.higherIsBetter;
 				return (
-					<div
+					<Row
 						key={id}
-						className={styles.panel}
+						label={label}
+						value={metric.difference(subject, against)}
+						tone={
+							better === undefined ? undefined : better ? "better" : "worse"
+						}
 					>
-						<span className={styles.panelTitle}>
-							{metric.label}
-							<span className={styles.panelHint}>
-								{metric.higherIsBetter ? "higher is better" : "lower is better"}
-							</span>
-						</span>
-						<div className={styles.panelPlot}>
-							<svg
-								viewBox="0 0 100 100"
-								preserveAspectRatio="none"
-								className={styles.panelLine}
-								aria-hidden="true"
-							>
-								<polyline
-									points={values
-										.flatMap((value, index) =>
-											value === null ? [] : [`${across(index)},${down(value)}`],
-										)
-										.join(" ")}
-								/>
-							</svg>
-							{values.map((value, index) => {
-								const version = versions[index];
-								if (value === null || !version) return null;
-								return (
-									<span
-										key={version.version}
-										className={cx(
-											styles.panelPoint,
-											version.version === current && styles.current,
-										)}
-										style={
-											{
-												"--at": `${across(index)}%`,
-												"--down": `${down(value)}%`,
-											} as CSSProperties
-										}
-									>
-										<span className={styles.panelValue}>
-											{metric.format(value)}
-										</span>
-									</span>
-								);
-							})}
+						<div
+							className={styles.pair}
+							role="img"
+							aria-label={`${label}: this build ${metric.format(subject)}, ${other} ${metric.format(against)}, on ${pairCount(paired.pairs)}`}
+						>
+							<span
+								className={cx(styles.pairBar, styles.current)}
+								style={at(((subject ?? 0) / full) * 100)}
+								title={`This build: ${metric.format(subject)}`}
+							/>
+							<span
+								className={styles.pairBar}
+								style={at(((against ?? 0) / full) * 100)}
+								title={`${other}: ${metric.format(against)}`}
+							/>
 						</div>
-						<div className={styles.panelAxis}>
-							{versions.map((version) => (
-								<span
-									key={version.version}
-									className={cx(version.version === current && styles.current)}
-								>
-									{version.version}
-								</span>
-							))}
-						</div>
-					</div>
+					</Row>
 				);
 			})}
+			<Scale
+				ticks={[0, 25, 50, 75, 100].map((tick) => ({
+					at: tick,
+					label: metric.format((full * tick) / 100),
+				}))}
+			/>
 		</div>
 	);
 }

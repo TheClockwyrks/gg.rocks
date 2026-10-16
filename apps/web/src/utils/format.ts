@@ -42,3 +42,28 @@ const dateFormat = new Intl.DateTimeFormat("en-US", { dateStyle: "medium" });
 /** A calendar date from an ISO string, e.g. "Oct 7, 2026". */
 export const formatDate = (iso: string): string =>
 	dateFormat.format(new Date(iso));
+
+const dayFormat = new Intl.DateTimeFormat("en-GB", {
+	day: "numeric",
+	month: "short",
+	year: "numeric",
+	timeZone: "UTC",
+});
+
+const timeFormat = new Intl.DateTimeFormat("en-GB", {
+	hour: "2-digit",
+	minute: "2-digit",
+	hourCycle: "h23",
+	timeZone: "UTC",
+});
+
+/** The UTC day of an ISO timestamp, e.g. "7 Oct 2026". */
+export const formatDay = (iso: string): string =>
+	dayFormat.format(new Date(iso));
+
+/**
+ * An ISO timestamp to the minute in UTC, e.g. "7 Oct 2026, 00:37 UTC", for
+ * saying when a set of figures was gathered.
+ */
+export const formatTimestamp = (iso: string): string =>
+	`${formatDay(iso)}, ${timeFormat.format(new Date(iso))} UTC`;

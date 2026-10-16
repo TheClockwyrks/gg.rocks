@@ -229,7 +229,8 @@ function describe(result: HarnessResult): string {
 
 /**
  * Pass rate for each harness against a cost-like measure the reader picks.
- * The dashed trail runs from the baseline gg build to the experiment.
+ * Where there is a baseline gg build, a dashed trail runs from it to the
+ * build being measured.
  */
 export function PassRateScatter({
 	results: all,
@@ -263,7 +264,7 @@ export function PassRateScatter({
 		y: y.position(result.passRate?.value ?? 0),
 	});
 
-	const experiment = results.find((result) => result.role === "experiment");
+	const subject = results.find((result) => result.role === "subject");
 	const baseline = results.find((result) => result.role === "baseline");
 	// The gg builds are the subject of the chart, so their labels go first.
 	const labels = placeLabels(
@@ -277,9 +278,7 @@ export function PassRateScatter({
 		frame,
 	);
 	const active =
-		results.find((result) => result.id === activeId) ??
-		experiment ??
-		results[0];
+		results.find((result) => result.id === activeId) ?? subject ?? results[0];
 
 	return (
 		<>
@@ -357,14 +356,14 @@ export function PassRateScatter({
 							↑ pass rate
 						</text>
 
-						{experiment && baseline && (
+						{subject && baseline && (
 							<line
 								// Redrawn (and so faded in again) whenever the axis changes.
 								key={axisId}
 								x1={at(baseline).x}
 								y1={at(baseline).y}
-								x2={at(experiment).x}
-								y2={at(experiment).y}
+								x2={at(subject).x}
+								y2={at(subject).y}
 								className={styles.trail}
 							/>
 						)}
@@ -404,10 +403,10 @@ export function PassRateScatter({
 										<Diamond
 											cx={0}
 											cy={0}
-											size={result.role === "experiment" ? 16 : 14}
+											size={result.role === "subject" ? 16 : 14}
 											className={cx(
 												styles.point,
-												result.role === "experiment"
+												result.role === "subject"
 													? styles.current
 													: styles.previous,
 											)}
@@ -419,7 +418,7 @@ export function PassRateScatter({
 										textAnchor={label.anchor}
 										className={cx(
 											styles.pointLabel,
-											result.role === "experiment" && styles.emphasis,
+											result.role === "subject" && styles.emphasis,
 										)}
 									>
 										{pointLabel(result, frame)}

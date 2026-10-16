@@ -1,0 +1,72 @@
+@use "sass:math";
+@use "@/styles" as *;
+
+// Shape of the stage in the page; builds scale themselves to fit it.
+$stage-ratio: math.div(16, 9);
+
+.player {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border: $border;
+	border-radius: $radius-lg;
+	background: $color-surface;
+
+	&:fullscreen {
+		border: 0;
+		border-radius: 0;
+	}
+}
+
+.stage {
+	aspect-ratio: $stage-ratio;
+
+	// Full screen, the stage takes whatever the controls leave.
+	.player:fullscreen & {
+		flex: 1;
+		min-height: 0;
+		aspect-ratio: auto;
+	}
+}
+
+.frame {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+.poster {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: $s-5;
+	height: 100%;
+
+	@include dot-grid;
+}
+
+.posterTitle {
+	@include text-title-section;
+}
+
+.controls {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: $s-3;
+	padding: $s-3 $s-4;
+	border-top: $border;
+	background: $color-raised;
+}
+
+.external {
+	margin-right: auto;
+
+	@include text-mono($text-13, $color-accent);
+
+	&:hover {
+		color: $color-accent-hover;
+	}
+}

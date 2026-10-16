@@ -1,12 +1,11 @@
 @use "@/styles" as *;
 
 // Sizes that only these charts need.
+// Widest a row's label grows before it wraps.
 $label-column: 220px;
-$value-column: 180px;
 $track-height: $s-8;
 $run-size: 7px;
 $estimate-size: 12px;
-$panel-height: 150px;
 
 // --- Rows -------------------------------------------------------------------
 
@@ -14,6 +13,15 @@ $panel-height: 150px;
 	display: flex;
 	flex-direction: column;
 	gap: $s-3;
+
+	// Where there is room the rows share their columns, so that the labels
+	// and summaries take only the width the longest of them needs and the
+	// tracks get the rest.
+	@include up($bp-md) {
+		display: grid;
+		grid-template-columns: fit-content($label-column) minmax(0, 1fr) auto;
+		column-gap: $s-4;
+	}
 }
 
 // A label, a track and a summary: side by side where there is room, and with
@@ -30,7 +38,8 @@ $panel-height: 150px;
 	@include text-mono($text-13, $color-ink-muted);
 
 	@include up($bp-md) {
-		grid-template-columns: $label-column minmax(0, 1fr) $value-column;
+		grid-column: 1 / -1;
+		grid-template-columns: subgrid;
 		grid-template-areas: "label track value";
 	}
 
@@ -46,6 +55,14 @@ $panel-height: 150px;
 .rowValue {
 	grid-area: value;
 	white-space: nowrap;
+
+	&.better {
+		color: $color-rating-flawless;
+	}
+
+	&.worse {
+		color: $color-rating-broken;
+	}
 }
 
 .rowTrack {
@@ -279,105 +296,25 @@ $panel-height: 150px;
 	}
 }
 
-// --- Version by version -----------------------------------------------------
+// --- Case by case, two builds ------------------------------------------------
 
-.panels {
-	display: grid;
-	gap: $s-6;
-
-	@include up($bp-sm) {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-}
-
-.panel {
+.pair {
 	display: flex;
 	flex-direction: column;
-	gap: $s-2;
-	min-width: 0;
-
-	@include card($s-4);
-}
-
-.panelTitle {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: baseline;
-	justify-content: space-between;
-	gap: $s-1 $s-3;
-	font-size: $text-15;
-	font-weight: $weight-semibold;
-}
-
-.panelHint {
-	font-weight: $weight-regular;
-
-	@include text-mono($text-11);
-}
-
-.panelPlot {
-	position: relative;
-	height: $panel-height;
-	border-bottom: $border-outline;
-}
-
-.panelLine {
-	position: absolute;
-	inset: 0;
-	width: 100%;
+	justify-content: center;
+	gap: $s-0-5;
 	height: 100%;
-
-	polyline {
-		fill: none;
-		stroke: $color-ink-subtle;
-		stroke-width: $stroke-route;
-		vector-effect: non-scaling-stroke;
-	}
 }
 
-.panelPoint {
-	position: absolute;
-	top: var(--down);
-	left: var(--at);
-	width: $s-2-5;
-	height: $s-2-5;
-	transform: translate(-50%, -50%);
-	border: $s-0-5 solid $color-surface;
-	border-radius: $radius-full;
+.pairBar {
+	flex: 1;
+	width: var(--at);
+	min-width: $s-0-5;
+	border-radius: 0 $radius-sm $radius-sm 0;
 	background: $color-ink-subtle;
-	box-sizing: content-box;
 
 	&.current {
 		background: $color-accent;
-	}
-}
-
-.panelValue {
-	position: absolute;
-	bottom: calc(100% + #{$s-1-5});
-	left: 50%;
-	transform: translateX(-50%);
-	white-space: nowrap;
-
-	@include text-mono($text-12, $color-ink-muted);
-
-	.current & {
-		color: $color-ink;
-	}
-}
-
-.panelAxis {
-	display: flex;
-
-	@include text-mono($text-12);
-
-	span {
-		flex: 1;
-		text-align: center;
-	}
-
-	.current {
-		color: $color-ink;
 	}
 }
 

@@ -1,0 +1,69 @@
+@use "sass:math";
+@use "@/styles" as *;
+
+// Shape of the space held for a build while its run record loads; matches
+// the player's stage so the page does not jump.
+$stage-ratio: math.div(16, 9);
+
+.build {
+	display: flex;
+	flex-direction: column;
+	gap: $s-5;
+}
+
+.title {
+	margin: 0;
+
+	@include text-title-figure;
+}
+
+.details {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: $s-5 $s-8;
+}
+
+.facts {
+	display: flex;
+	flex-wrap: wrap;
+	gap: $s-5 $s-10;
+	margin: 0;
+}
+
+.fact {
+	display: flex;
+	flex-direction: column;
+	gap: $s-1;
+}
+
+.label {
+	@include text-label;
+}
+
+.value {
+	margin: 0;
+
+	@include text-mono($text-15, $color-ink);
+}
+
+.source {
+	@include text-mono($text-13, $color-accent);
+
+	&:hover {
+		color: $color-accent-hover;
+	}
+}
+
+.status {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: $stage-ratio;
+	margin: 0;
+	border: $border;
+	border-radius: $radius-lg;
+
+	@include text-mono($text-13);
+}

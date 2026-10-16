@@ -9,6 +9,7 @@ export type SectionId =
 export interface Section {
 	id: SectionId;
 	label: string;
+	/** A route on this site, or a full address for a section hosted elsewhere. */
 	path: string;
 }
 
@@ -19,7 +20,7 @@ export const sections: Record<SectionId, Section> = {
 		path: "/experiments",
 	},
 	benchmarks: { id: "benchmarks", label: "Benchmarks", path: "/benchmarks" },
-	docs: { id: "docs", label: "Docs", path: "/docs" },
+	docs: { id: "docs", label: "Docs", path: "https://docs.gg.rocks" },
 	pricing: { id: "pricing", label: "Pricing", path: "/pricing" },
 	changelog: { id: "changelog", label: "Changelog", path: "/changelog" },
 	download: { id: "download", label: "Download", path: "/download" },
