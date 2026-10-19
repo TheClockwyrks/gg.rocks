@@ -1,0 +1,21 @@
+@use "@/styles" as *;
+
+.notice {
+  margin: 0;
+  padding: $s-2-5 $s-3;
+  border: $border-width solid;
+  border-radius: $radius-md;
+  font-size: $text-14;
+}
+
+.error {
+  border-color: $color-hot;
+  background: $color-hot-wash;
+  color: $color-ink;
+}
+
+.success {
+  border-color: $color-accent-outline;
+  background: $color-accent-wash;
+  color: $color-ink;
+}

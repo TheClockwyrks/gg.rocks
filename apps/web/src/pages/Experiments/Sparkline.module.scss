@@ -1,47 +1,41 @@
 @use "@/styles" as *;
 
 .sparkline {
-	fill: none;
+  fill: none;
 }
 
 .exploring {
-	stroke: $color-ink-subtle;
-	stroke-width: $stroke-thin;
+  stroke: $color-ink-subtle;
+  stroke-width: $stroke-thin;
 }
 
 .offshoot {
-	stroke: $color-strand;
-	stroke-width: $stroke-hair;
+  stroke: $color-strand;
+  stroke-width: $stroke-hair;
 }
 
 .head {
-	fill: $color-accent;
+  fill: $color-accent;
 
-	@include motion-safe {
-		animation: pulse $duration-pulse ease-in-out infinite;
-	}
+  @include motion-safe {
+    animation: pulse $duration-pulse ease-in-out infinite;
+  }
 }
 
 .shipped {
-	stroke: $color-accent;
-	stroke-width: $stroke-trunk;
-	filter: $glow;
-}
-
-.template {
-	stroke: $color-accent-outline;
-	stroke-width: $stroke-thin;
-	stroke-dasharray: $s-1 $s-1;
+  stroke: $color-accent;
+  stroke-width: $stroke-trunk;
+  filter: $glow;
 }
 
 .retired {
-	stroke: $color-ink-subtle;
-	stroke-width: $stroke-thin;
-	opacity: 0.45;
+  stroke: $color-ink-subtle;
+  stroke-width: $stroke-thin;
+  opacity: 0.45;
 }
 
 @keyframes pulse {
-	50% {
-		opacity: 0.35;
-	}
+  50% {
+    opacity: 0.35;
+  }
 }

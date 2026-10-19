@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
 interface PlaceholderLinkProps {
-	className?: string;
-	children: ReactNode;
+  className?: string;
+  children: ReactNode;
 }
 
 /**
@@ -10,13 +10,13 @@ interface PlaceholderLinkProps {
  * Cabinet pages). It looks and focuses like a link but goes nowhere.
  */
 export function PlaceholderLink({ className, children }: PlaceholderLinkProps) {
-	return (
-		<a
-			href="#"
-			className={className}
-			onClick={(event) => event.preventDefault()}
-		>
-			{children}
-		</a>
-	);
+  return (
+    <a
+      href="#"
+      className={className}
+      onClick={(event) => event.preventDefault()}
+    >
+      {children}
+    </a>
+  );
 }

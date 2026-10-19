@@ -4,10 +4,10 @@ import { cx } from "@/utils/cx";
 import styles from "./StatusPill.module.scss";
 
 interface StatusPillProps {
-	status: ExperimentStatus | "template";
-	children: ReactNode;
+  status: ExperimentStatus;
+  children: ReactNode;
 }
 
 export function StatusPill({ status, children }: StatusPillProps) {
-	return <span className={cx(styles.pill, styles[status])}>{children}</span>;
+  return <span className={cx(styles.pill, styles[status])}>{children}</span>;
 }

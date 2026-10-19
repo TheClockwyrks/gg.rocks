@@ -1,15 +1,15 @@
 @use "@/styles" as *;
 
 .list {
-	margin: 0;
-	padding: 0;
-	border-top: $border;
-	list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: $border;
+  list-style: none;
 }
 
 .empty {
-	padding: $s-6 $s-3;
-	border-top: $border;
+  padding: $s-6 $s-3;
+  border-top: $border;
 
-	@include text-lead;
+  @include text-lead;
 }

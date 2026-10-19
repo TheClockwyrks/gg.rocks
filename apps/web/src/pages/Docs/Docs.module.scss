@@ -1,0 +1,333 @@
+@use "@/styles" as *;
+
+// Sizes that only the docs section needs.
+$sidebar-width: 248px;
+$toc-width: 200px;
+
+// Sidebar, page and contents side by side on wide screens; on narrow ones
+// the sidebar folds into a "Pages" menu above the page.
+.docs {
+  display: grid;
+  gap: $s-6;
+  padding-block: $s-8 $s-16;
+
+  @include page-pane;
+  @include gutter;
+
+  @include up($bp-md) {
+    grid-template-columns: $sidebar-width minmax(0, 1fr);
+    gap: $s-10;
+    padding-block: $s-12 $s-24;
+  }
+}
+
+// --- Sidebar ----------------------------------------------------------------
+
+.sidebar {
+  min-width: 0;
+
+  @include up($bp-md) {
+    position: sticky;
+    top: $layout-header-height + $s-6;
+    align-self: start;
+    max-height: calc(100vh - #{$layout-header-height + $s-12});
+    overflow-y: auto;
+    padding-right: $s-2;
+  }
+}
+
+.menu {
+  border: $border;
+  border-radius: $radius-md;
+  padding: $s-3 $s-4;
+
+  @include up($bp-md) {
+    display: none;
+  }
+}
+
+.menuToggle {
+  cursor: pointer;
+
+  @include text-label($text-12, $color-ink-muted);
+}
+
+.fullSidebar {
+  display: none;
+
+  @include up($bp-md) {
+    display: block;
+  }
+}
+
+.tree {
+  display: flex;
+  flex-direction: column;
+  gap: $s-0-5;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .tree {
+    margin-top: $s-1;
+    padding-left: $s-3;
+    border-left: $border-soft;
+  }
+}
+
+.treeGroup {
+  margin-top: $s-3;
+}
+
+.treeLabel {
+  display: block;
+  padding: $s-1 $s-2;
+
+  @include text-label($text-11);
+}
+
+.treeLink {
+  display: block;
+  padding: $s-1 $s-2;
+  border-radius: $radius-sm;
+  font-size: $text-14;
+  color: $color-ink-muted;
+
+  &:hover {
+    color: $color-ink;
+    background: $color-row-hover;
+  }
+}
+
+.treeCurrent {
+  color: $color-accent;
+  background: $color-accent-wash;
+
+  &:hover {
+    color: $color-accent-hover;
+  }
+}
+
+// --- Page -------------------------------------------------------------------
+
+.main {
+  display: grid;
+  gap: $s-10;
+  min-width: 0;
+
+  @include up($bp-lg) {
+    grid-template-columns: minmax(0, $layout-prose) $toc-width;
+    align-items: start;
+  }
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: $s-4;
+  min-width: 0;
+}
+
+.eyebrow {
+  @include text-label;
+}
+
+.title {
+  @include text-title-page;
+}
+
+.status {
+  @include text-mono($text-13);
+}
+
+.toc {
+  display: none;
+
+  @include up($bp-lg) {
+    position: sticky;
+    top: $layout-header-height + $s-6;
+    display: flex;
+    flex-direction: column;
+    gap: $s-2;
+    max-height: calc(100vh - #{$layout-header-height + $s-12});
+    overflow-y: auto;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: $s-1-5;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    font-size: $text-13;
+    color: $color-ink-subtle;
+
+    &:hover {
+      color: $color-accent-hover;
+    }
+  }
+}
+
+.tocLabel {
+  @include text-label($text-11);
+}
+
+.tocNested {
+  padding-left: $s-3;
+}
+
+// --- The rendered page ------------------------------------------------------
+
+// The page's HTML comes from Markdown, so its elements carry no classes of
+// their own and are styled from here.
+.content {
+  font-size: $text-17;
+  line-height: $leading-relaxed;
+  color: $color-ink-muted;
+  overflow-wrap: break-word;
+
+  :global {
+    h2,
+    h3,
+    h4 {
+      margin: $s-10 0 $s-3;
+      color: $color-ink;
+      line-height: $leading-snug;
+      scroll-margin-top: $layout-header-height + $s-4;
+    }
+
+    h2 {
+      font-size: $text-28;
+      font-weight: $weight-bold;
+      letter-spacing: $tracking-snug;
+    }
+
+    h3 {
+      font-size: $text-20;
+      font-weight: $weight-semibold;
+    }
+
+    h4 {
+      font-size: $text-17;
+      font-weight: $weight-semibold;
+    }
+
+    p,
+    ul,
+    ol,
+    pre,
+    table,
+    blockquote {
+      margin: 0 0 $s-4;
+    }
+
+    ul,
+    ol {
+      padding-left: $s-6;
+    }
+
+    li + li {
+      margin-top: $s-1;
+    }
+
+    strong {
+      color: $color-ink;
+      font-weight: $weight-semibold;
+    }
+
+    code {
+      padding: 0 $s-1;
+      border-radius: $radius-sm;
+      background: $color-raised;
+      font-family: $font-mono;
+      font-size: 0.85em;
+      color: $color-spark;
+    }
+
+    pre {
+      padding: $s-4;
+      overflow-x: auto;
+      border: $border-soft;
+      border-radius: $radius-md;
+      background: $color-raised;
+      line-height: $leading-normal;
+
+      code {
+        padding: 0;
+        background: none;
+        color: $color-ink;
+      }
+    }
+
+    table {
+      display: block;
+      max-width: 100%;
+      overflow-x: auto;
+      border-collapse: collapse;
+      font-size: $text-15;
+    }
+
+    th,
+    td {
+      padding: $s-2 $s-3;
+      border: $border-soft;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    // An identifier in a table cell is read whole, not broken at its hyphen.
+    td code {
+      white-space: nowrap;
+    }
+
+    th {
+      color: $color-ink;
+      font-weight: $weight-semibold;
+    }
+
+    blockquote {
+      padding-left: $s-4;
+      border-left: $border-width-strong solid $color-strand;
+    }
+
+    hr {
+      margin: $s-8 0;
+      border: 0;
+      border-top: $border;
+    }
+
+    .aside {
+      margin: 0 0 $s-4;
+      padding: $s-3 $s-4;
+      border-left: $s-1 solid $color-info;
+      border-radius: $radius-sm;
+      background: $color-raised;
+
+      > :last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .aside-tip {
+      border-left-color: $color-rating-flawless;
+    }
+
+    .aside-caution {
+      border-left-color: $color-accent;
+    }
+
+    .aside-danger {
+      border-left-color: $color-hot;
+    }
+
+    .aside-title {
+      margin-bottom: $s-2;
+      color: $color-ink;
+      font-weight: $weight-semibold;
+    }
+  }
+}
