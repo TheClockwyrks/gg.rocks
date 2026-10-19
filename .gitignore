@@ -5,6 +5,9 @@
 node_modules/
 dist/
 
+# gg's documentation pages, fetched by scripts/gg-docs.sh for the build.
+/apps/web/.gg-docs/
+
 # Tool caches.
 .cspellcache
 __pycache__/

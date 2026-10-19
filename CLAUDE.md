@@ -26,6 +26,9 @@ accordingly.
 | [`.claude/`](.claude/README.md) | The harness's settings, its gate hooks and the `coding` skill |
 | `packages/`, `apps/` | The npm workspace's members, under the root `package.json` |
 | `apps/web/` | The site: a Vite and React app, the workspace's one member |
+| `apps/web/plugins/ggDocs/` | The build's plugin that renders gg's documentation pages as the `/docs` section, with its tests |
+| `apps/web/gg-docs.json` | The gg version whose documentation pages the site presents, and the repository they are fetched from |
+| `scripts/gg-docs.sh` | Fetches the pinned version's `docs/` into `apps/web/.gg-docs/` (git ignores it) before a build, with its `.test.sh` |
 | [`scripts/run-data/`](scripts/run-data/README.md) | The scripts that write the figures under `run-data/` the site charts, with their table test |
 | `run-data/` | The figures the site bundles, written by those scripts and never by hand |
 | `mockups/` | The design mockups the site was drawn from |

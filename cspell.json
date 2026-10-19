@@ -16,6 +16,7 @@
     "**/node_modules/**",
     "**/target/**",
     "/.cspellcache",
+    "/apps/web/.gg-docs/**",
     "/package-lock.json"
   ],
   "words": []

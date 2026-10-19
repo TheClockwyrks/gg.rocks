@@ -36,6 +36,25 @@ npm run dev -w apps/web     # a dev server on port 5175
 npm run build -w apps/web   # the static site, into apps/web/dist/
 ```
 
+The docs section, `/docs`, presents gg's documentation pages: the `docs/`
+folder of the `gg` repository at the version `apps/web/gg-docs.json` pins.
+Before a build or a dev server, `scripts/gg-docs.sh` fetches that version's
+pages from the tag `v<version>` of the public mirror,
+[TheClockwyrks/gg](https://github.com/TheClockwyrks/gg), into
+`apps/web/.gg-docs/`, and the build renders each page at
+`/docs/<path>/`. A link from one of gg's pages to another moves under
+`/docs/`, and a link to any other page of The Test Cabinet's documentation
+goes to <https://docs.testcabinet.ai>. Presenting a newer gg release is a
+change of the pin.
+
+To build from other pages, such as gg's unreleased ones in the superrepo,
+`GG_DOCS_DIR` names their folder, relative to this repository's root, and
+nothing is fetched:
+
+```sh
+GG_DOCS_DIR=../gg/docs npm run dev -w apps/web
+```
+
 The benchmarks and experiments pages chart figures the scripts under
 [`scripts/run-data/`](scripts/run-data/README.md) write into `run-data/` from
 The Test Cabinet's runs; the site bundles them at build time.

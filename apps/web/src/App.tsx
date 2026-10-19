@@ -15,6 +15,7 @@ import { Subscription } from "@/pages/Account/Subscription";
 import { Login, Signup } from "@/pages/Auth/Auth";
 import { Benchmarks } from "@/pages/Benchmarks/Benchmarks";
 import { Changelog } from "@/pages/Changelog/Changelog";
+import { Docs } from "@/pages/Docs/Docs";
 import { ComingSoon, NotFound } from "@/pages/ComingSoon/ComingSoon";
 import { Experiments } from "@/pages/Experiments/Experiments";
 import { Landing } from "@/pages/Landing/Landing";
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
           { path: "/pricing", element: <Pricing /> },
           { path: "/changelog", element: <Changelog /> },
           { path: "/benchmarks", element: <Benchmarks /> },
+          { path: "/docs/*", element: <Docs /> },
           { path: "/download", element: <ComingSoon section="download" /> },
           {
             element: <GuestOnly />,
