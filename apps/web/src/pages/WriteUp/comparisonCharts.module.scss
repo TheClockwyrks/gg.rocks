@@ -10,312 +10,312 @@ $estimate-size: 12px;
 // --- Rows -------------------------------------------------------------------
 
 .rows {
-	display: flex;
-	flex-direction: column;
-	gap: $s-3;
+  display: flex;
+  flex-direction: column;
+  gap: $s-3;
 
-	// Where there is room the rows share their columns, so that the labels
-	// and summaries take only the width the longest of them needs and the
-	// tracks get the rest.
-	@include up($bp-md) {
-		display: grid;
-		grid-template-columns: fit-content($label-column) minmax(0, 1fr) auto;
-		column-gap: $s-4;
-	}
+  // Where there is room the rows share their columns, so that the labels
+  // and summaries take only the width the longest of them needs and the
+  // tracks get the rest.
+  @include up($bp-md) {
+    display: grid;
+    grid-template-columns: fit-content($label-column) minmax(0, 1fr) auto;
+    column-gap: $s-4;
+  }
 }
 
 // A label, a track and a summary: side by side where there is room, and with
 // the track on its own line where there is not.
 .row {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr) auto;
-	grid-template-areas:
-		"label value"
-		"track track";
-	gap: $s-1-5 $s-4;
-	align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "label value"
+    "track track";
+  gap: $s-1-5 $s-4;
+  align-items: center;
 
-	@include text-mono($text-13, $color-ink-muted);
+  @include text-mono($text-13, $color-ink-muted);
 
-	@include up($bp-md) {
-		grid-column: 1 / -1;
-		grid-template-columns: subgrid;
-		grid-template-areas: "label track value";
-	}
+  @include up($bp-md) {
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    grid-template-areas: "label track value";
+  }
 
-	&.highlight {
-		color: $color-ink;
-	}
+  &.highlight {
+    color: $color-ink;
+  }
 }
 
 .rowLabel {
-	grid-area: label;
+  grid-area: label;
 }
 
 .rowValue {
-	grid-area: value;
-	white-space: nowrap;
+  grid-area: value;
+  white-space: nowrap;
 
-	&.better {
-		color: $color-rating-flawless;
-	}
+  &.better {
+    color: $color-rating-flawless;
+  }
 
-	&.worse {
-		color: $color-rating-broken;
-	}
+  &.worse {
+    color: $color-rating-broken;
+  }
 }
 
 .rowTrack {
-	grid-area: track;
-	position: relative;
-	min-width: 0;
-	height: $track-height;
+  grid-area: track;
+  position: relative;
+  min-width: 0;
+  height: $track-height;
 }
 
 .empty {
-	display: flex;
-	align-items: center;
-	height: 100%;
-	color: $color-ink-subtle;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: $color-ink-subtle;
 }
 
 .scale .rowTrack {
-	height: $s-5;
+  height: $s-5;
 }
 
 .tick {
-	position: absolute;
-	left: var(--at);
-	transform: translateX(-50%);
-	font-size: $text-11;
-	color: $color-ink-subtle;
-	white-space: nowrap;
+  position: absolute;
+  left: var(--at);
+  transform: translateX(-50%);
+  font-size: $text-11;
+  color: $color-ink-subtle;
+  white-space: nowrap;
 
-	&:first-child {
-		transform: none;
-	}
+  &:first-child {
+    transform: none;
+  }
 
-	&:last-child {
-		transform: translateX(-100%);
-	}
+  &:last-child {
+    transform: translateX(-100%);
+  }
 }
 
 // --- Paired differences -----------------------------------------------------
 
 .difference {
-	position: absolute;
-	inset: 0;
-	border-radius: $radius-sm;
-	background: $color-dot;
+  position: absolute;
+  inset: 0;
+  border-radius: $radius-sm;
+  background: $color-dot;
 }
 
 .zero {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 50%;
-	border-left: $border-outline;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  border-left: $border-outline;
 }
 
 .whisker {
-	position: absolute;
-	top: 50%;
-	left: var(--from);
-	width: calc(var(--to) - var(--from));
-	height: $s-0-5;
-	transform: translateY(-50%);
-	background: $color-ink-subtle;
+  position: absolute;
+  top: 50%;
+  left: var(--from);
+  width: calc(var(--to) - var(--from));
+  height: $s-0-5;
+  transform: translateY(-50%);
+  background: $color-ink-subtle;
 }
 
 .estimate {
-	position: absolute;
-	top: 50%;
-	left: var(--at);
-	width: $estimate-size;
-	height: $estimate-size;
-	transform: translate(-50%, -50%);
-	border: $s-0-5 solid $color-surface;
-	border-radius: $radius-full;
-	background: $color-ink-subtle;
+  position: absolute;
+  top: 50%;
+  left: var(--at);
+  width: $estimate-size;
+  height: $estimate-size;
+  transform: translate(-50%, -50%);
+  border: $s-0-5 solid $color-surface;
+  border-radius: $radius-full;
+  background: $color-ink-subtle;
 
-	&.clear {
-		background: $color-accent;
-	}
+  &.clear {
+    background: $color-accent;
+  }
 }
 
 // --- Stacked bars -----------------------------------------------------------
 
 .stack {
-	display: flex;
-	gap: $s-0-5;
-	height: 100%;
-	min-width: $s-1;
+  display: flex;
+  gap: $s-0-5;
+  height: 100%;
+  min-width: $s-1;
 }
 
 .segment {
-	flex: 0 1 0;
-	min-width: 0;
+  flex: 0 1 0;
+  min-width: 0;
 
-	&:first-child {
-		border-radius: $radius-sm 0 0 $radius-sm;
-	}
+  &:first-child {
+    border-radius: $radius-sm 0 0 $radius-sm;
+  }
 
-	&:last-child {
-		border-radius: 0 $radius-sm $radius-sm 0;
-	}
+  &:last-child {
+    border-radius: 0 $radius-sm $radius-sm 0;
+  }
 
-	&.strand {
-		background: $color-strand;
-	}
+  &.strand {
+    background: $color-strand;
+  }
 
-	&.accent {
-		background: $color-accent;
-	}
+  &.accent {
+    background: $color-accent;
+  }
 
-	&.info {
-		background: $color-info;
-	}
+  &.info {
+    background: $color-info;
+  }
 
-	&.subtle {
-		background: $color-ink-subtle;
-	}
+  &.subtle {
+    background: $color-ink-subtle;
+  }
 
-	&.broken {
-		background: $color-rating-broken;
-	}
+  &.broken {
+    background: $color-rating-broken;
+  }
 }
 
 // --- Run-to-run spread ------------------------------------------------------
 
 .strip {
-	position: absolute;
-	inset: 0;
-	border-radius: $radius-sm;
-	background: $color-dot;
+  position: absolute;
+  inset: 0;
+  border-radius: $radius-sm;
+  background: $color-dot;
 }
 
 .middleHalf {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: var(--from);
-	width: calc(var(--to) - var(--from));
-	border-radius: $radius-sm;
-	background: $color-row-hover;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--from);
+  width: calc(var(--to) - var(--from));
+  border-radius: $radius-sm;
+  background: $color-row-hover;
 }
 
 .run {
-	position: absolute;
-	top: var(--down);
-	left: var(--at);
-	width: $run-size;
-	height: $run-size;
-	transform: translate(-50%, -50%);
-	border-radius: $radius-full;
-	background: $color-info;
-	opacity: 0.7;
+  position: absolute;
+  top: var(--down);
+  left: var(--at);
+  width: $run-size;
+  height: $run-size;
+  transform: translate(-50%, -50%);
+  border-radius: $radius-full;
+  background: $color-info;
+  opacity: 0.7;
 
-	&.current {
-		background: $color-accent;
-	}
+  &.current {
+    background: $color-accent;
+  }
 
-	// A run that did not finish scores nothing: drawn hollow, at zero.
-	&.failed {
-		border: $border-width solid $color-ink-subtle;
-		background: transparent;
-	}
+  // A run that did not finish scores nothing: drawn hollow, at zero.
+  &.failed {
+    border: $border-width solid $color-ink-subtle;
+    background: transparent;
+  }
 }
 
 .median {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: var(--at);
-	border-left: $s-0-5 solid $color-ink;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--at);
+  border-left: $s-0-5 solid $color-ink;
 }
 
 // --- Case by case -----------------------------------------------------------
 
 .grid {
-	width: 100%;
-	border-collapse: separate;
-	border-spacing: $s-0-5;
-	text-align: right;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: $s-0-5;
+  text-align: right;
 
-	@include text-mono($text-13, $color-ink);
+  @include text-mono($text-13, $color-ink);
 
-	th {
-		padding: $s-2 $s-3;
-		font-weight: $weight-regular;
-		text-align: right;
-		white-space: nowrap;
-	}
+  th {
+    padding: $s-2 $s-3;
+    font-weight: $weight-regular;
+    text-align: right;
+    white-space: nowrap;
+  }
 
-	thead th {
-		@include text-label($text-11);
-	}
+  thead th {
+    @include text-label($text-11);
+  }
 
-	// The case names stay put while the harness columns scroll under them.
-	th:first-child {
-		position: sticky;
-		left: 0;
-		z-index: 1;
-		background: $color-surface;
-		color: $color-ink-muted;
-		text-align: left;
-	}
+  // The case names stay put while the harness columns scroll under them.
+  th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: $color-surface;
+    color: $color-ink-muted;
+    text-align: left;
+  }
 
-	td {
-		padding: $s-2 $s-3;
-		border-radius: $radius-sm;
-		white-space: nowrap;
-	}
+  td {
+    padding: $s-2 $s-3;
+    border-radius: $radius-sm;
+    white-space: nowrap;
+  }
 }
 
 .blank {
-	color: $color-ink-subtle;
+  color: $color-ink-subtle;
 }
 
 .gap {
-	background: $color-dot;
+  background: $color-dot;
 
-	&.ahead {
-		background: color-mix(
-			in srgb,
-			$color-rating-great var(--strength),
-			transparent
-		);
-	}
+  &.ahead {
+    background: color-mix(
+      in srgb,
+      $color-rating-great var(--strength),
+      transparent
+    );
+  }
 
-	&.behind {
-		background: color-mix(
-			in srgb,
-			$color-rating-scuffed var(--strength),
-			transparent
-		);
-	}
+  &.behind {
+    background: color-mix(
+      in srgb,
+      $color-rating-scuffed var(--strength),
+      transparent
+    );
+  }
 }
 
 // --- Case by case, two builds ------------------------------------------------
 
 .pair {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: $s-0-5;
-	height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $s-0-5;
+  height: 100%;
 }
 
 .pairBar {
-	flex: 1;
-	width: var(--at);
-	min-width: $s-0-5;
-	border-radius: 0 $radius-sm $radius-sm 0;
-	background: $color-ink-subtle;
+  flex: 1;
+  width: var(--at);
+  min-width: $s-0-5;
+  border-radius: 0 $radius-sm $radius-sm 0;
+  background: $color-ink-subtle;
 
-	&.current {
-		background: $color-accent;
-	}
+  &.current {
+    background: $color-accent;
+  }
 }
 
 // --- Model bar -------------------------------------------------------------
@@ -324,51 +324,51 @@ $estimate-size: 12px;
 // the top bar (and, on smaller screens, the contents row) for as long as the
 // results are on screen, and lets go when the next section arrives.
 .modelBar {
-	position: sticky;
-	top: $layout-header-height + $tap-target;
-	z-index: $z-header - 2;
-	display: flex;
-	align-items: center;
-	gap: $s-3;
-	// Runs to the edges of the screen, like the contents row above it.
-	margin-inline: -$s-4;
-	padding: $s-1-5 $s-4;
-	border-bottom: $border;
-	background: $color-surface;
+  position: sticky;
+  top: $layout-header-height + $tap-target;
+  z-index: $z-header - 2;
+  display: flex;
+  align-items: center;
+  gap: $s-3;
+  // Runs to the edges of the screen, like the contents row above it.
+  margin-inline: -$s-4;
+  padding: $s-1-5 $s-4;
+  border-bottom: $border;
+  background: $color-surface;
 
-	@include up($bp-sm) {
-		margin-inline: -$s-8;
-		padding-inline: $s-8;
-	}
+  @include up($bp-sm) {
+    margin-inline: -$s-8;
+    padding-inline: $s-8;
+  }
 
-	@include up($bp-lg) {
-		top: $layout-header-height;
-		margin-inline: 0;
-		padding: $s-2-5 0;
-	}
+  @include up($bp-lg) {
+    top: $layout-header-height;
+    margin-inline: 0;
+    padding: $s-2-5 0;
+  }
 }
 
 .modelBarLabel {
-	flex: none;
+  flex: none;
 
-	@include text-label;
+  @include text-label;
 }
 
 // One row however many models there are: on a narrow screen the options
 // scroll sideways rather than wrap and take more of the screen.
 .modelBarOptions {
-	// The offset parent of its options, so one can be scrolled to.
-	position: relative;
-	min-width: 0;
-	overflow-x: auto;
-	scrollbar-width: none;
+  // The offset parent of its options, so one can be scrolled to.
+  position: relative;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
 
-	[role="group"] {
-		flex-wrap: nowrap;
-	}
+  [role="group"] {
+    flex-wrap: nowrap;
+  }
 
-	button {
-		flex: none;
-		white-space: nowrap;
-	}
+  button {
+    flex: none;
+    white-space: nowrap;
+  }
 }

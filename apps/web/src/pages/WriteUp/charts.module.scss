@@ -1,143 +1,143 @@
 @use "@/styles" as *;
 
 .chart {
-	width: 100%;
-	height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .gridLine {
-	stroke: $color-grid;
+  stroke: $color-grid;
 }
 
 .axis {
-	stroke: $color-outline;
+  stroke: $color-outline;
 }
 
 .axisLabel {
-	fill: $color-ink-subtle;
-	font-family: $font-mono;
-	font-size: $text-12;
+  fill: $color-ink-subtle;
+  font-family: $font-mono;
+  font-size: $text-12;
 }
 
 .pointLabel {
-	fill: $color-ink-muted;
-	font-family: $font-mono;
-	font-size: $text-13;
+  fill: $color-ink-muted;
+  font-family: $font-mono;
+  font-size: $text-13;
 
-	&.emphasis {
-		fill: $color-ink;
-	}
+  &.emphasis {
+    fill: $color-ink;
+  }
 }
 
 .trail {
-	fill: none;
-	stroke: $color-ink-subtle;
-	stroke-width: $stroke-thin;
-	stroke-dasharray: $s-1 $s-1;
-	animation: appear $duration-slow ease-out;
+  fill: none;
+  stroke: $color-ink-subtle;
+  stroke-width: $stroke-thin;
+  stroke-dasharray: $s-1 $s-1;
+  animation: appear $duration-slow ease-out;
 }
 
 @keyframes appear {
-	from {
-		opacity: 0;
-	}
+  from {
+    opacity: 0;
+  }
 }
 
 // --- Scatter ----------------------------------------------------------------
 
 .toolbar {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	gap: $s-2 $s-4;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $s-2 $s-4;
 }
 
 .hint {
-	font-size: $text-14;
-	color: $color-ink-subtle;
+  font-size: $text-14;
+  color: $color-ink-subtle;
 }
 
 // The scatter is drawn to the measured width of this box.
 .plot {
-	min-height: $s-24;
+  min-height: $s-24;
 
-	&.compact .pointLabel {
-		font-size: $text-11;
-	}
+  &.compact .pointLabel {
+    font-size: $text-11;
+  }
 }
 
 // Each point is a group moved into place, so it glides when the axis changes.
 .pointGroup {
-	transition: transform $duration-slow $ease-glide;
-	cursor: default;
+  transition: transform $duration-slow $ease-glide;
+  cursor: default;
 
-	&:focus-visible {
-		outline: none;
-	}
+  &:focus-visible {
+    outline: none;
+  }
 
-	&:focus-visible .hit {
-		stroke: $color-accent;
-		stroke-width: $stroke-route;
-	}
+  &:focus-visible .hit {
+    stroke: $color-accent;
+    stroke-width: $stroke-route;
+  }
 
-	&.active .pointLabel {
-		fill: $color-ink;
-	}
+  &.active .pointLabel {
+    fill: $color-ink;
+  }
 }
 
 .hit {
-	fill: transparent;
+  fill: transparent;
 }
 
 .readout {
-	display: flex;
-	flex-wrap: wrap;
-	gap: $s-1 $s-3;
-	margin: 0;
-	padding: $s-3 $s-4;
-	border: $border-soft;
-	border-radius: $radius-md;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $s-1 $s-3;
+  margin: 0;
+  padding: $s-3 $s-4;
+  border: $border-soft;
+  border-radius: $radius-md;
 
-	@include text-mono($text-13, $color-ink-muted);
+  @include text-mono($text-13, $color-ink-muted);
 }
 
 .readoutName {
-	color: $color-ink;
-	font-weight: $weight-medium;
+  color: $color-ink;
+  font-weight: $weight-medium;
 }
 
 .point {
-	stroke: $color-surface;
-	stroke-width: $stroke-route;
+  stroke: $color-surface;
+  stroke-width: $stroke-route;
 
-	&.previous {
-		fill: $color-ink-subtle;
-	}
+  &.previous {
+    fill: $color-ink-subtle;
+  }
 
-	&.current {
-		fill: $color-accent;
-	}
+  &.current {
+    fill: $color-accent;
+  }
 
-	&.other {
-		fill: $color-info;
-	}
+  &.other {
+    fill: $color-info;
+  }
 }
 
 .series {
-	fill: none;
-	stroke-width: $stroke-route;
+  fill: none;
+  stroke-width: $stroke-route;
 
-	&.previous {
-		stroke: $color-ink-subtle;
-	}
+  &.previous {
+    stroke: $color-ink-subtle;
+  }
 
-	&.current {
-		stroke: $color-accent;
-	}
+  &.current {
+    stroke: $color-accent;
+  }
 }
 
 .callout {
-	stroke: $color-ink-muted;
-	stroke-width: $stroke-hair;
-	stroke-dasharray: $s-1 $s-1;
+  stroke: $color-ink-muted;
+  stroke-width: $stroke-hair;
+  stroke-dasharray: $s-1 $s-1;
 }

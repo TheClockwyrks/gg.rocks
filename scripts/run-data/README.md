@@ -54,7 +54,7 @@ files to `run-data/benchmarks/<gg version>/<UTC date>/`:
 
 | File             | Size         | Used for                                                                                  |
 | ---------------- | ------------ | ----------------------------------------------------------------------------------------- |
-| `summary.json`   | under 1 KB   | Which build, when it was pulled and what it ran. Part of the site's own bundle.            |
+| `summary.json`   | under 1 KB   | Which build, when it was pulled and what it ran. Part of the site's own bundle.           |
 | `benchmark.json` | about 120 KB | Every chart on the page. Fetched when the page is opened, so it adds nothing to the load. |
 
 Then point the two imports in `apps/web/src/data/benchmarks.ts` at the new
@@ -74,9 +74,9 @@ scripts/run-data/gg-experiment-data.py --env prod --baseline 0.7.0
 No other harness is read. It writes two files to
 `run-data/experiments/<gg version>/<UTC date>/`:
 
-| File              | Size        | Used for                                                                                   |
-| ----------------- | ----------- | ------------------------------------------------------------------------------------------ |
-| `summary.json`    | under 1 KB  | The experiments index and the verdict. Part of the site's own bundle.                      |
+| File              | Size        | Used for                                                                                  |
+| ----------------- | ----------- | ----------------------------------------------------------------------------------------- |
+| `summary.json`    | under 1 KB  | The experiments index and the verdict. Part of the site's own bundle.                     |
 | `experiment.json` | about 65 KB | Every chart on the page. Fetched when the page is opened, so it adds nothing to the load. |
 
 To add the page:
@@ -118,8 +118,10 @@ seed:
 
 ```sh
 scripts/run-data/gg-sample-runs.py /tmp/sample-runs.json
-scripts/run-data/gg-benchmark-data.py --from-runs /tmp/sample-runs.json --out run-data/sample/benchmark
-scripts/run-data/gg-experiment-data.py --from-runs /tmp/sample-runs.json --baseline 0.7.0 --out run-data/sample/experiment
+scripts/run-data/gg-benchmark-data.py --from-runs /tmp/sample-runs.json \
+  --out run-data/sample/benchmark
+scripts/run-data/gg-experiment-data.py --from-runs /tmp/sample-runs.json \
+  --baseline 0.7.0 --out run-data/sample/experiment
 ```
 
 ## Testing

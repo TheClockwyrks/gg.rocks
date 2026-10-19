@@ -1,8 +1,8 @@
 import {
-	createBrowserRouter,
-	Outlet,
-	RouterProvider,
-	ScrollRestoration,
+  createBrowserRouter,
+  Outlet,
+  RouterProvider,
+  ScrollRestoration,
 } from "react-router";
 import { AuthProvider } from "@/auth/AuthProvider";
 import { GuestOnly, RequireAuth } from "@/auth/guards";
@@ -22,63 +22,63 @@ import { Pricing } from "@/pages/Pricing/Pricing";
 import { WriteUp } from "@/pages/WriteUp/WriteUp";
 
 function Root() {
-	return (
-		<>
-			<ScrollRestoration />
-			<Outlet />
-		</>
-	);
+  return (
+    <>
+      <ScrollRestoration />
+      <Outlet />
+    </>
+  );
 }
 
 const router = createBrowserRouter([
-	{
-		element: <Root />,
-		children: [
-			{ path: "/", element: <Landing /> },
-			{
-				element: <SiteLayout />,
-				children: [
-					{ path: "/experiments", element: <Experiments /> },
-					{ path: "/experiments/:slug", element: <WriteUp /> },
-					{ path: "/pricing", element: <Pricing /> },
-					{ path: "/changelog", element: <Changelog /> },
-					{ path: "/benchmarks", element: <Benchmarks /> },
-					{ path: "/download", element: <ComingSoon section="download" /> },
-					{
-						element: <GuestOnly />,
-						children: [
-							{ path: accountPaths.login, element: <Login /> },
-							{ path: accountPaths.signup, element: <Signup /> },
-						],
-					},
-					{
-						element: <RequireAuth />,
-						children: [
-							{
-								path: accountPaths.account,
-								element: <AccountLayout />,
-								children: [
-									{ index: true, element: <MyAccount /> },
-									{
-										path: accountPaths.subscription,
-										element: <Subscription />,
-									},
-									{ path: accountPaths.billing, element: <Billing /> },
-								],
-							},
-						],
-					},
-					{ path: "*", element: <NotFound /> },
-				],
-			},
-		],
-	},
+  {
+    element: <Root />,
+    children: [
+      { path: "/", element: <Landing /> },
+      {
+        element: <SiteLayout />,
+        children: [
+          { path: "/experiments", element: <Experiments /> },
+          { path: "/experiments/:slug", element: <WriteUp /> },
+          { path: "/pricing", element: <Pricing /> },
+          { path: "/changelog", element: <Changelog /> },
+          { path: "/benchmarks", element: <Benchmarks /> },
+          { path: "/download", element: <ComingSoon section="download" /> },
+          {
+            element: <GuestOnly />,
+            children: [
+              { path: accountPaths.login, element: <Login /> },
+              { path: accountPaths.signup, element: <Signup /> },
+            ],
+          },
+          {
+            element: <RequireAuth />,
+            children: [
+              {
+                path: accountPaths.account,
+                element: <AccountLayout />,
+                children: [
+                  { index: true, element: <MyAccount /> },
+                  {
+                    path: accountPaths.subscription,
+                    element: <Subscription />,
+                  },
+                  { path: accountPaths.billing, element: <Billing /> },
+                ],
+              },
+            ],
+          },
+          { path: "*", element: <NotFound /> },
+        ],
+      },
+    ],
+  },
 ]);
 
 export function App() {
-	return (
-		<AuthProvider>
-			<RouterProvider router={router} />
-		</AuthProvider>
-	);
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }

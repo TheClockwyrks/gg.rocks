@@ -12,6 +12,6 @@ export const billingService: BillingService = mockBilling;
 
 /** Credentials shown on the log-in page while the mock is in use, or null. */
 export const demoCredentials: Credentials | null = {
-	email: demoUser.email,
-	password: demoUser.password,
+  email: demoUser.email,
+  password: demoUser.password,
 };

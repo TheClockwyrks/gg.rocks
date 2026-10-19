@@ -3,22 +3,22 @@ import { cx } from "@/utils/cx";
 import styles from "./Button.module.scss";
 
 interface ButtonProps extends Omit<
-	ButtonHTMLAttributes<HTMLButtonElement>,
-	"className"
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  "className"
 > {
-	variant?: "primary" | "outline" | "danger";
+  variant?: "primary" | "outline" | "danger";
 }
 
 export function Button({
-	variant = "outline",
-	type = "button",
-	...rest
+  variant = "outline",
+  type = "button",
+  ...rest
 }: ButtonProps) {
-	return (
-		<button
-			type={type}
-			className={cx(styles.button, styles[variant])}
-			{...rest}
-		/>
-	);
+  return (
+    <button
+      type={type}
+      className={cx(styles.button, styles[variant])}
+      {...rest}
+    />
+  );
 }

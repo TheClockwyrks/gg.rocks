@@ -28,7 +28,7 @@ ttc.py describes how the figures are defined and what experiment.json holds.
 """
 
 import argparse
-import os
+from pathlib import Path
 
 import ttc
 
@@ -67,8 +67,8 @@ def main():
     ]
     parts, a, comparisons = ttc.compare(runs, series)
 
-    out = args.out or ttc.run_dir("experiments", runs.current, runs.data.get("pulledAt"))
-    os.makedirs(out, exist_ok=True)
+    out = Path(args.out) if args.out else ttc.run_dir("experiments", runs.current, runs.data.get("pulledAt"))
+    out.mkdir(parents=True, exist_ok=True)
     if args.save_runs:
         ttc.write(out, "runs.json", runs.data)
     ttc.write(

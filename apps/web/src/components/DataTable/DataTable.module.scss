@@ -6,73 +6,73 @@ $heading-column-share: 30%;
 $heading-column-pinned: 150px;
 
 .table {
-	width: 100%;
-	// Separate borders, so that they travel with the pinned first column.
-	border-collapse: separate;
-	border-spacing: 0;
-	table-layout: fixed;
-	text-align: left;
+  width: 100%;
+  // Separate borders, so that they travel with the pinned first column.
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  text-align: left;
 
-	@include text-mono($text-14, $color-ink);
+  @include text-mono($text-14, $color-ink);
 }
 
 .heading {
-	padding: $s-2-5 $s-4 $s-2-5 0;
-	border-bottom: $border;
-	font-weight: $weight-regular;
+  padding: $s-2-5 $s-4 $s-2-5 0;
+  border-bottom: $border;
+  font-weight: $weight-regular;
 
-	@include text-label($text-11);
+  @include text-label($text-11);
 
-	&:first-child {
-		width: $heading-column-pinned;
+  &:first-child {
+    width: $heading-column-pinned;
 
-		@include up($bp-md) {
-			width: $heading-column-share;
-		}
-	}
+    @include up($bp-md) {
+      width: $heading-column-share;
+    }
+  }
 }
 
 .cell {
-	padding: $s-3 $s-4 $s-3 0;
-	border-bottom: $border-soft;
-	font-weight: $weight-regular;
+  padding: $s-3 $s-4 $s-3 0;
+  border-bottom: $border-soft;
+  font-weight: $weight-regular;
 }
 
 // The row-heading column stays put while the value columns scroll under it,
 // so every row keeps its name beside whichever values are in view.
 .heading:first-child,
 th.cell {
-	position: sticky;
-	left: 0;
-	z-index: 1;
-	border-right: $border-soft;
-	background: $color-surface;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  border-right: $border-soft;
+  background: $color-surface;
 }
 
 // Lines between the value columns. The line after the pinned column belongs
 // to that column, so it stays visible while the others scroll.
 .heading:not(:first-child),
 td.cell {
-	padding-left: $s-4;
-	white-space: nowrap;
+  padding-left: $s-4;
+  white-space: nowrap;
 }
 
 .heading:nth-child(n + 3),
 td.cell:nth-child(n + 3) {
-	border-left: $border-soft;
+  border-left: $border-soft;
 }
 
 .row {
-	&:last-child .cell {
-		border-bottom: 0;
-	}
+  &:last-child .cell {
+    border-bottom: 0;
+  }
 
-	&.muted .cell {
-		color: $color-ink-muted;
-	}
+  &.muted .cell {
+    color: $color-ink-muted;
+  }
 
-	&.highlight th {
-		color: $color-accent;
-		font-weight: $weight-medium;
-	}
+  &.highlight th {
+    color: $color-accent;
+    font-weight: $weight-medium;
+  }
 }

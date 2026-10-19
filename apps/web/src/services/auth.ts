@@ -1,28 +1,28 @@
 export interface User {
-	id: string;
-	email: string;
+  id: string;
+  email: string;
 }
 
 export interface Credentials {
-	email: string;
-	password: string;
+  email: string;
+  password: string;
 }
 
 export type AuthErrorCode =
-	| "invalid-credentials"
-	| "email-taken"
-	| "wrong-password"
-	| "unauthenticated";
+  | "invalid-credentials"
+  | "email-taken"
+  | "wrong-password"
+  | "unauthenticated";
 
 /** A failure the visitor can act on; its message is safe to show them. */
 export class AuthError extends Error {
-	readonly code: AuthErrorCode;
+  readonly code: AuthErrorCode;
 
-	constructor(code: AuthErrorCode, message: string) {
-		super(message);
-		this.name = "AuthError";
-		this.code = code;
-	}
+  constructor(code: AuthErrorCode, message: string) {
+    super(message);
+    this.name = "AuthError";
+    this.code = code;
+  }
 }
 
 /**
@@ -31,18 +31,18 @@ export class AuthError extends Error {
  * (see `services/index.ts`).
  */
 export interface AuthService {
-	/** The logged-in user, or null. Called once when the app loads. */
-	getSession(): Promise<User | null>;
-	login(credentials: Credentials): Promise<User>;
-	/** Creates an account and logs it in. */
-	signup(credentials: Credentials): Promise<User>;
-	logout(): Promise<void>;
-	updateEmail(change: {
-		email: string;
-		currentPassword: string;
-	}): Promise<User>;
-	updatePassword(change: {
-		currentPassword: string;
-		newPassword: string;
-	}): Promise<void>;
+  /** The logged-in user, or null. Called once when the app loads. */
+  getSession(): Promise<User | null>;
+  login(credentials: Credentials): Promise<User>;
+  /** Creates an account and logs it in. */
+  signup(credentials: Credentials): Promise<User>;
+  logout(): Promise<void>;
+  updateEmail(change: {
+    email: string;
+    currentPassword: string;
+  }): Promise<User>;
+  updatePassword(change: {
+    currentPassword: string;
+    newPassword: string;
+  }): Promise<void>;
 }

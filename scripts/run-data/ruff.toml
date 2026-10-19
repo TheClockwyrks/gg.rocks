@@ -1,0 +1,3 @@
+# The run-data scripts are held to the rules the gates are, from the one place
+# they are settled.
+extend = "../../ci/pyproject.toml"

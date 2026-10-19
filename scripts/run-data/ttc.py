@@ -47,7 +47,6 @@ A null figure means "no data", never zero. The large file is written compact,
 with figures rounded to four significant digits, to keep it small.
 """
 
-import argparse
 import datetime
 import json
 import os
@@ -57,6 +56,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+from pathlib import Path
 
 # The deployed backends, behind the VPN-only internal ingress.
 BACKENDS = {
@@ -64,8 +64,8 @@ BACKENDS = {
     "staging": "https://api.staging.tcab.testcabinet.ai",
 }
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-RUN_DATA = os.path.join(ROOT, "run-data")
+ROOT = Path(__file__).resolve().parent.parent.parent
+RUN_DATA = ROOT / "run-data"
 
 SUBJECT = "gg"
 
@@ -79,7 +79,7 @@ LABELS = {
 
 RATINGS = ["flawless", "great", "passable", "scuffed", "broken"]
 GOOD = {"flawless", "great"}
-CATEGORIES = RATINGS + ["didNotFinish", "unrated"]
+CATEGORIES = [*RATINGS, "didNotFinish", "unrated"]
 # How a run ended, as the outcome chart groups it.
 ENDINGS = {
     "completed": "completed",
@@ -221,7 +221,7 @@ def pull(backend, states):
     return {
         "backend": backend,
         "runStates": states,
-        "pulledAt": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+        "pulledAt": datetime.datetime.now(datetime.UTC).isoformat(timespec="seconds"),
         "runs": list(runs.values()),
         "models": models,
     }
@@ -299,9 +299,7 @@ def to_row(run, index, unmatched):
         "goodShare": good,
         "completionRate": 1.0 if completed else 0.0,
         "costUsd": (metrics.get("cost") or {}).get("comparable"),
-        "totalTokens": total(
-            tokens.get("uncachedInput"), cached, tokens.get("output"), tokens.get("reasoning")
-        ),
+        "totalTokens": total(tokens.get("uncachedInput"), cached, tokens.get("output"), tokens.get("reasoning")),
         # The split is only meaningful on a run that breaks cached reads out.
         "uncachedInputTokens": tokens.get("uncachedInput") if cached is not None else None,
         "cachedInputTokens": cached,
@@ -399,7 +397,7 @@ def paired(a_units, b_units, metrics=METRICS, with_interval=True):
     """Each metric on the pairs where both sides report it."""
     out = {}
     for m in metrics:
-        both = [(a[m], b[m]) for a, b in zip(a_units, b_units) if a[m] is not None and b[m] is not None]
+        both = [(a[m], b[m]) for a, b in zip(a_units, b_units, strict=True) if a[m] is not None and b[m] is not None]
         diffs = [a - b for a, b in both]
         entry = {
             "pairs": len(both),
@@ -429,9 +427,7 @@ def comparison_scope(a, b, keys):
             {
                 "case": case,
                 "pairs": len(ks),
-                "metrics": paired(
-                    [a[k] for k in ks], [b[k] for k in ks], CASE_METRICS, with_interval=False
-                ),
+                "metrics": paired([a[k] for k in ks], [b[k] for k in ks], CASE_METRICS, with_interval=False),
             }
             for case, ks in sorted(by_case.items())
         ],
@@ -483,7 +479,7 @@ def rounded(value):
 
 
 def write(out, name, data, compact=False):
-    with open(os.path.join(out, name), "w") as f:
+    with (Path(out) / name).open("w") as f:
         if compact:
             json.dump(rounded(data), f, separators=(",", ":"))
         else:
@@ -496,7 +492,7 @@ def case_labels(rows):
     the other cases of the same name (variant, engine, version)."""
     parts = {}
     for r in rows:
-        slug, version, variant, engine = r["case"].split("/")
+        _slug, version, variant, engine = r["case"].split("/")
         parts[r["case"]] = (r["caseName"], variant, engine, version)
     labels = {}
     for case, (name, variant, engine, version) in parts.items():
@@ -534,7 +530,7 @@ def add_source_args(ap):
 def read(args):
     """The runs and model catalog, from a saved runs.json or a backend."""
     if args.from_runs:
-        with open(args.from_runs) as f:
+        with Path(args.from_runs).open() as f:
             return json.load(f)
     backend = args.backend or BACKENDS.get(args.env) or os.environ.get("TCAB_BACKEND")
     if not backend:
@@ -594,9 +590,9 @@ def run_dir(kind, version, pulled_at):
     """run-data/<kind>/<gg version>/<UTC date of the pull>"""
     date = (pulled_at or "")[:10]
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", date):
-        date = datetime.datetime.now(datetime.timezone.utc).date().isoformat()
+        date = datetime.datetime.now(datetime.UTC).date().isoformat()
     name = re.sub(r"[^\w.+-]", "_", version or "") or "unknown"
-    return os.path.join(RUN_DATA, kind, name, date)
+    return RUN_DATA / kind / name / date
 
 
 def compare(runs, series):
@@ -689,7 +685,7 @@ def report(series, comparisons, out):
 
     print(f"\ngg {series[0]['version']} against, on shared pairs:", file=sys.stderr)
     print(f"{'':<4}{'series':<22}{'pairs':>6}{'pass rate, pts':>16}{'interval':>18}")
-    for s, c in zip(series[1:], comparisons):
+    for s, c in zip(series[1:], comparisons, strict=True):
         m = c["scopes"]["all"]["metrics"]["passRate"]
         label = f"{s['label']} {s['version'] or ''}".strip()
         span = f"[{pct(m['low'])}, {pct(m['high'])}]" if m["low"] is not None else "-"

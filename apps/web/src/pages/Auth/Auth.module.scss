@@ -4,28 +4,28 @@ $form-width: 400px;
 
 // The heading and form share one narrow column in the middle of the page.
 .column {
-	display: flex;
-	flex-direction: column;
-	gap: $s-10;
-	width: 100%;
-	max-width: $form-width;
-	margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: $s-10;
+  width: 100%;
+  max-width: $form-width;
+  margin-inline: auto;
 }
 
 .form {
-	display: flex;
-	flex-direction: column;
-	gap: $s-5;
+  display: flex;
+  flex-direction: column;
+  gap: $s-5;
 }
 
 .switch {
-	margin: 0;
-	font-size: $text-15;
-	color: $color-ink-muted;
+  margin: 0;
+  font-size: $text-15;
+  color: $color-ink-muted;
 }
 
 .demo {
-	margin: 0;
+  margin: 0;
 
-	@include text-mono;
+  @include text-mono;
 }

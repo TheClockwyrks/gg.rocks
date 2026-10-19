@@ -6,8 +6,8 @@ const REDIRECT_PARAM = "redirect";
 
 /** Adds the page to return to after logging in to a log-in or sign-up path. */
 export function withRedirect(path: string, target: string | null): string {
-	if (!target || target === accountPaths.account) return path;
-	return `${path}?${new URLSearchParams({ [REDIRECT_PARAM]: target })}`;
+  if (!target || target === accountPaths.account) return path;
+  return `${path}?${new URLSearchParams({ [REDIRECT_PARAM]: target })}`;
 }
 
 /**
@@ -15,9 +15,9 @@ export function withRedirect(path: string, target: string | null): string {
  * ignored, so a crafted link cannot send someone off-site after they log in.
  */
 export function useRedirectTarget(): string | null {
-	const [params] = useSearchParams();
-	const target = params.get(REDIRECT_PARAM);
-	return target && /^\/(?![/\\])/.test(target) ? target : null;
+  const [params] = useSearchParams();
+  const target = params.get(REDIRECT_PARAM);
+  return target && /^\/(?![/\\])/.test(target) ? target : null;
 }
 
 /**
@@ -26,22 +26,22 @@ export function useRedirectTarget(): string | null {
  * service refusing to answer without a valid session.
  */
 export function RequireAuth() {
-	const { status } = useAuth();
-	const location = useLocation();
+  const { status } = useAuth();
+  const location = useLocation();
 
-	if (status === "loading") return null;
-	if (status === "anonymous") {
-		return (
-			<Navigate
-				to={withRedirect(
-					accountPaths.login,
-					location.pathname + location.search,
-				)}
-				replace
-			/>
-		);
-	}
-	return <Outlet />;
+  if (status === "loading") return null;
+  if (status === "anonymous") {
+    return (
+      <Navigate
+        to={withRedirect(
+          accountPaths.login,
+          location.pathname + location.search,
+        )}
+        replace
+      />
+    );
+  }
+  return <Outlet />;
 }
 
 /**
@@ -49,17 +49,12 @@ export function RequireAuth() {
  * has just been given one by the form, moves on to the page they were after.
  */
 export function GuestOnly() {
-	const { status } = useAuth();
-	const target = useRedirectTarget();
+  const { status } = useAuth();
+  const target = useRedirectTarget();
 
-	if (status === "loading") return null;
-	if (status === "authenticated") {
-		return (
-			<Navigate
-				to={target ?? accountPaths.account}
-				replace
-			/>
-		);
-	}
-	return <Outlet />;
+  if (status === "loading") return null;
+  if (status === "authenticated") {
+    return <Navigate to={target ?? accountPaths.account} replace />;
+  }
+  return <Outlet />;
 }

@@ -1,11 +1,11 @@
 @use "@/styles" as *;
 
 .notice {
-	margin: 0;
-	padding: $s-3 $s-4;
-	border: $border-width dashed $color-accent-outline;
-	border-radius: $radius-md;
-	background: $color-accent-wash;
+  margin: 0;
+  padding: $s-3 $s-4;
+  border: $border-width dashed $color-accent-outline;
+  border-radius: $radius-md;
+  background: $color-accent-wash;
 
-	@include text-mono($text-13, $color-ink-muted);
+  @include text-mono($text-13, $color-ink-muted);
 }

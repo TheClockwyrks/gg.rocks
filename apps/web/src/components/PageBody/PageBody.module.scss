@@ -1,36 +1,36 @@
 @use "@/styles" as *;
 
 .body {
-	position: relative;
+  position: relative;
 
-	@include page-pane;
+  @include page-pane;
 }
 
 .main {
-	display: flex;
-	flex-direction: column;
-	gap: $s-7;
-	padding-block: $s-8 $s-16;
+  display: flex;
+  flex-direction: column;
+  gap: $s-7;
+  padding-block: $s-8 $s-16;
 
-	@include gutter;
+  @include gutter;
 
-	@include up($bp-sm) {
-		padding-block: $s-12 $s-24;
-	}
+  @include up($bp-sm) {
+    padding-block: $s-12 $s-24;
+  }
 
-	&.narrow {
-		gap: $s-10;
-	}
+  &.narrow {
+    gap: $s-10;
+  }
 
-	// Beside the strand the column is indented, and capped so that it does
-	// not stretch to the far edge of the pane.
-	&.railed {
-		@include up($bp-lg) {
-			padding-left: $layout-rail-width + $s-12;
-		}
+  // Beside the strand the column is indented, and capped so that it does
+  // not stretch to the far edge of the pane.
+  &.railed {
+    @include up($bp-lg) {
+      padding-left: $layout-rail-width + $s-12;
+    }
 
-		&.wide {
-			max-width: $layout-content-wide + $layout-rail-width + $s-12 + $s-8;
-		}
-	}
+    &.wide {
+      max-width: $layout-content-wide + $layout-rail-width + $s-12 + $s-8;
+    }
+  }
 }

@@ -1,13 +1,13 @@
 @use "@/styles" as *;
 
 .wordmark {
-	font-size: $text-32;
-	font-weight: $weight-bold;
-	line-height: $leading-none;
-	letter-spacing: $tracking-wordmark;
-	color: $color-ink;
+  font-size: $text-32;
+  font-weight: $weight-bold;
+  line-height: $leading-none;
+  letter-spacing: $tracking-wordmark;
+  color: $color-ink;
 
-	&:hover {
-		color: $color-ink;
-	}
+  &:hover {
+    color: $color-ink;
+  }
 }

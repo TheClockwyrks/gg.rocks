@@ -7,18 +7,18 @@ import type { BenchmarkFile } from "./runData";
  * that this much shows before the figures themselves have loaded.
  */
 export interface BenchmarkSummary {
-	/** When the runs were read from The Test Cabinet, as an ISO timestamp. */
-	pulledAt: string;
-	/** Every run was invented, to show the page with a full set of data. */
-	synthetic: boolean;
-	/** The gg version the figures are for. */
-	version: string | null;
-	models: number;
-	cases: number;
-	pairs: number;
-	runs: number;
-	/** How many other harnesses share at least one pair with gg. */
-	harnesses: number;
+  /** When the runs were read from The Test Cabinet, as an ISO timestamp. */
+  pulledAt: string;
+  /** Every run was invented, to show the page with a full set of data. */
+  synthetic: boolean;
+  /** The gg version the figures are for. */
+  version: string | null;
+  models: number;
+  cases: number;
+  pairs: number;
+  runs: number;
+  /** How many other harnesses share at least one pair with gg. */
+  harnesses: number;
 }
 
 /**
@@ -32,12 +32,12 @@ export interface BenchmarkSummary {
  * the page.
  */
 export const benchmark: {
-	summary: BenchmarkSummary;
-	load: () => Promise<BenchmarkFile>;
+  summary: BenchmarkSummary;
+  load: () => Promise<BenchmarkFile>;
 } = {
-	summary,
-	load: () =>
-		import("@run-data/sample/benchmark/benchmark.json").then(
-			(module) => module.default as unknown as BenchmarkFile,
-		),
+  summary,
+  load: () =>
+    import("@run-data/sample/benchmark/benchmark.json").then(
+      (module) => module.default as unknown as BenchmarkFile,
+    ),
 };

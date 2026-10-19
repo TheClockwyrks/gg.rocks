@@ -8,123 +8,123 @@ $outcome-column: 180px;
 $columns: $spark-column minmax(0, 1fr) repeat(4, $metric-column) $outcome-column;
 
 .headings {
-	display: none;
+  display: none;
 
-	@include up($bp-lg) {
-		display: grid;
-		grid-template-columns: $columns;
-		gap: $s-4;
-		align-items: center;
-		padding: 0 $s-3 $s-2-5;
+  @include up($bp-lg) {
+    display: grid;
+    grid-template-columns: $columns;
+    gap: $s-4;
+    align-items: center;
+    padding: 0 $s-3 $s-2-5;
 
-		@include text-label($text-11);
-	}
+    @include text-label($text-11);
+  }
 }
 
 .row {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr) auto;
-	grid-template-areas:
-		"spark outcome"
-		"identity identity"
-		"metrics metrics";
-	gap: $s-3 $s-4;
-	align-items: center;
-	padding: $s-4 $s-3;
-	border-bottom: $border-soft;
-	color: $color-ink;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "spark outcome"
+    "identity identity"
+    "metrics metrics";
+  gap: $s-3 $s-4;
+  align-items: center;
+  padding: $s-4 $s-3;
+  border-bottom: $border-soft;
+  color: $color-ink;
 
-	@include up($bp-sm) {
-		grid-template-columns: $spark-column minmax(0, 1fr) auto;
-		grid-template-areas:
-			"spark identity outcome"
-			"metrics metrics metrics";
-	}
+  @include up($bp-sm) {
+    grid-template-columns: $spark-column minmax(0, 1fr) auto;
+    grid-template-areas:
+      "spark identity outcome"
+      "metrics metrics metrics";
+  }
 
-	@include up($bp-lg) {
-		grid-template-columns: $columns;
-		grid-template-areas: none;
-		gap: $s-4;
-		padding-block: $s-3;
-	}
+  @include up($bp-lg) {
+    grid-template-columns: $columns;
+    grid-template-areas: none;
+    gap: $s-4;
+    padding-block: $s-3;
+  }
 }
 
 .link {
-	transition: background-color $duration-fast ease;
+  transition: background-color $duration-fast ease;
 
-	&:hover {
-		background: $color-row-hover;
-		color: $color-ink;
-	}
+  &:hover {
+    background: $color-row-hover;
+    color: $color-ink;
+  }
 }
 
 .spark {
-	grid-area: spark;
+  grid-area: spark;
 }
 
 .identity {
-	grid-area: identity;
-	display: flex;
-	flex-direction: column;
-	gap: $s-0-5;
-	min-width: 0;
+  grid-area: identity;
+  display: flex;
+  flex-direction: column;
+  gap: $s-0-5;
+  min-width: 0;
 }
 
 .name {
-	font-size: $text-18;
-	font-weight: $weight-semibold;
+  font-size: $text-18;
+  font-weight: $weight-semibold;
 }
 
 .timeline {
-	@include text-mono;
+  @include text-mono;
 }
 
 .metrics {
-	grid-area: metrics;
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: $s-3 $s-4;
+  grid-area: metrics;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $s-3 $s-4;
 
-	@include up($bp-sm) {
-		grid-template-columns: repeat(4, minmax(0, 1fr));
-	}
+  @include up($bp-sm) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .metric {
-	display: flex;
-	flex-direction: column;
-	gap: $s-0-5;
+  display: flex;
+  flex-direction: column;
+  gap: $s-0-5;
 
-	@include text-mono($text-14, $color-ink-muted);
+  @include text-mono($text-14, $color-ink-muted);
 }
 
 .metricLabel {
-	@include text-label($text-11);
+  @include text-label($text-11);
 }
 
 .outcome {
-	grid-area: outcome;
-	justify-self: end;
+  grid-area: outcome;
+  justify-self: end;
 }
 
 // From here up the row is a table row: the metrics become cells under the
 // column headings, which replace the per-value labels.
 @include up($bp-lg) {
-	.spark,
-	.identity,
-	.outcome {
-		grid-area: auto;
-	}
+  .spark,
+  .identity,
+  .outcome {
+    grid-area: auto;
+  }
 
-	.metrics {
-		display: contents;
-	}
+  .metrics {
+    display: contents;
+  }
 
-	.metricLabel {
-		@include visually-hidden;
-	}
+  .metricLabel {
+    @include visually-hidden;
+  }
 
-	.outcome {
-		justify-self: start;
-	}
+  .outcome {
+    justify-self: start;
+  }
 }

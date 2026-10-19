@@ -1,131 +1,131 @@
 @use "@/styles" as *;
 
 .figure {
-	display: flex;
-	flex-direction: column;
-	gap: $s-3;
-	min-width: 0;
-	margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $s-3;
+  min-width: 0;
+  margin: 0;
 }
 
 .caption {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: baseline;
-	gap: $s-1 $s-4;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: $s-1 $s-4;
 }
 
 .title {
-	@include text-title-figure;
+  @include text-title-figure;
 }
 
 .hint {
-	font-size: $text-14;
-	color: $color-ink-subtle;
+  font-size: $text-14;
+  color: $color-ink-subtle;
 }
 
 .legend {
-	display: flex;
-	flex-wrap: wrap;
-	gap: $s-2 $s-5;
-	margin: 0;
-	padding: 0;
-	list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $s-2 $s-5;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
-	@include text-mono($color: $color-ink-muted);
+  @include text-mono($color: $color-ink-muted);
 }
 
 .legendItem {
-	display: inline-flex;
-	align-items: center;
-	gap: $s-1-5;
+  display: inline-flex;
+  align-items: center;
+  gap: $s-1-5;
 }
 
 .swatch {
-	flex: none;
-	width: $s-3;
-	height: $s-3;
-	background: currentColor;
+  flex: none;
+  width: $s-3;
+  height: $s-3;
+  background: currentColor;
 
-	&.diamond {
-		width: $s-2;
-		height: $s-2;
-		margin-inline: $s-0-5;
-		transform: rotate(45deg);
-	}
+  &.diamond {
+    width: $s-2;
+    height: $s-2;
+    margin-inline: $s-0-5;
+    transform: rotate(45deg);
+  }
 
-	&.dot {
-		border-radius: $radius-full;
-	}
+  &.dot {
+    border-radius: $radius-full;
+  }
 
-	&.block {
-		border-radius: $radius-sm;
-	}
+  &.block {
+    border-radius: $radius-sm;
+  }
 
-	&.line {
-		width: $s-4;
-		height: $s-0-5;
-	}
+  &.line {
+    width: $s-4;
+    height: $s-0-5;
+  }
 
-	&.accent {
-		color: $color-accent;
-	}
+  &.accent {
+    color: $color-accent;
+  }
 
-	&.info {
-		color: $color-info;
-	}
+  &.info {
+    color: $color-info;
+  }
 
-	&.strand {
-		color: $color-strand;
-	}
+  &.strand {
+    color: $color-strand;
+  }
 
-	&.subtle {
-		color: $color-ink-subtle;
-	}
+  &.subtle {
+    color: $color-ink-subtle;
+  }
 
-	&.broken {
-		color: $color-rating-broken;
-	}
+  &.broken {
+    color: $color-rating-broken;
+  }
 
-	&.scuffed {
-		color: $color-rating-scuffed;
-	}
+  &.scuffed {
+    color: $color-rating-scuffed;
+  }
 
-	&.passable {
-		color: $color-rating-passable;
-	}
+  &.passable {
+    color: $color-rating-passable;
+  }
 
-	&.great {
-		color: $color-rating-great;
-	}
+  &.great {
+    color: $color-rating-great;
+  }
 
-	&.flawless {
-		color: $color-rating-flawless;
-	}
+  &.flawless {
+    color: $color-rating-flawless;
+  }
 
-	&.didNotFinish {
-		color: $color-rating-did-not-finish;
-	}
+  &.didNotFinish {
+    color: $color-rating-did-not-finish;
+  }
 
-	&.unrated {
-		color: $color-rating-unrated;
-	}
+  &.unrated {
+    color: $color-rating-unrated;
+  }
 }
 
 .note {
-	margin: 0;
+  margin: 0;
 
-	@include text-mono;
+  @include text-mono;
 }
 
 .scroll {
-	overflow-x: auto;
+  overflow-x: auto;
 }
 
 .scrollInner {
-	min-width: $layout-scroll-min;
+  min-width: $layout-scroll-min;
 
-	&.wide {
-		min-width: $layout-prose;
-	}
+  &.wide {
+    min-width: $layout-prose;
+  }
 }

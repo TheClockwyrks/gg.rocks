@@ -4,7 +4,8 @@ be looked at before gg has enough real runs to fill them.
 
     scripts/run-data/gg-sample-runs.py /tmp/sample-runs.json
     scripts/run-data/gg-benchmark-data.py --from-runs /tmp/sample-runs.json --out run-data/sample/benchmark
-    scripts/run-data/gg-experiment-data.py --from-runs /tmp/sample-runs.json --baseline 0.7.0 --out run-data/sample/experiment
+    scripts/run-data/gg-experiment-data.py --from-runs /tmp/sample-runs.json --baseline 0.7.0 \
+        --out run-data/sample/experiment
 
 Every run in it is invented: four gg versions and four other harnesses over
 three models and twelve test cases, with a few repeats of each. It is marked
@@ -14,6 +15,7 @@ three models and twelve test cases, with a few repeats of each. It is marked
 import json
 import random
 import sys
+from pathlib import Path
 
 rng = random.Random(7)
 
@@ -80,7 +82,11 @@ for harness, version, started, quality, sd, fails, cost_factor, cached, minutes,
             level += QUIRKS.get((harness, version, test_type), 0) + QUIRKS.get((harness, version, slug), 0)
             for _ in range(repeats):
                 failed = rng.random() < fails
-                state = rng.choice(["catastrophic", "catastrophic", "timed_out", "hung", "harness_error"]) if failed else "completed"
+                state = (
+                    rng.choice(["catastrophic", "catastrophic", "timed_out", "hung", "harness_error"])
+                    if failed
+                    else "completed"
+                )
                 earned = round(150 * max(0.2, min(1.0, rng.gauss(level, sd))))
                 cost = price * cost_factor * rng.lognormvariate(0, 0.25) * (1.6 if test_type == "full-stack" else 1)
                 tokens = cost / price * 1_300_000
@@ -95,25 +101,33 @@ for harness, version, started, quality, sd, fails, cost_factor, cached, minutes,
                         "score": None if failed else {"earned": earned, "total": 150},
                         "caseName": name,
                         "subject": {
-                            "testCaseSlug": slug, "testCaseVersion": "v3.0.0", "testType": test_type,
-                            "variant": variant, "harnessSlug": harness,
-                            "harnessVersion": None if early else version, "engineSlug": "none",
-                            "modelId": model_id, "ggPreset": None, "ggConfigId": None,
-                        },  # fmt: skip
+                            "testCaseSlug": slug,
+                            "testCaseVersion": "v3.0.0",
+                            "testType": test_type,
+                            "variant": variant,
+                            "harnessSlug": harness,
+                            "harnessVersion": None if early else version,
+                            "engineSlug": "none",
+                            "modelId": model_id,
+                            "ggPreset": None,
+                            "ggConfigId": None,
+                        },
                         "metrics": {
-                            "tokens": None if early else {
+                            "tokens": None
+                            if early
+                            else {
                                 "uncachedInput": round(tokens * (1 - cached) * 0.95),
                                 "cachedInput": round(tokens * cached),
                                 "output": round(tokens * 0.012),
                                 "reasoning": round(tokens * 0.003),
-                            },  # fmt: skip
+                            },
                             "cost": {"comparable": None if early else cost},
                             "sessionSeconds": None if early else minutes * 60 * rng.lognormvariate(0, 0.2),
                         },
                     }
                 )
 
-with open(sys.argv[1], "w") as f:
+with Path(sys.argv[1]).open("w") as f:
     json.dump(
         {
             "backend": "synthetic",
@@ -122,7 +136,12 @@ with open(sys.argv[1], "w") as f:
             "pulledAt": "2026-10-07T00:00:00+00:00",
             "runs": runs,
             "models": [
-                {"slug": slug, "name": name, "aliases": sorted({s[k] for s in SPELLING.values() if k in s}), "coveredModelIds": []}
+                {
+                    "slug": slug,
+                    "name": name,
+                    "aliases": sorted({s[k] for s in SPELLING.values() if k in s}),
+                    "coveredModelIds": [],
+                }
                 for k, (slug, name, _, _) in MODELS.items()
             ],
         },
