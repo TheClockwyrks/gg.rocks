@@ -4,68 +4,68 @@
 $meta-column: 200px;
 
 .release {
-	display: grid;
-	gap: $s-4;
-	padding-block: $s-7;
-	border-top: $border;
+  display: grid;
+  gap: $s-4;
+  padding-block: $s-7;
+  border-top: $border;
 
-	@include up($bp-md) {
-		grid-template-columns: $meta-column minmax(0, 1fr);
-		gap: $s-8;
-	}
+  @include up($bp-md) {
+    grid-template-columns: $meta-column minmax(0, 1fr);
+    gap: $s-8;
+  }
 }
 
 .meta {
-	display: flex;
-	flex-direction: column;
-	gap: $s-1-5;
-	font-family: $font-mono;
+  display: flex;
+  flex-direction: column;
+  gap: $s-1-5;
+  font-family: $font-mono;
 }
 
 .build {
-	margin: 0;
-	font-size: $text-18;
-	font-weight: $weight-regular;
+  margin: 0;
+  font-size: $text-18;
+  font-weight: $weight-regular;
 }
 
 .date {
-	font-size: $text-13;
-	color: $color-ink-subtle;
+  font-size: $text-13;
+  color: $color-ink-subtle;
 }
 
 .shippedTo {
-	font-size: $text-12;
-	color: $color-accent;
+  font-size: $text-12;
+  color: $color-accent;
 }
 
 .changes {
-	display: flex;
-	flex-direction: column;
-	gap: $s-5;
-	margin: 0;
-	padding: 0;
-	list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: $s-5;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .change {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	gap: $s-1-5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $s-1-5;
 }
 
 .summary {
-	font-size: $text-17;
+  font-size: $text-17;
 }
 
 .source {
-	@include text-mono($text-13);
+  @include text-mono($text-13);
 }
 
 a.source {
-	color: $color-accent;
+  color: $color-accent;
 
-	&:hover {
-		color: $color-accent-hover;
-	}
+  &:hover {
+    color: $color-accent-hover;
+  }
 }

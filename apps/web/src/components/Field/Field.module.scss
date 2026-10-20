@@ -1,0 +1,44 @@
+@use "@/styles" as *;
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $s-1-5;
+}
+
+.label {
+  font-size: $text-14;
+  font-weight: $weight-medium;
+  color: $color-ink-muted;
+}
+
+.input {
+  width: 100%;
+  min-height: $tap-target;
+  padding: 0 $s-3;
+  border: $border-outline;
+  border-radius: $radius-md;
+  background: $color-raised;
+  color: $color-ink;
+  font: inherit;
+  font-size: $text-15;
+  transition: border-color $duration-fast ease;
+
+  &:hover,
+  &:focus {
+    border-color: $color-accent;
+  }
+
+  // In place of the global focus ring, which stands off from the element:
+  // the outline sits flush against the border, so the border itself appears
+  // to thicken.
+  &:focus-visible {
+    outline: $s-0-5 solid $color-accent;
+    outline-offset: 0;
+    border-radius: $radius-md;
+  }
+}
+
+.hint {
+  @include text-mono;
+}

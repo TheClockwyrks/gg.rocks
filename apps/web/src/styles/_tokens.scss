@@ -28,6 +28,9 @@ $color-rating-scuffed: #ad3657;
 $color-rating-passable: #8a7f96;
 $color-rating-great: #3264b6;
 $color-rating-flawless: #74b3ff;
+// Runs with no rating sit outside the scale, in the page's own violets.
+$color-rating-did-not-finish: #4a2f6e;
+$color-rating-unrated: #2a1a42;
 
 $color-line: rgba($color-violet, 0.6);
 $color-line-soft: rgba($color-violet, 0.35);

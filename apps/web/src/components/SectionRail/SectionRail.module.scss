@@ -1,30 +1,30 @@
 @use "@/styles" as *;
 
 .rail {
-	display: none;
+  display: none;
 
-	@include up($bp-lg) {
-		display: block;
-		position: absolute;
-		inset-block: 0;
-		left: 0;
-		width: $layout-rail-width;
-	}
+  @include up($bp-lg) {
+    display: block;
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    width: $layout-rail-width;
+  }
 }
 
 .track {
-	position: sticky;
-	top: $layout-header-height;
-	height: calc(100vh - #{$layout-header-height});
-	overflow: hidden;
+  position: sticky;
+  top: $layout-header-height;
+  height: calc(100vh - #{$layout-header-height});
+  overflow: hidden;
 }
 
 // An invisible tap target centred on each node of the strand.
 .stop {
-	position: absolute;
-	top: var(--y);
-	left: 50%;
-	width: $tap-target;
-	height: $tap-target;
-	transform: translate(-50%, -50%);
+  position: absolute;
+  top: var(--y);
+  left: 50%;
+  width: $tap-target;
+  height: $tap-target;
+  transform: translate(-50%, -50%);
 }

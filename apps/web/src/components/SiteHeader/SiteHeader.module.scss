@@ -1,94 +1,101 @@
 @use "@/styles" as *;
 
 .header {
-	position: sticky;
-	top: 0;
-	z-index: $z-header;
-	border-bottom: $border;
-	background: $color-scrim;
-	backdrop-filter: blur($s-2);
+  position: sticky;
+  top: 0;
+  z-index: $z-header;
+  border-bottom: $border;
+  background: $color-scrim;
+  backdrop-filter: blur($s-2);
 }
 
 // The bar spans the window; its contents line up with the page content.
 .inner {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: $s-8;
-	height: $layout-header-height;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $s-8;
+  height: $layout-header-height;
 
-	@include page-pane;
-	@include gutter;
+  @include page-pane;
+  @include gutter;
 }
 
 .toggle {
-	min-height: $control-height;
-	padding: 0 $s-4;
-	border: $border-outline;
-	border-radius: $radius-md;
-	background: transparent;
-	color: $color-ink-muted;
-	font-size: $text-15;
-	font-weight: $weight-medium;
+  min-height: $control-height;
+  padding: 0 $s-4;
+  border: $border-outline;
+  border-radius: $radius-md;
+  background: transparent;
+  color: $color-ink-muted;
+  font-size: $text-15;
+  font-weight: $weight-medium;
 
-	@include up($bp-md) {
-		display: none;
-	}
+  @include up($bp-md) {
+    display: none;
+  }
 }
 
 .nav {
-	display: none;
-	font-size: $text-15;
-	font-weight: $weight-medium;
+  display: none;
+  font-size: $text-15;
+  font-weight: $weight-medium;
 
-	@include down($bp-md) {
-		position: absolute;
-		top: 100%;
-		left: 0;
-		right: 0;
-		z-index: $z-menu;
-		flex-direction: column;
-		gap: $s-1;
-		padding-block: $s-3 $s-5;
-		border-bottom: $border;
-		background: $color-raised;
+  @include down($bp-md) {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: $z-menu;
+    flex-direction: column;
+    gap: $s-1;
+    padding-block: $s-3 $s-5;
+    border-bottom: $border;
+    background: $color-raised;
 
-		@include gutter;
+    @include gutter;
 
-		&.open {
-			display: flex;
-		}
-	}
+    &.open {
+      display: flex;
+    }
+  }
 
-	@include up($bp-md) {
-		display: flex;
-		align-items: center;
-		gap: $s-7;
-	}
+  @include up($bp-md) {
+    display: flex;
+    align-items: center;
+    gap: $s-7;
+  }
 }
 
 .link {
-	display: flex;
-	align-items: center;
-	min-height: $tap-target;
-	color: $color-ink-muted;
+  display: flex;
+  align-items: center;
+  min-height: $tap-target;
+  color: $color-ink-muted;
 
-	&:hover,
-	&.current {
-		color: $color-accent;
-	}
+  &:hover,
+  &.current {
+    color: $color-accent;
+  }
 }
 
 .download {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: $control-height;
-	padding: 0 $s-4;
-	border: $border-width solid $color-accent;
-	border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: $control-height;
+  padding: 0 $s-4;
+  border: $border-width solid $color-accent;
+  border-radius: $radius-md;
 
-	@include down($bp-md) {
-		margin-top: $s-2;
-	}
+  @include down($bp-md) {
+    margin-top: $s-2;
+  }
+}
+
+// Sits tight against Download: the two buttons read as a pair.
+.account {
+  @include up($bp-md) {
+    margin-left: -$s-4;
+  }
 }

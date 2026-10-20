@@ -1,27 +1,22 @@
 @use "@/styles" as *;
 
 .pill {
-	@include pill;
+  @include pill;
 }
 
 .active {
-	border-color: $color-ink-subtle;
-	color: $color-ink-muted;
+  border-color: $color-ink-subtle;
+  color: $color-ink-muted;
 }
 
 .shipped {
-	border-color: $color-accent;
-	background: $color-accent;
-	color: $color-surface;
-	font-weight: $weight-medium;
-}
-
-.template {
-	border: $border-width dashed $color-accent-outline;
-	color: $color-ink-muted;
+  border-color: $color-accent;
+  background: $color-accent;
+  color: $color-surface;
+  font-weight: $weight-medium;
 }
 
 .retired {
-	border: $border-width dashed $color-outline;
-	color: $color-ink-subtle;
+  border: $border-width dashed $color-outline;
+  color: $color-ink-subtle;
 }

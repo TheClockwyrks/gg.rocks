@@ -1,431 +1,375 @@
 @use "@/styles" as *;
 
 // Sizes that only these blocks need.
-$bar-label-column: 220px;
-$bar-value-column: 140px;
 $column-height: 280px;
 
 // --- Sections ---------------------------------------------------------------
 
 .section {
-	display: flex;
-	flex-direction: column;
-	gap: $s-4;
-	min-width: 0;
-	// Clear the top bar, plus the pinned contents row on smaller screens.
-	scroll-margin-top: $layout-header-height + $tap-target + $s-6;
+  display: flex;
+  flex-direction: column;
+  gap: $s-4;
+  min-width: 0;
+  // Clear the top bar, plus the pinned contents row on smaller screens.
+  scroll-margin-top: $layout-header-height + $tap-target + $s-6;
 
-	@include up($bp-lg) {
-		scroll-margin-top: $layout-header-height + $s-8;
-	}
+  @include up($bp-lg) {
+    scroll-margin-top: $layout-header-height + $s-8;
+  }
 
-	&.spacious {
-		gap: $s-10;
-	}
+  &.spacious {
+    gap: $s-10;
+  }
 }
 
 .sectionHeader {
-	display: flex;
-	flex-direction: column;
-	gap: $s-2;
+  display: flex;
+  flex-direction: column;
+  gap: $s-2;
 }
 
 .sectionTitle {
-	@include text-title-section;
+  @include text-title-section;
 }
 
 .prose {
-	@include text-body;
+  @include text-body;
 }
 
 .method {
-	margin: 0;
+  margin: 0;
 
-	@include text-mono($text-13);
+  @include text-mono($text-13);
 }
 
 // --- Compared against -------------------------------------------------------
 
 .compared {
-	display: flex;
-	flex-direction: column;
-	gap: $s-3;
+  display: flex;
+  flex-direction: column;
+  gap: $s-3;
 }
 
 .comparedLabel {
-	margin: 0;
-	font-weight: $weight-regular;
+  margin: 0;
+  font-weight: $weight-regular;
 
-	@include text-label;
+  @include text-label;
 }
 
 .chips {
-	display: flex;
-	flex-wrap: wrap;
-	gap: $s-2-5;
-	margin: 0;
-	padding: 0;
-	list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $s-2-5;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .chip {
-	padding: $s-2 $s-3;
-	border: $border-outline;
-	border-radius: $radius-md;
+  padding: $s-2 $s-3;
+  border: $border-outline;
+  border-radius: $radius-md;
 
-	@include text-mono($text-13, $color-ink-muted);
+  @include text-mono($text-13, $color-ink-muted);
 }
 
 .comparedNote {
-	margin: 0;
-	font-size: $text-14;
-	color: $color-ink-subtle;
-}
-
-// --- Token bars -------------------------------------------------------------
-
-.bars {
-	display: flex;
-	flex-direction: column;
-	gap: $s-4;
-}
-
-.barRow {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr) auto;
-	grid-template-areas:
-		"label value"
-		"bar bar";
-	gap: $s-2 $s-4;
-	align-items: center;
-
-	@include text-mono($text-13, $color-ink-muted);
-
-	@include up($bp-md) {
-		grid-template-columns: $bar-label-column minmax(0, 1fr) $bar-value-column;
-		grid-template-areas: "label bar value";
-	}
-
-	&.highlight {
-		color: $color-ink;
-	}
-}
-
-.barLabel {
-	grid-area: label;
-}
-
-.barValue {
-	grid-area: value;
-}
-
-.bar {
-	grid-area: bar;
-	display: flex;
-	gap: $s-0-5;
-	height: $s-6;
-}
-
-.segment {
-	flex: var(--share) 1 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-width: 0;
-	min-height: 0;
-	overflow: hidden;
-	font-size: $text-11;
-	color: $color-ink;
-}
-
-.bar .segment {
-	&:first-child {
-		border-radius: $radius-sm 0 0 $radius-sm;
-	}
-
-	&:last-child {
-		border-radius: 0 $radius-sm $radius-sm 0;
-	}
+  margin: 0;
+  font-size: $text-14;
+  color: $color-ink-subtle;
 }
 
 // --- Columns ----------------------------------------------------------------
 
-.columns {
-	display: flex;
-	justify-content: space-between;
-	gap: $s-2;
+.segment {
+  flex: var(--share) 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  font-size: $text-11;
+  color: $color-ink;
+}
 
-	@include up($bp-sm) {
-		gap: $s-8;
-	}
+.columns {
+  display: flex;
+  justify-content: space-between;
+  gap: $s-2;
+
+  @include up($bp-sm) {
+    gap: $s-8;
+  }
 }
 
 .column {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
-	gap: $s-3;
-	min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $s-3;
+  min-width: 0;
 
-	@include text-mono($text-13, $color-ink-muted);
+  @include text-mono($text-13, $color-ink-muted);
 
-	&.highlight {
-		color: $color-ink;
-	}
+  &.highlight {
+    color: $color-ink;
+  }
 }
 
 // Reversed so that the first rating (the worst) sits at the bottom.
 .stack {
-	display: flex;
-	flex-direction: column-reverse;
-	gap: $s-0-5;
-	height: $column-height;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: $s-0-5;
+  height: $column-height;
 
-	.segment:first-child {
-		border-radius: 0 0 $radius-sm $radius-sm;
-	}
+  .segment:first-child {
+    border-radius: 0 0 $radius-sm $radius-sm;
+  }
 
-	.segment:last-child {
-		border-radius: $radius-sm $radius-sm 0 0;
-	}
+  .segment:last-child {
+    border-radius: $radius-sm $radius-sm 0 0;
+  }
 }
 
 .columnLabel {
-	font-size: $text-11;
-	text-align: center;
+  font-size: $text-11;
+  text-align: center;
 
-	@include up($bp-sm) {
-		font-size: $text-13;
-	}
-}
-
-.cached {
-	background: $color-strand;
-}
-
-.uncached {
-	background: $color-accent;
+  @include up($bp-sm) {
+    font-size: $text-13;
+  }
 }
 
 // Functionality ratings. The lighter fills take dark text.
 .broken {
-	background: $color-rating-broken;
-	color: $color-surface;
+  background: $color-rating-broken;
+  color: $color-surface;
 }
 
 .scuffed {
-	background: $color-rating-scuffed;
+  background: $color-rating-scuffed;
 }
 
 .passable {
-	background: $color-rating-passable;
-	color: $color-surface;
+  background: $color-rating-passable;
+  color: $color-surface;
 }
 
 .great {
-	background: $color-rating-great;
+  background: $color-rating-great;
 }
 
 .flawless {
-	background: $color-rating-flawless;
-	color: $color-surface;
+  background: $color-rating-flawless;
+  color: $color-surface;
+}
+
+.didNotFinish {
+  background: $color-rating-did-not-finish;
+}
+
+.unrated {
+  background: $color-rating-unrated;
 }
 
 // --- Before / after ---------------------------------------------------------
 
 .beforeAfter {
-	display: grid;
-	gap: $s-5;
-	margin: 0;
+  display: grid;
+  gap: $s-5;
+  margin: 0;
 
-	@include up($bp-md) {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
+  @include up($bp-md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .variant {
-	display: flex;
-	flex-direction: column;
-	gap: $s-2-5;
+  display: flex;
+  flex-direction: column;
+  gap: $s-2-5;
 
-	@include card;
+  @include card;
 }
 
 .variantLabel {
-	letter-spacing: $tracking-wide;
-	text-transform: uppercase;
+  letter-spacing: $tracking-wide;
+  text-transform: uppercase;
 
-	@include text-mono;
+  @include text-mono;
 
-	&.current {
-		color: $color-accent;
-	}
+  &.current {
+    color: $color-accent;
+  }
 }
 
 .steps {
-	display: flex;
-	flex-direction: column;
-	gap: $s-2-5;
-	margin: 0;
-	padding: 0;
-	list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: $s-2-5;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .step {
-	padding: $s-3 $s-4;
-	border: $border-outline;
-	border-radius: $radius-md;
+  padding: $s-3 $s-4;
+  border: $border-outline;
+  border-radius: $radius-md;
 
-	@include text-mono($text-14, $color-ink);
+  @include text-mono($text-14, $color-ink);
 
-	&.changed {
-		border: $border-width-strong solid $color-accent;
-		background: $color-accent-wash;
-	}
+  &.changed {
+    border: $border-width-strong solid $color-accent;
+    background: $color-accent-wash;
+  }
 
-	&.added {
-		border: $border-width-strong dashed $color-accent;
-	}
+  &.added {
+    border: $border-width-strong dashed $color-accent;
+  }
 }
 
 .arrow {
-	padding-left: $s-5;
-	color: $color-strand;
+  padding-left: $s-5;
+  color: $color-strand;
 }
 
 .stepChange {
-	color: $color-accent;
+  color: $color-accent;
 }
 
 // --- Lineage ----------------------------------------------------------------
 
 .lineage {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	margin: 0;
-	padding: 0;
-	list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
-	@include up($bp-md) {
-		flex-direction: row;
-		flex-wrap: wrap;
-		align-items: center;
-		row-gap: $s-4;
-	}
+  @include up($bp-md) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: $s-4;
+  }
 }
 
 .lineageStep {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-	@include up($bp-md) {
-		flex-direction: row;
-		align-items: center;
-	}
+  @include up($bp-md) {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .lineageCard {
-	display: flex;
-	flex-direction: column;
-	gap: $s-1;
-	padding: $s-3 $s-5;
-	border: $border-outline;
-	border-radius: $radius-lg;
-	color: $color-ink;
+  display: flex;
+  flex-direction: column;
+  gap: $s-1;
+  padding: $s-3 $s-5;
+  border: $border-outline;
+  border-radius: $radius-lg;
+  color: $color-ink;
 
-	&:hover {
-		color: $color-ink;
-	}
+  &:hover {
+    color: $color-ink;
+  }
 
-	&.accent {
-		border-color: $color-accent;
-	}
+  &.accent {
+    border-color: $color-accent;
+  }
 
-	&.dashed {
-		border-style: dashed;
-	}
+  &.dashed {
+    border-style: dashed;
+  }
 
-	&.self {
-		background: $color-raised;
-	}
+  &.self {
+    background: $color-raised;
+  }
 }
 
 a.lineageCard {
-	transition: background-color $duration-fast ease;
+  transition: background-color $duration-fast ease;
 
-	&:hover {
-		background: $color-row-hover;
-	}
+  &:hover {
+    background: $color-row-hover;
+  }
 }
 
 .relation {
-	letter-spacing: $tracking-wide;
-	text-transform: uppercase;
+  letter-spacing: $tracking-wide;
+  text-transform: uppercase;
 
-	@include text-mono($text-11);
+  @include text-mono($text-11);
 
-	.accent > & {
-		color: $color-accent;
-	}
+  .accent > & {
+    color: $color-accent;
+  }
 
-	.dashed > & {
-		color: $color-ink-muted;
-	}
+  .dashed > & {
+    color: $color-ink-muted;
+  }
 }
 
 .lineageName {
-	font-weight: $weight-semibold;
+  font-weight: $weight-semibold;
 }
 
 .connector {
-	margin-left: $s-8;
-	fill: none;
-	stroke: $color-ink-subtle;
-	stroke-width: $stroke-thin;
-	opacity: 0.6;
+  margin-left: $s-8;
+  fill: none;
+  stroke: $color-ink-subtle;
+  stroke-width: $stroke-thin;
+  opacity: 0.6;
 
-	@include up($bp-md) {
-		margin-left: 0;
-	}
+  @include up($bp-md) {
+    margin-left: 0;
+  }
 
-	&.lit {
-		stroke: $color-accent;
-		stroke-width: $stroke-route;
-		opacity: 1;
-	}
+  &.lit {
+    stroke: $color-accent;
+    stroke-width: $stroke-route;
+    opacity: 1;
+  }
 }
 
 .across {
-	display: none;
+  display: none;
 
-	@include up($bp-md) {
-		display: block;
-	}
+  @include up($bp-md) {
+    display: block;
+  }
 }
 
 .down {
-	@include up($bp-md) {
-		display: none;
-	}
+  @include up($bp-md) {
+    display: none;
+  }
 }
 
 // --- Data links -------------------------------------------------------------
 
 .dataLinks {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	font-size: $text-17;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: $text-17;
 
-	li:not(:last-child) {
-		border-bottom: $border-soft;
-	}
+  li:not(:last-child) {
+    border-bottom: $border-soft;
+  }
 }
 
 .dataLink {
-	display: flex;
-	align-items: center;
-	min-height: $tap-target;
+  display: flex;
+  align-items: center;
+  min-height: $tap-target;
 }

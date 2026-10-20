@@ -1,0 +1,10 @@
+{
+ "pulledAt": "2026-10-07T00:00:00+00:00",
+ "synthetic": true,
+ "version": "0.8.0",
+ "models": 3,
+ "cases": 12,
+ "pairs": 36,
+ "runs": 144,
+ "harnesses": 4
+}
