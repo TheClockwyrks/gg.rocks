@@ -58,7 +58,7 @@ resources:
   # with `scripts/repos/render.py --update`.
   containers:
     - container: web
-      image: testcabinet.azurecr.io/ubuntu-the-test-cabinet-web-cicd:af509db605fd49250ddd49aece1177ab9f5d69d1
+      image: testcabinet.azurecr.io/ubuntu-the-test-cabinet-web-cicd:6c195c0f290db7a98daa4bc811ae915cfcfd889c
       endpoint: the-test-cabinet-acr
 
 pool:
